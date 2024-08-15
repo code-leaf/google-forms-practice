@@ -10,12 +10,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { Question, questionsAtom, QuestionType } from '@/store/questionsAtom';
 
 // メインのツールバーコンポーネント
 export const Toolbar: React.FC = () => {
-  // 各ボタンのクリックハンドラ（実装は省略）
+  // Recoilの状態を使用
+  const [questions, setQuestions] = useRecoilState(questionsAtom);
+
+  // 新しい質問を追加する関数
   const handleAddQuestionClick = () => {
-    // 質問追加機能の実装
+    const newQuestion: Question = {
+      id: Date.now().toString(),
+      type: 'shortAnswer',
+      title: '質問',
+      required: false,
+    };
+    setQuestions([...questions, newQuestion]);
   };
 
   const handleImportClick = () => {

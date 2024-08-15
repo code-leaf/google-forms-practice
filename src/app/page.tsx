@@ -2,6 +2,7 @@
 
 // Reactと必要なコンポーネントをインポート
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 import GoogleFormClone from './components/GoogleFormClone';
 import { Toolbar } from './components/Toolbar';
 
@@ -18,8 +19,12 @@ const FormBuilderPage: React.FC = () => {
       {/* メインコンテンツ */}
       <main className='flex justify-center container mx-auto p-4'>
         <div className='flex'>
-          <GoogleFormClone />
-          <Toolbar />
+          <RecoilRoot>
+            <GoogleFormClone />
+            <div className='flex-none'>
+              <Toolbar />
+            </div>
+          </RecoilRoot>
         </div>
       </main>
     </div>
