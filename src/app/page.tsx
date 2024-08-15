@@ -2,7 +2,6 @@
 
 // Reactと必要なコンポーネントをインポート
 import React from 'react';
-// 先ほど作成したGoogleFormCloneコンポーネントをインポート
 import GoogleFormClone from './components/GoogleFormClone';
 
 // ページコンポーネントを定義
