@@ -17,10 +17,8 @@ const FormBuilderPage: React.FC = () => {
 
       {/* メインコンテンツ */}
       <main className='flex justify-center container mx-auto p-4'>
-        <div className=''>
+        <div className='flex'>
           <GoogleFormClone />
-        </div>
-        <div className='  bg-white p-4 rounded-lg shadow'>
           <Toolbar />
         </div>
       </main>
