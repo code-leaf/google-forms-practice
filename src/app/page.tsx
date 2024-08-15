@@ -3,6 +3,7 @@
 // Reactと必要なコンポーネントをインポート
 import React from 'react';
 import GoogleFormClone from './components/GoogleFormClone';
+import { Toolbar } from './components/Toolbar';
 
 // ページコンポーネントを定義
 const FormBuilderPage: React.FC = () => {
@@ -15,10 +16,14 @@ const FormBuilderPage: React.FC = () => {
       </header>
 
       {/* メインコンテンツ */}
-      <main className='container mx-auto p-4'>
-        <GoogleFormClone />
+      <main className='flex justify-center container mx-auto p-4'>
+        <div className=''>
+          <GoogleFormClone />
+        </div>
+        <div className='  bg-white p-4 rounded-lg shadow'>
+          <Toolbar />
+        </div>
       </main>
-
     </div>
   );
 };
