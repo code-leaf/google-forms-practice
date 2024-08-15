@@ -10,23 +10,26 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 // メインのツールバーコンポーネント
 export const Toolbar: React.FC = () => {
   // Recoilの状態を使用
   const [questions, setQuestions] = useRecoilState(questionsAtom);
+
+  // 質問の表示・非表示を管理
   const [isQuestionOpen, setIsQuestionOpen] = useState<boolean>(true);
 
   // 新しい質問を追加する関数
-  const handleAddQuestionClick: () => void = () => {
+  const handleAddQuestionClick: () => void = useCallback(() => {
     setIsQuestionOpen(true);
-  };
+  }, []);
 
+  // コンポーネントのマウント時と追加ボタンクリック時に質問を生成
   useEffect(() => {
     if (!isQuestionOpen) {
-      return;
+      return; //質問非表示の場合何もしない
     }
     const newQuestion: Question = {
       id: Date.now().toString(),
@@ -36,27 +39,27 @@ export const Toolbar: React.FC = () => {
     };
     setQuestions([...questions, newQuestion]);
     setIsQuestionOpen(false);
-  }, [isQuestionOpen, handleAddQuestionClick]);
+  }, [isQuestionOpen]);
 
-  const handleImportClick = () => {
+  const handleImportClick = useCallback(() => {
     // 質問インポート機能の実装
-  };
+  }, []);
 
-  const handleAddTitleAndQuestionClick = () => {
+  const handleAddTitleAndQuestionClick = useCallback(() => {
     // タイトルと質問追加機能の実装
-  };
+  }, []);
 
-  const handleAddImageClick = () => {
+  const handleAddImageClick = useCallback(() => {
     // 画像追加機能の実装
-  };
+  }, []);
 
-  const handleAddVideoClick = () => {
+  const handleAddVideoClick = useCallback(() => {
     // 動画追加機能の実装
-  };
+  }, []);
 
-  const handleAddSectionClick = () => {
+  const handleAddSectionClick = useCallback(() => {
     // セクション追加機能の実装
-  };
+  }, []);
 
   // ツールバーのボタン設定を定義する型
   type ToolbarButtonConfig = {
