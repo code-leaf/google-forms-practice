@@ -1,5 +1,6 @@
 // 必要なライブラリとコンポーネントをインポート
 import { IconButton } from '@/app/components/IconButton';
+import { Question, questionsAtom } from '@/store/questionsAtom';
 import {
   faCirclePlay,
   faCirclePlus,
@@ -9,17 +10,24 @@ import {
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { Question, questionsAtom, QuestionType } from '@/store/questionsAtom';
 
 // メインのツールバーコンポーネント
 export const Toolbar: React.FC = () => {
   // Recoilの状態を使用
   const [questions, setQuestions] = useRecoilState(questionsAtom);
+  const [isQuestionOpen, setIsQuestionOpen] = useState<boolean>(true);
 
   // 新しい質問を追加する関数
-  const handleAddQuestionClick = () => {
+  const handleAddQuestionClick: () => void = () => {
+    setIsQuestionOpen(true);
+  };
+
+  useEffect(() => {
+    if (!isQuestionOpen) {
+      return;
+    }
     const newQuestion: Question = {
       id: Date.now().toString(),
       type: 'shortAnswer',
@@ -27,7 +35,8 @@ export const Toolbar: React.FC = () => {
       required: false,
     };
     setQuestions([...questions, newQuestion]);
-  };
+    setIsQuestionOpen(false);
+  }, [isQuestionOpen, handleAddQuestionClick]);
 
   const handleImportClick = () => {
     // 質問インポート機能の実装
