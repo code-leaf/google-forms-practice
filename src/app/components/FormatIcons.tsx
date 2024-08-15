@@ -1,5 +1,4 @@
 import React from 'react';
-// Font Awesomeのアイコンをインポート
 import {
   faBold,
   faEraser,
@@ -8,60 +7,43 @@ import {
   faUnderline,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// フォーマットオプションの型をインポート
-import { FormatOption } from '../types/formatTypes';
+import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
 
-// FormatIconsコンポーネントのプロップスの型定義
-type FormatIconsProps = {
-  handleFormatClick: (option: FormatOption) => void;
-  isVisible: boolean; // アイコンの表示/非表示を制御するプロパティ
-};
 
 // フォーマットアイコンを表示するコンポーネント
-const FormatIcons: React.FC<FormatIconsProps> = ({
-  handleFormatClick,
-  isVisible,
-}) => {
+const FormatIcons: React.FC<FormatIconsProps> = ({ isVisible }) => {
   // isVisibleがfalseの場合は何も表示しない
   if (!isVisible) return undefined;
 
+  // アイコン情報の配列を定義
+  const icons: IconInfo[] = [
+    { icon: faBold, ariaLabel: '太字' },
+    { icon: faItalic, ariaLabel: '斜体' },
+    { icon: faUnderline, ariaLabel: '下線' },
+    { icon: faLink, ariaLabel: 'リンクを挿入' },
+    { icon: faEraser, ariaLabel: '書式をクリア' },
+  ];
+
   return (
-    <div className='mt-2 flex space-x-2'>
-      {/* 太字アイコン */}
-      <button
-        onClick={() => handleFormatClick('bold')}
-        className='p-1 hover:bg-gray-200 rounded'
-      >
-        <FontAwesomeIcon icon={faBold} />
-      </button>
-      {/* 斜体アイコン */}
-      <button
-        onClick={() => handleFormatClick('italic')}
-        className='p-1 hover:bg-gray-200 rounded'
-      >
-        <FontAwesomeIcon icon={faItalic} />
-      </button>
-      {/* 下線アイコン */}
-      <button
-        onClick={() => handleFormatClick('underline')}
-        className='p-1 hover:bg-gray-200 rounded'
-      >
-        <FontAwesomeIcon icon={faUnderline} />
-      </button>
-      {/* リンクアイコン */}
-      <button
-        onClick={() => handleFormatClick('link')}
-        className='p-1 hover:bg-gray-200 rounded'
-      >
-        <FontAwesomeIcon icon={faLink} />
-      </button>
-      {/* クリアアイコン */}
-      <button
-        onClick={() => handleFormatClick('clear')}
-        className='p-1 hover:bg-gray-200 rounded'
-      >
-        <FontAwesomeIcon icon={faEraser} />
-      </button>
+    <div className='mt-2 flex space-x-2 items-center'>
+      {/* アイコンの配列をマップして表示 */}
+      {icons.map((iconInfo) => (
+        <div
+          key={iconInfo.ariaLabel}
+          title={iconInfo.ariaLabel} // ツールチップとして表示されるテキスト
+          className='relative'
+        >
+          <button
+            className='p-1 hover:bg-gray-200 rounded'
+            aria-label={iconInfo.ariaLabel}
+          >
+            <FontAwesomeIcon icon={iconInfo.icon} />
+            {/* スクリーンリーダー用のラベル */}
+            <span className='sr-only'>{iconInfo.ariaLabel}</span>
+          </button>
+        </div>
+      ))}
+      <p className=' '>※書式設定機能は未実装です。</p>
     </div>
   );
 };

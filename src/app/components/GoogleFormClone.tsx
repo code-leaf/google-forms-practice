@@ -8,21 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import FormHeader from './FormHeader';
 
-// フォームの質問タイプを定義
-type QuestionType =
-  | 'shortAnswer'
-  | 'paragraph'
-  | 'multipleChoice'
-  | 'checkboxes';
+import { Question, QuestionType } from '@/app/types/formTypes';
 
-// 質問オブジェクトの型を定義
-type Question = {
-  id: string; // 質問の一意のID
-  type: QuestionType; // 質問のタイプ
-  title: string; // 質問のタイトル
-  options?: string[]; // 選択肢（複数選択や一択の場合）
-  required: boolean; // 必須回答かどうか
-};
 
 // フォームコンポーネント
 const GoogleFormClone: React.FC = () => {
