@@ -3,7 +3,7 @@
 // Reactと必要なコンポーネントをインポート
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import GoogleFormClone from './components/GoogleFormClone';
+import { GoogleFormClone } from './components/GoogleFormClone';
 import { Toolbar } from './components/Toolbar';
 
 // ページコンポーネントを定義

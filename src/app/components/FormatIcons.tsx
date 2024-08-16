@@ -1,4 +1,4 @@
-import React from 'react';
+import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
 import {
   faBold,
   faEraser,
@@ -7,11 +7,10 @@ import {
   faUnderline,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
-
+import React from 'react';
 
 // フォーマットアイコンを表示するコンポーネント
-const FormatIcons: React.FC<FormatIconsProps> = ({ isVisible }) => {
+export const FormatIcons: React.FC<FormatIconsProps> = ({ isVisible }) => {
   // isVisibleがfalseの場合は何も表示しない
   if (!isVisible) return undefined;
 
@@ -47,5 +46,3 @@ const FormatIcons: React.FC<FormatIconsProps> = ({ isVisible }) => {
     </div>
   );
 };
-
-export default FormatIcons;

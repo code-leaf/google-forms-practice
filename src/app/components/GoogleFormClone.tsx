@@ -4,11 +4,11 @@ import React, { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 // 質問のatomをインポート
 import { Question, questionsAtom } from '@/store/questionsAtom';
-import FormHeader from './FormHeader';
+import { FormHeader } from './FormHeader';
 import { Transition } from './Transition';
 
 // フォームコンポーネント
-const GoogleFormClone: React.FC = () => {
+export const GoogleFormClone: React.FC = () => {
   // Recoilの状態を使用
   const [questions, setQuestions] = useRecoilState(questionsAtom);
 
@@ -46,5 +46,3 @@ const GoogleFormClone: React.FC = () => {
     </div>
   );
 };
-
-export default GoogleFormClone;

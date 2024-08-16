@@ -1,12 +1,12 @@
 // React関連の機能をインポート
 import React, { useState } from 'react';
 // フォーマットアイコンコンポーネントをインポート
-import FormatIcons from '@/app/components/FormatIcons';
+import { FormatIcons } from '@/app/components/FormatIcons';
 // 型をインポート
 import { SelectedInput } from '@/app/types/formTypes';
 
 // フォームのヘッダー部分を表示するコンポーネント
-const FormHeader: React.FC = () => {
+export const FormHeader: React.FC = () => {
   // フォームのタイトルを管理するstate
   const [formTitle, setFormTitle] = useState<string>('');
 
@@ -58,5 +58,3 @@ const FormHeader: React.FC = () => {
     </div>
   );
 };
-
-export default FormHeader;
