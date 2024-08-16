@@ -1,6 +1,7 @@
 'use client'; // クライアントサイドでの実行を明示
 
 // Reactと必要なコンポーネントをインポート
+import { Header } from '@/app/components/Header';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { GoogleFormClone } from './components/GoogleFormClone';
@@ -11,11 +12,7 @@ const FormBuilderPage: React.FC = () => {
   return (
     // ページ全体のコンテナ
     <div className='min-h-screen bg-gray-100'>
-      {/* ヘッダー部分 */}
-      <header className='bg-blue-600 text-white p-4'>
-        <h1 className='text-2xl font-bold'>Google Form練習</h1>
-      </header>
-
+      <Header />
       {/* メインコンテンツ */}
       <main className='flex justify-center container mx-auto p-4'>
         <div className='flex'>
