@@ -1,4 +1,4 @@
-import React from 'react';
+import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
 import {
   faBold,
   faEraser,
@@ -7,25 +7,24 @@ import {
   faUnderline,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
+import React from 'react';
 
+// アイコン情報の配列を定義
+const icons: IconInfo[] = [
+  { icon: faBold, ariaLabel: '太字' },
+  { icon: faItalic, ariaLabel: '斜体' },
+  { icon: faUnderline, ariaLabel: '下線' },
+  { icon: faLink, ariaLabel: 'リンクを挿入' },
+  { icon: faEraser, ariaLabel: '書式をクリア' },
+];
 
 // フォーマットアイコンを表示するコンポーネント
 const FormatIcons: React.FC<FormatIconsProps> = ({ isVisible }) => {
   // isVisibleがfalseの場合は何も表示しない
   if (!isVisible) return undefined;
 
-  // アイコン情報の配列を定義
-  const icons: IconInfo[] = [
-    { icon: faBold, ariaLabel: '太字' },
-    { icon: faItalic, ariaLabel: '斜体' },
-    { icon: faUnderline, ariaLabel: '下線' },
-    { icon: faLink, ariaLabel: 'リンクを挿入' },
-    { icon: faEraser, ariaLabel: '書式をクリア' },
-  ];
-
   return (
-    <div className='mt-2 flex space-x-2 items-center'>
+    <div className='mt-2 flex space-x-2 items-center text-gray-600'>
       {/* アイコンの配列をマップして表示 */}
       {icons.map((iconInfo) => (
         <div
