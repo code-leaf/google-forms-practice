@@ -108,7 +108,7 @@ export const Toolbar: React.FC = () => {
           />
         ))}
       </div>
-      <p className='ml-2 text-gray-700 [writing-mode:vertical-rl]'>
+      <p className='ml-2 text-gray-600 [writing-mode:vertical-rl]'>
         ※ 質問の追加のみ実装しています。
       </p>
     </div>
