@@ -8,10 +8,10 @@ const FormBuilderPage: React.FC = () => {
     // ページ全体のコンテナ
     <div className='min-h-screen bg-purple-100'>
       {/* ヘッダー部分 */}
-      <Header activeTab={2}/>
+      <Header activeTab={2} />
       {/* メインコンテンツ */}
       <main className='flex justify-center container mx-auto p-4'>
-        <div className='flex'>
+        <div className='max-w-4xl mx-auto w-full'>
           <AnswerPageMain />
         </div>
       </main>
