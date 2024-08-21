@@ -1,15 +1,15 @@
-'use client'; // クライアントサイドでの実行を明示
+import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
+import React, { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 
-import { useCallback, useState } from 'react';
-
-export const ResponseAcceptanceToggle: () => JSX.Element = () => {
+export const RespAcceptToggle: React.VoidFunctionComponent = () => {
   // 回答受付状況のステートを管理
-  const [isAccepting, setIsAccepting] = useState<boolean>(true);
+  const [isAccepting, setIsAccepting] = useRecoilState(respAcceptToggleAtom);
 
   // トグルボタンのクリックハンドラをコールバック関数として定義
   const toggleAcceptance = useCallback(() => {
-    setIsAccepting(!isAccepting);
-  }, [isAccepting]);
+    setIsAccepting((prev) => !prev); // 前の状態を使用して更新
+  }, [setIsAccepting]);
 
   return (
     //    回答受付状況とトグルボタンを表示
