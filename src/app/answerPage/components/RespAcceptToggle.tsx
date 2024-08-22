@@ -1,4 +1,4 @@
-import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
+import { respAcceptToggleAtom } from '@/store/respAcceptToggleAtom';
 import React, { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 

@@ -83,7 +83,7 @@ export const Transition: React.FC<TransitionProps> = ({
       leaveTo='opacity-0'
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
-      <div className='bg-white rounded-lg shadow-md p-6 mb-4'>
+      <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600'>
         {/* 質問のタイトル入力欄 */}
         <input
           type='text' // テキスト入力フィールドを指定
