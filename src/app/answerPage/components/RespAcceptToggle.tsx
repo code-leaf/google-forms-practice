@@ -14,7 +14,7 @@ export const RespAcceptToggle: React.VoidFunctionComponent = () => {
   return (
     //    回答受付状況とトグルボタンを表示
     <div
-      className={`flex justify-end items-center px-3 py-3 rounded-md ${
+      className={`flex justify-end items-center p-4 rounded-md ${
         isAccepting ? 'text-gray-400' : 'bg-red-500 text-gray-50'
       }`}
     >

@@ -1,4 +1,4 @@
-import { Question, QuestionType } from '@/store/questionsAtom';
+import { Question, QuestionType } from '@/store/QuestionsAtom';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition as HeadlessTransition } from '@headlessui/react';
