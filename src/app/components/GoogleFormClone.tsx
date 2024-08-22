@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 // Recoilのフックをインポート
 import { useRecoilState } from 'recoil';
 // 質問のatomをインポート
-import { Question, questionsAtom } from '@/store/questionsAtom';
+import { Question, questionsAtom } from '@/store/QuestionsAtom';
 import FormHeader from './FormHeader';
 import { Transition } from './Transition';
 

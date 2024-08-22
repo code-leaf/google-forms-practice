@@ -1,6 +1,6 @@
 // 必要なライブラリとコンポーネントをインポート
 import { IconButton } from '@/app/components/IconButton';
-import { Question, questionsAtom } from '@/store/questionsAtom';
+import { Question, questionsAtom } from '@/store/QuestionsAtom';
 import {
   faCirclePlay,
   faCirclePlus,
