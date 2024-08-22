@@ -1,11 +1,16 @@
+import { AnswerSummary } from '@/app/answerPage/components/AnswerSummary';
 import { RespAcceptToggle } from '@/app/answerPage/components/RespAcceptToggle';
+import { questionsAtom } from '@/store/questionsAtom';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 
 type Answer = { count: number; isAccepting: boolean };
 
 export const AnswerPageMain: React.FC = () => {
+  // Recoilを使用して質問のデータを取得
+  const questions = useRecoilValue(questionsAtom);
   return (
     <div className='container mx-auto p-4 max-w-3xl text-gray-600 bg-gray-50 rounded-md  mb-4'>
       {/* 回答件数とスプレッドシートへのリンクを表示 */}
@@ -20,6 +25,7 @@ export const AnswerPageMain: React.FC = () => {
         </button>
       </div>
       <RespAcceptToggle />
+      <AnswerSummary questions={questions} />
     </div>
   );
 };
