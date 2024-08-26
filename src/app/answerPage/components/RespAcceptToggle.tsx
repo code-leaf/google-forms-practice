@@ -1,8 +1,9 @@
-import { respAcceptToggleAtom } from '@/store/respAcceptToggleAtom';
-import React, { useCallback } from 'react';
+import { ToggleButton } from '@/app/components/ToggleButton';
+import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
+import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
-export const RespAcceptToggle: React.VoidFunctionComponent = () => {
+export const RespAcceptToggle: React.FC = () => {
   // 回答受付状況のステートを管理
   const [isAccepting, setIsAccepting] = useRecoilState(respAcceptToggleAtom);
 
@@ -11,37 +12,36 @@ export const RespAcceptToggle: React.VoidFunctionComponent = () => {
     setIsAccepting((prev) => !prev); // 前の状態を使用して更新
   }, [setIsAccepting]);
 
+  // コンテナのクラス名を生成
+  const containerClassName = useMemo(
+    () =>
+      `flex justify-end items-center p-4 rounded-md ${
+        isAccepting ? 'text-gray-400' : 'bg-red-500 text-gray-50'
+      }`,
+    [isAccepting]
+  );
+
+  // メッセージを生成
+  const message = useMemo(
+    () => (isAccepting ? '回答を受付中' : '回答を受け付けていません'),
+    [isAccepting]
+  );
+
   return (
     //    回答受付状況とトグルボタンを表示
     <div>
-      <div
-        className={`flex justify-end items-center p-4 rounded-md ${
-          isAccepting ? 'text-gray-400' : 'bg-red-500 text-gray-50'
-        }`}
-      >
-        <p className=''>
-          {isAccepting ? '回答を受付中' : '回答を受け付けていません'}
-        </p>
+      <div className={containerClassName}>
+        <p>{message} </p>
         {/* トグルボタンのカスタムUIを作成するためのラベル要素 */}
-        <label className='relative inline-flex items-center cursor-pointer ml-4 bg'>
-          {/* 視覚的に非表示のインプット */}
-          <input type='checkbox' value='' className='sr-only peer' />
-          {/* トグルボタン */}
-          <div
-            onClick={toggleAcceptance}
-            className='group peer ring-0 bg-purple-200 rounded-full outline-none duration-300 after:duration-300 w-12 h-5 shadow-md peer-checked:bg-gray-400 peer-focus:outline-none after:content-[""] after:absolute after:bg-purple-500 after:rounded-full after:h-7 after:w-7 after:-top-1 after:right-0 after:flex after:justify-center after:items-center after:transition-all peer-checked:after:translate-x-[-1.25rem] peer-checked:after:bg-gray-50'
-          ></div>
-        </label>
+        <ToggleButton isChecked={isAccepting} onChange={toggleAcceptance} />
       </div>
-      {!isAccepting ? (
-        <div className=' p-4 rounded-md border -mt-1 border-t-red-500'>
+      {!isAccepting && (
+        <div className='text-gray-600 p-4 rounded-md border -mt-1 border-t-red-500'>
           <p>回答者へのメッセージ</p>
           <p className='mt-2 border-b pb-1 text-gray-400'>
             このフォームは回答の受け付けを終了しました
           </p>
         </div>
-      ) : (
-        ''
       )}
     </div>
   );

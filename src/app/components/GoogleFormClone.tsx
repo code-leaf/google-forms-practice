@@ -32,7 +32,7 @@ const GoogleFormClone: React.FC = () => {
 
   return (
     // フォーム全体のコンテナ - 中央寄せとmax-widthを設定
-    <div className='container mx-auto p-4 max-w-3xl'>
+    <div className='container mx-auto p-4 max-w-4xl'>
       <FormHeader />
       {/* 質問のリスト */}
       {questions.map((question) => (
