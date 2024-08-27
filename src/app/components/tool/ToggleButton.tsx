@@ -20,7 +20,7 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
   // トグルボタンのクラス名を生成（メモ化して再レンダリングを最適化）
   const toggleClassName = useMemo(
     () => `
-    group peer ring-0 rounded-full outline-none duration-300 w-12 h-5 shadow-md 
+    group peer ring-0 rounded-full outline-none duration-300 w-12 h-5 shadow-md
     ${isChecked ? 'bg-purple-200' : 'bg-gray-300'}
     after:content-[""] after:absolute after:rounded-full after:h-7 after:w-7 
     after:-top-1 after:right-0 after:flex after:justify-center after:items-center 
