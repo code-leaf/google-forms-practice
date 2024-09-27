@@ -1,4 +1,4 @@
-import { ToggleButton } from '@/app/components/ToggleButton';
+import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
 import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';

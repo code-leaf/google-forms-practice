@@ -1,5 +1,5 @@
 import { Header } from '@/app/components/Header';
-import { Setting } from '@/app/SettingPage/Setting';
+import { Setting } from '@/app/SettingPage/components/Setting';
 import React from 'react';
 
 const SettingPage: React.FC = () => {

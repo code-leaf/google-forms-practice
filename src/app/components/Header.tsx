@@ -8,17 +8,31 @@ import {
   faUndo,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import React from 'react';
 
 type Tab = {
   id: 1 | 2 | 3;
   label: string;
+  href: string;
 };
 
 const tabList: Tab[] = [
-  { id: 1, label: '質問' },
-  { id: 2, label: '回答' },
-  { id: 3, label: '設定' },
+  {
+    id: 1,
+    label: '質問',
+    href: '/',
+  },
+  {
+    id: 2,
+    label: '回答',
+    href: '/answerPage',
+  },
+  {
+    id: 3,
+    label: '設定',
+    href: 'SettingPage',
+  },
 ];
 
 // ヘッダーコンポーネントの型定義
@@ -79,14 +93,15 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
       <div className='flex justify-center '>
         <div className='flex items-start space-x-5'>
           {tabList.map((tab) => (
-            <button
-              key={tab.id}
-              className={`py-1 px-2${
-                activeTab === tab.id ? ' border-b-4  border-b-purple-700' : ''
-              }`}
-            >
-              {tab.label}
-            </button>
+            <Link key={tab.id} href={tab.href}>
+              <button
+                className={`py-1 px-2${
+                  activeTab === tab.id ? ' border-b-4  border-b-purple-700' : ''
+                }`}
+              >
+                {tab.label}
+              </button>
+            </Link>
           ))}
         </div>
       </div>
