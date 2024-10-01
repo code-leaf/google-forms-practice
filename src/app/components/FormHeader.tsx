@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // フォーマットアイコンコンポーネントをインポート
 import FormatIcons from '@/app/components/FormatIcons';
 // 型をインポート
-import { SelectedInput } from '@/app/types/formTypes';
+import { SelectedInput } from '@/types/formTypes';
 
 // フォームのヘッダー部分を表示するコンポーネント
 const FormHeader: React.FC = () => {

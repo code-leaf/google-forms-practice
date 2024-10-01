@@ -1,4 +1,4 @@
-import { FormatIconsProps, IconInfo } from '@/app/types/formTypes';
+import { FormatIconsProps, IconInfo } from '@/types/formTypes';
 import {
   faBold,
   faEraser,
