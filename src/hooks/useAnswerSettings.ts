@@ -1,15 +1,24 @@
 import { EmailCollectionOption, SendCopyOption } from '@/types/SettingsType';
 import { useCallback, useState } from 'react';
 
-type UseAnswerSettings = () => {
+type UseAnswerSettings = {
   emailCollectionOption: EmailCollectionOption;
   sendCopyOption: SendCopyOption;
   allowEditAnswer: boolean;
   limitOneRespons: boolean;
-  setEmailCollectionOption: (option: EmailCollectionOption) => void;
-  setSendCopyOption: (option: SendCopyOption) => void;
   toggleAllowEditAnswer: () => void;
-  toggleLimitOneRespons: () => void;
+  togglelimitOneRespons: () => void;
+  getEmailCollectionDescription: (
+    option: EmailCollectionOption
+  ) =>
+    | ''
+    | '回答者による Google へのログインが必要になります'
+    | '回答者はメールの応答を手動で入力します';
+  handleEmailCollectionChange: (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
+  isEmailCollectionDisabled: boolean;
+  handleSendCopyChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export const useAnswerSettings = (): UseAnswerSettings => {
@@ -60,9 +69,11 @@ export const useAnswerSettings = (): UseAnswerSettings => {
     sendCopyOption,
     allowEditAnswer,
     limitOneRespons,
-    setEmailCollectionOption,
-    setSendCopyOption,
     toggleAllowEditAnswer,
-    toggleLimitOneRespons,
+    togglelimitOneRespons,
+    getEmailCollectionDescription,
+    handleEmailCollectionChange,
+    isEmailCollectionDisabled,
+    handleSendCopyChange,
   };
 };

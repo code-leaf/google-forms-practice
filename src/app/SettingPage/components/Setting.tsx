@@ -3,6 +3,7 @@
 import { AccordionItem } from '@/app/components/tool/AccordionItem';
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettings } from '@/app/SettingPage/components/AnswerSettings';
+import { TestSettings } from '@/app/SettingPage/components/TestSettings';
 import { useCallback, useState } from 'react';
 
 export const Setting = () => {
@@ -26,14 +27,19 @@ export const Setting = () => {
         <h1 className='text-xl pb-4 border-b border-b-slate-300'>設定</h1>
 
         {/* テスト */}
-        <div className='flex justify-between items-center py-8 border-b border-b-slate-300'>
-          <div className=''>
-            <h2 className='text-lg'>テストにする</h2>
-            <p className=''>
-              点数の割り当て、解答の設定、フィードバックの自動提供が可能になります
-            </p>
+        <div className=' py-8 border-b border-b-slate-300'>
+          <div className='flex justify-between items-center'>
+            <div className=''>
+              <h2 className='text-lg'>テストにする</h2>
+              <p className=''>
+                点数の割り当て、解答の設定、フィードバックの自動提供が可能になります
+              </p>
+            </div>
+            <ToggleButton isChecked={isTest} onChange={toggleTest} />
           </div>
-          <ToggleButton isChecked={isTest} onChange={toggleTest} />
+
+          {/* 細かな設定 */}
+          <TestSettings isChecked={isTest} />
         </div>
 
         {/* 回答 */}
