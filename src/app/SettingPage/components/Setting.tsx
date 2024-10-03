@@ -3,23 +3,32 @@
 import { AccordionItem } from '@/app/components/tool/AccordionItem';
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettings } from '@/app/SettingPage/components/AnswerSettings';
+import { DisplaySettings } from '@/app/SettingPage/components/DisplaySettings';
 import { TestSettings } from '@/app/SettingPage/components/TestSettings';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 export const Setting = () => {
-  const [isTest, setIsTest] = useState<boolean>(true);
+  const [isTest, setIsTest] = useState<boolean>(false);
   // アコーディオンの展開状態を管理するstate
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  // アコーディオンのクリックイベントを処理する関数
-  const handleAccordion: () => void = () => {
-    setIsExpanded((prev) => !prev); // 現在の状態を反転させる
+  const [isDisplaySetting, setIsDisplaySetting] = useState<boolean>(false);
+
+  const toggleSetting = (key: 'isTest' | 'isExpanded' | 'isDisplaySetting') => {
+    switch (key) {
+      case 'isTest':
+        setIsTest((prev) => !prev);
+        break;
+
+      case 'isExpanded':
+        setIsExpanded((prev) => !prev);
+        break;
+
+      default:
+        setIsDisplaySetting((prev) => !prev);
+        break;
+    }
   };
-
-  // トグルボタンのクリックハンドラをコールバック関数として定義
-  const toggleTest = useCallback(() => {
-    setIsTest((prev) => !prev); // 前の状態を使用して更新
-  }, [setIsTest]);
 
   return (
     <div className='max-w-4xl mx-auto w-full text-gray-600'>
@@ -35,7 +44,10 @@ export const Setting = () => {
                 点数の割り当て、解答の設定、フィードバックの自動提供が可能になります
               </p>
             </div>
-            <ToggleButton isChecked={isTest} onChange={toggleTest} />
+            <ToggleButton
+              isChecked={isTest}
+              onChange={() => toggleSetting('isTest')}
+            />
           </div>
 
           {/* 細かな設定 */}
@@ -49,11 +61,31 @@ export const Setting = () => {
               <h2 className='text-lg'>回答</h2>
               <p className=''>回答を収集、保護する方法を管理できます </p>
             </div>
-            <AccordionItem isExpanded={isExpanded} onClick={handleAccordion} />
+            <AccordionItem
+              isExpanded={isExpanded}
+              onClick={() => toggleSetting('isExpanded')}
+            />
           </div>
 
           {/* 細かな設定 */}
           <AnswerSettings isExpanded={isExpanded} />
+        </div>
+
+        {/* 表示設定 */}
+        <div className=' py-8'>
+          <div className='flex justify-between items-center'>
+            <div className=''>
+              <h2 className='text-lg'>表示設定</h2>
+              <p className=''>フォームと回答の表示方法を管理できます</p>
+            </div>
+            <AccordionItem
+              isExpanded={isExpanded}
+              onClick={() => toggleSetting('isDisplaySetting')}
+            />
+          </div>
+
+          {/* 細かな設定 */}
+          <DisplaySettings isExpanded={isDisplaySetting} />
         </div>
       </div>
     </div>

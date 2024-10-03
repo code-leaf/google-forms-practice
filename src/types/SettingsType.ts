@@ -17,3 +17,14 @@ export type ScoreDisplaySettings = {
   displayTiming: 'immediate' | 'manual';
   defaultScore: number;
 };
+
+export type UseTestSettings = {
+  settings: ScoreDisplaySettings;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  IncorrectQuestions: boolean;
+  toggleSetting: (
+    key: 'IncorrectQuestions' | 'CorrectAnswers' | 'Scores'
+  ) => void;
+  CorrectAnswers: boolean;
+  Scores: boolean;
+};

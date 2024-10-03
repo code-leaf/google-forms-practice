@@ -1,16 +1,5 @@
-import { ScoreDisplaySettings } from '@/types/SettingsType';
+import { ScoreDisplaySettings, UseTestSettings } from '@/types/SettingsType';
 import { useState } from 'react';
-
-type UseTestSettings = {
-  settings: ScoreDisplaySettings;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  IncorrectQuestions: boolean;
-  toggleSetting: (
-    key: 'IncorrectQuestions' | 'CorrectAnswers' | 'Scores'
-  ) => void;
-  CorrectAnswers: boolean;
-  Scores: boolean;
-};
 
 export const useTestSettings = (): UseTestSettings => {
   const [settings, setSettings] = useState<ScoreDisplaySettings>({
