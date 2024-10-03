@@ -1,53 +1,16 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
-import { useState } from 'react';
-
-type TestSettingsProps = {
-  isChecked: boolean;
-};
-
-type ScoreDisplaySettings = {
-  displayTiming: 'immediate' | 'manual';
-  defaultScore: number;
-};
+import { useTestSettings } from '@/hooks/useTestSettings';
+import { TestSettingsProps } from '@/types/SettingsType';
 
 export const TestSettings = ({ isChecked }: TestSettingsProps) => {
-  const [settings, setSettings] = useState<ScoreDisplaySettings>({
-    displayTiming: 'immediate',
-    defaultScore: 0,
-  });
-
-  const [IncorrectQuestions, setIncorrectQuestions] = useState<boolean>(true);
-
-  const [CorrectAnswers, setCorrectAnswers] = useState<boolean>(true);
-
-  const [Scores, setScores] = useState<boolean>(true);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target;
-    setSettings((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
-  const toggleSetting = (
-    key: 'IncorrectQuestions' | 'CorrectAnswers' | 'Scores'
-  ) => {
-    switch (key) {
-      case 'IncorrectQuestions':
-        setIncorrectQuestions((prev) => !prev);
-        break;
-
-      case 'CorrectAnswers':
-        setCorrectAnswers((prev) => !prev);
-        break;
-
-      default:
-        setScores((prev) => !prev);
-        break;
-    }
-  };
-
+  const {
+    settings,
+    handleChange,
+    IncorrectQuestions,
+    toggleSetting,
+    CorrectAnswers,
+    Scores,
+  } = useTestSettings();
   if (!isChecked) return undefined;
 
   return (
@@ -153,6 +116,7 @@ export const TestSettings = ({ isChecked }: TestSettingsProps) => {
                 id='defaultScore'
                 name='defaultScore'
                 value={settings.defaultScore}
+                min={0}
                 onChange={handleChange}
                 className='form-input w-20 text-center'
               />

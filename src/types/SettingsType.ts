@@ -8,3 +8,12 @@ export type EmailCollectionOption =
   | '回答者からの入力';
 
 export type SendCopyOption = 'オフ' | 'リクエストされた場合' | '常に表示';
+
+export type TestSettingsProps = {
+  isChecked: boolean;
+};
+
+export type ScoreDisplaySettings = {
+  displayTiming: 'immediate' | 'manual';
+  defaultScore: number;
+};
