@@ -81,15 +81,23 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
           <p className='text-xs text-gray-500'>送信後</p>
           {/* 設定項目1 */}
           <div className='flex items-center justify-between'>
-            <div>
-              <h2 className='text-lg'>確認メッセージ</h2>
+            <div className='relative sm:w-2/3'>
+              <h2
+                className={`bg-white ${
+                  isEditing
+                    ? 'text-sm z-10 absolute left-2 -top-2 px-1'
+                    : 'text-lg'
+                }`}
+              >
+                確認メッセージ
+              </h2>
               {isEditing ? (
                 <input
                   type='text'
                   placeholder='回答を記録しました'
                   value={confirmationMessage}
                   onChange={(e) => setConfirmationMessage(e.target.value)}
-                  className='w-full p-2 border rounded text-sm'
+                  className='w-full p-4 border rounded text-sm'
                 />
               ) : (
                 <p className='text-xs text-gray-500'>{confirmationMessage}</p>
@@ -97,19 +105,24 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
             </div>
 
             {isEditing ? (
-              <div className='space-x-4'>
+              <div className='space-x-1'>
                 <button
-                  className='text-blue-600'
+                  className='text-blue-600 py-2 px-3 rounded hover:bg-gray-100'
                   onClick={() => Setting('Save')}
                 >
                   保存
                 </button>
-                <button onClick={() => Setting('Cancel')}>キャンセル</button>
+                <button
+                  className='py-2 px-3 rounded hover:bg-gray-100'
+                  onClick={() => Setting('Cancel')}
+                >
+                  キャンセル
+                </button>
               </div>
             ) : (
               <button
                 onClick={() => Setting('IsEditing')}
-                className='text-blue-600 text-sm flex items-center'
+                className='text-blue-600 text-sm flex items-center py-2 px-3 rounded hover:bg-gray-100'
               >
                 編集
               </button>
