@@ -7,7 +7,16 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
 
   const [shuffleQuestion, setShuffleQuestion] = useState<boolean>(false);
 
-  const toggleSetting = (key: 'ProgressBar' | 'ShuffleQuestion' | 'Scores') => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [confirmationMessage, setConfirmationMessage] =
+    useState<string>('回答を記録しました');
+
+  const [Cancel, setCancel] = useState<string>('');
+
+  const Setting = (
+    key: 'ProgressBar' | 'ShuffleQuestion' | 'IsEditing' | 'Save' | 'Cancel'
+  ) => {
     switch (key) {
       case 'ProgressBar':
         setProgressBar((prev) => !prev);
@@ -15,6 +24,20 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
 
       case 'ShuffleQuestion':
         setShuffleQuestion((prev) => !prev);
+        break;
+
+      case 'IsEditing':
+        setIsEditing((prev) => !prev);
+        setCancel(confirmationMessage);
+        break;
+
+      case 'Save':
+        setIsEditing((prev) => !prev);
+        break;
+
+      case 'Cancel':
+        setConfirmationMessage(Cancel);
+        setIsEditing((prev) => !prev);
         break;
 
       //   default:
@@ -39,7 +62,7 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
             </div>
             <ToggleButton
               isChecked={progressBar}
-              onChange={() => toggleSetting('ProgressBar')}
+              onChange={() => Setting('ProgressBar')}
             />
           </div>
 
@@ -50,12 +73,48 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
             </div>
             <ToggleButton
               isChecked={shuffleQuestion}
-              onChange={() => toggleSetting('ShuffleQuestion')}
+              onChange={() => Setting('ShuffleQuestion')}
             />
           </div>
 
           {/* 送信後 */}
           <p className='text-xs text-gray-500'>送信後</p>
+          {/* 設定項目1 */}
+          <div className='flex items-center justify-between'>
+            <div>
+              <h2 className='text-lg'>確認メッセージ</h2>
+              {isEditing ? (
+                <input
+                  type='text'
+                  placeholder='回答を記録しました'
+                  value={confirmationMessage}
+                  onChange={(e) => setConfirmationMessage(e.target.value)}
+                  className='w-full p-2 border rounded text-sm'
+                />
+              ) : (
+                <p className='text-xs text-gray-500'>{confirmationMessage}</p>
+              )}
+            </div>
+
+            {isEditing ? (
+              <div className='space-x-4'>
+                <button
+                  className='text-blue-600'
+                  onClick={() => Setting('Save')}
+                >
+                  保存
+                </button>
+                <button onClick={() => Setting('Cancel')}>キャンセル</button>
+              </div>
+            ) : (
+              <button
+                onClick={() => Setting('IsEditing')}
+                className='text-blue-600 text-sm flex items-center'
+              >
+                編集
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
