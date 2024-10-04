@@ -2,7 +2,10 @@ import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettingsProps } from '@/types/SettingsType';
 import { useState } from 'react';
 
-export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
+export const DisplaySettings = ({
+  isExpanded,
+  limitOneRespons,
+}: AnswerSettingsProps) => {
   const [progressBar, setProgressBar] = useState<boolean>(false);
 
   const [shuffleQuestion, setShuffleQuestion] = useState<boolean>(false);
@@ -14,8 +17,17 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
 
   const [Cancel, setCancel] = useState<string>('');
 
+  const [toggleAnswerLinkDisplay, setToggleAnswerLinkDisplay] =
+    useState<boolean>(false);
+
   const Setting = (
-    key: 'ProgressBar' | 'ShuffleQuestion' | 'IsEditing' | 'Save' | 'Cancel'
+    key:
+      | 'ProgressBar'
+      | 'ShuffleQuestion'
+      | 'IsEditing'
+      | 'Save'
+      | 'Cancel'
+      | 'ToggleAnswerLinkDisplay'
   ) => {
     switch (key) {
       case 'ProgressBar':
@@ -38,6 +50,10 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
       case 'Cancel':
         setConfirmationMessage(Cancel);
         setIsEditing((prev) => !prev);
+        break;
+
+      case 'ToggleAnswerLinkDisplay':
+        setToggleAnswerLinkDisplay((prev) => !prev);
         break;
 
       //   default:
@@ -63,6 +79,7 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
             <ToggleButton
               isChecked={progressBar}
               onChange={() => Setting('ProgressBar')}
+              limitOneRespons={false}
             />
           </div>
 
@@ -74,6 +91,7 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
             <ToggleButton
               isChecked={shuffleQuestion}
               onChange={() => Setting('ShuffleQuestion')}
+              limitOneRespons={false}
             />
           </div>
 
@@ -97,7 +115,7 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
                   placeholder='回答を記録しました'
                   value={confirmationMessage}
                   onChange={(e) => setConfirmationMessage(e.target.value)}
-                  className='w-full p-4 border rounded text-sm'
+                  className='w-full p-4 border rounded text-sm focus:border-blue-500 focus:outline-none focus:border-2'
                 />
               ) : (
                 <p className='text-xs text-gray-500'>{confirmationMessage}</p>
@@ -127,6 +145,27 @@ export const DisplaySettings = ({ isExpanded }: AnswerSettingsProps) => {
                 編集
               </button>
             )}
+          </div>
+
+          {/* 設定項目2 */}
+          <div className='flex items-center justify-between'>
+            <div className='flex flex-col'>
+              <h2 className='text-lg'>別の回答を送信するためのリンクを表示</h2>
+              {limitOneRespons && (
+                <p className='text-xs text-gray-500'>
+                  <span className='font-extrabold'>
+                    [回答を 1 回に制限する]
+                  </span>
+                  の設定により無効になっています
+                </p>
+              )}
+            </div>
+
+            <ToggleButton
+              isChecked={toggleAnswerLinkDisplay}
+              onChange={() => Setting('ToggleAnswerLinkDisplay')}
+              limitOneRespons={limitOneRespons}
+            />
           </div>
         </div>
       )}

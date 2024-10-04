@@ -5,12 +5,14 @@ import React, { useCallback, useMemo } from 'react';
 type ToggleButtonProps = {
   isChecked: boolean; // トグルの状態（オン/オフ）
   onChange: () => void; // 状態変更時のコールバック関数
+  limitOneRespons: boolean;
 };
 
 // ToggleButtonコンポーネントの定義
 export const ToggleButton: React.FC<ToggleButtonProps> = ({
   isChecked,
   onChange,
+  limitOneRespons,
 }) => {
   // トグルボタンのクリックハンドラをコールバック関数として定義
   const handleToggle = useCallback(() => {
@@ -44,6 +46,7 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
         className='sr-only peer' // スクリーンリーダーのみで認識可能なクラスを適用
         checked={isChecked} // チェック状態を制御
         onChange={handleToggle} // 状態変更時のハンドラを設定
+        disabled={limitOneRespons}
       />
       {/* トグルボタン */}
       <div className={toggleClassName}></div>

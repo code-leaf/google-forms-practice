@@ -4,14 +4,16 @@ import { SendCopySelect } from '@/app/SettingPage/components/SendCopySelect';
 import { useAnswerSettings } from '@/hooks/useAnswerSettings';
 import { AnswerSettingsProps } from '@/types/SettingsType';
 
-export const AnswerSettings = ({ isExpanded }: AnswerSettingsProps) => {
+export const AnswerSettings = ({
+  isExpanded,
+  limitOneRespons,
+  togglelimitOneRespons,
+}: AnswerSettingsProps) => {
   const {
     emailCollectionOption,
     sendCopyOption,
     allowEditAnswer,
-    limitOneRespons,
     toggleAllowEditAnswer,
-    togglelimitOneRespons,
     getEmailCollectionDescription,
     handleEmailCollectionChange,
     isEmailCollectionDisabled,
@@ -82,6 +84,7 @@ export const AnswerSettings = ({ isExpanded }: AnswerSettingsProps) => {
               <ToggleButton
                 isChecked={allowEditAnswer}
                 onChange={toggleAllowEditAnswer}
+                limitOneRespons={false}
               />
             </div>
           </div>
@@ -101,6 +104,7 @@ export const AnswerSettings = ({ isExpanded }: AnswerSettingsProps) => {
             <ToggleButton
               isChecked={limitOneRespons}
               onChange={togglelimitOneRespons}
+              limitOneRespons={false}
             />
           </div>
         </div>

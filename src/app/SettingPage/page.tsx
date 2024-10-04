@@ -1,8 +1,7 @@
 import { Header } from '@/app/components/Header';
 import { Setting } from '@/app/SettingPage/components/Setting';
-import React from 'react';
 
-const SettingPage: React.FC = () => {
+const SettingPage = () => {
   return (
     //   ページ全体のコンテナ
     <div className='min-h-screen bg-purple-100'>

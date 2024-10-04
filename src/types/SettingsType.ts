@@ -1,5 +1,11 @@
 export type AnswerSettingsProps = {
   isExpanded: boolean;
+  limitOneRespons: boolean;
+  togglelimitOneRespons: () => void;
+};
+
+export type DisplaySetting = {
+  isExpanded: boolean;
 };
 
 export type EmailCollectionOption =

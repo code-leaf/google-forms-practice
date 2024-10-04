@@ -5,6 +5,7 @@ import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettings } from '@/app/SettingPage/components/AnswerSettings';
 import { DisplaySettings } from '@/app/SettingPage/components/DisplaySettings';
 import { TestSettings } from '@/app/SettingPage/components/TestSettings';
+import { useAnswerSettings } from '@/hooks/useAnswerSettings';
 import { useState } from 'react';
 
 export const Setting = () => {
@@ -13,6 +14,8 @@ export const Setting = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const [isDisplaySetting, setIsDisplaySetting] = useState<boolean>(false);
+
+  const { limitOneRespons, togglelimitOneRespons } = useAnswerSettings();
 
   const toggleSetting = (key: 'isTest' | 'isExpanded' | 'isDisplaySetting') => {
     switch (key) {
@@ -47,6 +50,7 @@ export const Setting = () => {
             <ToggleButton
               isChecked={isTest}
               onChange={() => toggleSetting('isTest')}
+              limitOneRespons={false}
             />
           </div>
 
@@ -68,7 +72,11 @@ export const Setting = () => {
           </div>
 
           {/* 細かな設定 */}
-          <AnswerSettings isExpanded={isExpanded} />
+          <AnswerSettings
+            limitOneRespons={limitOneRespons}
+            isExpanded={isExpanded}
+            togglelimitOneRespons={togglelimitOneRespons}
+          />
         </div>
 
         {/* 表示設定 */}
@@ -79,13 +87,17 @@ export const Setting = () => {
               <p className=''>フォームと回答の表示方法を管理できます</p>
             </div>
             <AccordionItem
-              isExpanded={isExpanded}
+              isExpanded={isDisplaySetting}
               onClick={() => toggleSetting('isDisplaySetting')}
             />
           </div>
 
           {/* 細かな設定 */}
-          <DisplaySettings isExpanded={isDisplaySetting} />
+          <DisplaySettings
+            limitOneRespons={limitOneRespons}
+            isExpanded={isDisplaySetting}
+            togglelimitOneRespons={togglelimitOneRespons}
+          />
         </div>
       </div>
     </div>
