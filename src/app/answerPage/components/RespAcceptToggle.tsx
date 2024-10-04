@@ -33,7 +33,11 @@ export const RespAcceptToggle: React.FC = () => {
       <div className={containerClassName}>
         <p>{message} </p>
         {/* トグルボタンのカスタムUIを作成するためのラベル要素 */}
-        <ToggleButton isChecked={isAccepting} onChange={toggleAcceptance} />
+        <ToggleButton
+          isChecked={isAccepting}
+          onChange={toggleAcceptance}
+          limitOneRespons={false}
+        />
       </div>
       {!isAccepting && (
         <div className='text-gray-600 p-4 rounded-md border -mt-1 border-t-red-500'>
