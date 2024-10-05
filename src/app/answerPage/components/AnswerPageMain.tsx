@@ -3,6 +3,7 @@ import { RespAcceptToggle } from '@/app/answerPage/components/RespAcceptToggle';
 import { questionsAtom } from '@/store/questionsAtom';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -16,13 +17,15 @@ export const AnswerPageMain: React.FC = () => {
       {/* 回答件数とスプレッドシートへのリンクを表示 */}
       <div className='flex justify-between items-center mb-4'>
         <h2 className='text-xl font-semibold'>0 件の回答</h2>
-        <button className='flex items-center  hover:bg-gray-400'>
-          <FontAwesomeIcon
-            icon={faFileExcel}
-            className='h-10 w-10 text-green-700'
-          />
-          <span className='ml-2 text-blue-600'>スプレッドシートにリンク</span>
-        </button>
+        <Link href='spreadsheet'>
+          <button className='flex items-center  hover:bg-gray-400'>
+            <FontAwesomeIcon
+              icon={faFileExcel}
+              className='h-10 w-10 text-green-700'
+            />
+            <span className='ml-2 text-blue-600'>スプレッドシートにリンク</span>
+          </button>
+        </Link>
       </div>
       <RespAcceptToggle />
       <AnswerSummary questions={questions} />

@@ -1,5 +1,5 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
-import { respAcceptToggleAtom } from '@/store/respAcceptToggleAtom';
+import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
 import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -33,7 +33,11 @@ export const RespAcceptToggle: React.FC = () => {
       <div className={containerClassName}>
         <p>{message} </p>
         {/* トグルボタンのカスタムUIを作成するためのラベル要素 */}
-        <ToggleButton isChecked={isAccepting} onChange={toggleAcceptance} />
+        <ToggleButton
+          isChecked={isAccepting}
+          onChange={toggleAcceptance}
+          limitOneRespons={false}
+        />
       </div>
       {!isAccepting && (
         <div className='text-gray-600 p-4 rounded-md border -mt-1 border-t-red-500'>

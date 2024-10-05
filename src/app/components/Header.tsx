@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
           <h1 className='text-xl font-bold mr-4'>Google Form練習</h1>
           <button className='mr-4'>
             <FontAwesomeIcon icon={faFolder} size='lg' title='フォルダに移動' />
-          </button>{' '}
+          </button>
           <button className='mr-4 text-2xl font-bold' title='スター'>
             ☆
           </button>
