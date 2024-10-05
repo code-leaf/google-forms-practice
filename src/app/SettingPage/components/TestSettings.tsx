@@ -67,6 +67,7 @@ export const TestSettings = ({ isChecked }: TestSettingsProps) => {
             <ToggleButton
               isChecked={IncorrectQuestions}
               onChange={() => toggleSetting('IncorrectQuestions')}
+              limitOneRespons={false}
             />
           </div>
 
@@ -81,6 +82,7 @@ export const TestSettings = ({ isChecked }: TestSettingsProps) => {
             <ToggleButton
               isChecked={CorrectAnswers}
               onChange={() => toggleSetting('CorrectAnswers')}
+              limitOneRespons={false}
             />
           </div>
 
@@ -95,6 +97,7 @@ export const TestSettings = ({ isChecked }: TestSettingsProps) => {
             <ToggleButton
               isChecked={Scores}
               onChange={() => toggleSetting('Scores')}
+              limitOneRespons={false}
             />
           </div>
 
