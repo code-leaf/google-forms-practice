@@ -80,7 +80,7 @@ export const Setting = () => {
         </div>
 
         {/* 表示設定 */}
-        <div className=' py-8'>
+        <div className='pt-8'>
           <div className='flex justify-between items-center'>
             <div className=''>
               <h2 className='text-lg'>表示設定</h2>
