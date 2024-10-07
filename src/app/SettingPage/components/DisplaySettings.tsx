@@ -1,6 +1,6 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettingsProps } from '@/types/SettingsType';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const DisplaySettings = ({
   isExpanded,
@@ -20,6 +20,11 @@ export const DisplaySettings = ({
   const [toggleAnswerLinkDisplay, setToggleAnswerLinkDisplay] =
     useState<boolean>(false);
 
+  const [resultOverview, setResultOverview] = useState<boolean>(false);
+
+  const [limitMatter, setLimitMatter] = useState<boolean>(false);
+
+  // ボタンの状態変更をする関数
   const Setting = (
     key:
       | 'ProgressBar'
@@ -28,6 +33,8 @@ export const DisplaySettings = ({
       | 'Save'
       | 'Cancel'
       | 'ToggleAnswerLinkDisplay'
+      | 'ResultOverview'
+      | 'LimitMatter'
   ) => {
     switch (key) {
       case 'ProgressBar':
@@ -56,11 +63,20 @@ export const DisplaySettings = ({
         setToggleAnswerLinkDisplay((prev) => !prev);
         break;
 
-      //   default:
-      //     setScores((prev) => !prev);
-      //     break;
+      case 'ResultOverview':
+        setResultOverview((prev) => !prev);
+        break;
+
+      case 'LimitMatter':
+        setLimitMatter((prev) => !prev);
+        break;
     }
   };
+
+  // 回答を1回に制限する際は、「送信後」の「設定項目2」のトグルボタンをオフに
+  useEffect(() => {
+    if (limitOneRespons) return setToggleAnswerLinkDisplay(false);
+  }, [limitOneRespons]);
 
   if (!isExpanded) return undefined;
 
@@ -68,7 +84,7 @@ export const DisplaySettings = ({
     <div className=''>
       {isExpanded && (
         <div className='pl-6 mt-6 space-y-4'>
-          {/* フォームの表示 */}
+          {/* ◆フォームの表示 */}
           <p className='text-xs text-gray-500'>フォームの表示</p>
 
           {/* 設定項目1 */}
@@ -95,7 +111,7 @@ export const DisplaySettings = ({
             />
           </div>
 
-          {/* 送信後 */}
+          {/* ◆送信後 */}
           <p className='text-xs text-gray-500'>送信後</p>
           {/* 設定項目1 */}
           <div className='flex items-center justify-between'>
@@ -165,6 +181,46 @@ export const DisplaySettings = ({
               isChecked={toggleAnswerLinkDisplay}
               onChange={() => Setting('ToggleAnswerLinkDisplay')}
               limitOneRespons={limitOneRespons}
+            />
+          </div>
+
+          {/* 設定項目3 */}
+          <div className='flex items-center justify-between'>
+            <div className='flex flex-col'>
+              <h2 className='text-lg'>結果の概要を表示する</h2>
+
+              <p className='text-xs text-blue-600'>
+                結果の概要
+                <span className='text-gray-500'>を回答者と共有できます。</span>
+                重要情報
+                <span className='text-gray-500'>　※リンクはありません。</span>
+              </p>
+            </div>
+
+            <ToggleButton
+              isChecked={resultOverview}
+              onChange={() => Setting('ResultOverview')}
+              limitOneRespons={false}
+            />
+          </div>
+
+          {/* ◆制限事項 */}
+          <p className='text-xs text-gray-500'>制限事項</p>
+          <div className='flex items-center justify-between'>
+            <div className='flex flex-col'>
+              <h2 className='text-lg'>
+                すべての回答者に対して自動保存を無効にする
+              </h2>
+              {limitMatter && (
+                <p className='text-red-600'>
+                  回答者がブラウザを閉じたり、ブラウザを更新したりすると、それまでの記入内容が失われます
+                </p>
+              )}
+            </div>
+            <ToggleButton
+              isChecked={limitMatter}
+              onChange={() => Setting('LimitMatter')}
+              limitOneRespons={false}
             />
           </div>
         </div>
