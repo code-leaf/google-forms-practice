@@ -1,82 +1,22 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
+import { useDisplaySettings } from '@/hooks/useDisplaySettings';
 import { AnswerSettingsProps } from '@/types/SettingsType';
-import { useEffect, useState } from 'react';
 
 export const DisplaySettings = ({
   isExpanded,
   limitOneRespons,
 }: AnswerSettingsProps) => {
-  const [progressBar, setProgressBar] = useState<boolean>(false);
-
-  const [shuffleQuestion, setShuffleQuestion] = useState<boolean>(false);
-
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-
-  const [confirmationMessage, setConfirmationMessage] =
-    useState<string>('回答を記録しました');
-
-  const [Cancel, setCancel] = useState<string>('');
-
-  const [toggleAnswerLinkDisplay, setToggleAnswerLinkDisplay] =
-    useState<boolean>(false);
-
-  const [resultOverview, setResultOverview] = useState<boolean>(false);
-
-  const [limitMatter, setLimitMatter] = useState<boolean>(false);
-
-  // ボタンの状態変更をする関数
-  const Setting = (
-    key:
-      | 'ProgressBar'
-      | 'ShuffleQuestion'
-      | 'IsEditing'
-      | 'Save'
-      | 'Cancel'
-      | 'ToggleAnswerLinkDisplay'
-      | 'ResultOverview'
-      | 'LimitMatter'
-  ) => {
-    switch (key) {
-      case 'ProgressBar':
-        setProgressBar((prev) => !prev);
-        break;
-
-      case 'ShuffleQuestion':
-        setShuffleQuestion((prev) => !prev);
-        break;
-
-      case 'IsEditing':
-        setIsEditing((prev) => !prev);
-        setCancel(confirmationMessage);
-        break;
-
-      case 'Save':
-        setIsEditing((prev) => !prev);
-        break;
-
-      case 'Cancel':
-        setConfirmationMessage(Cancel);
-        setIsEditing((prev) => !prev);
-        break;
-
-      case 'ToggleAnswerLinkDisplay':
-        setToggleAnswerLinkDisplay((prev) => !prev);
-        break;
-
-      case 'ResultOverview':
-        setResultOverview((prev) => !prev);
-        break;
-
-      case 'LimitMatter':
-        setLimitMatter((prev) => !prev);
-        break;
-    }
-  };
-
-  // 回答を1回に制限する際は、「送信後」の「設定項目2」のトグルボタンをオフに
-  useEffect(() => {
-    if (limitOneRespons) return setToggleAnswerLinkDisplay(false);
-  }, [limitOneRespons]);
+  const {
+    progressBar,
+    shuffleQuestion,
+    isEditing,
+    confirmationMessage,
+    toggleAnswerLinkDisplay,
+    resultOverview,
+    limitMatter,
+    Setting,
+    setConfirmationMessage,
+  } = useDisplaySettings(limitOneRespons);
 
   if (!isExpanded) return undefined;
 
@@ -189,7 +129,7 @@ export const DisplaySettings = ({
             <div className='flex flex-col'>
               <h2 className='text-lg'>結果の概要を表示する</h2>
 
-              <p className='text-xs text-blue-600'>
+              <p className='text-xs text-blue-700'>
                 結果の概要
                 <span className='text-gray-500'>を回答者と共有できます。</span>
                 重要情報
@@ -205,7 +145,7 @@ export const DisplaySettings = ({
           </div>
 
           {/* ◆制限事項 */}
-          <p className='text-xs text-gray-500'>制限事項</p>
+          <p className='text-xs text-gray-500'>制限事項:</p>
           <div className='flex items-center justify-between'>
             <div className='flex flex-col'>
               <h2 className='text-lg'>
