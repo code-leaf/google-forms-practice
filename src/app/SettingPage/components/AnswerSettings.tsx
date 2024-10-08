@@ -2,6 +2,7 @@ import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { EmailCollectionSelect } from '@/app/SettingPage/components/EmailCollectionSelect';
 import { SendCopySelect } from '@/app/SettingPage/components/SendCopySelect';
 import { useAnswerSettings } from '@/hooks/useAnswerSettings';
+import { useEmailCollection } from '@/hooks/useEmailCollection';
 import { AnswerSettingsProps } from '@/types/SettingsType';
 
 export const AnswerSettings = ({
@@ -10,15 +11,19 @@ export const AnswerSettings = ({
   togglelimitOneRespons,
 }: AnswerSettingsProps) => {
   const {
-    emailCollectionOption,
     sendCopyOption,
     allowEditAnswer,
     toggleAllowEditAnswer,
+    handleSendCopyChange,
+  } = useAnswerSettings();
+
+  const {
+    emailCollectionOption,
     getEmailCollectionDescription,
     handleEmailCollectionChange,
     isEmailCollectionDisabled,
-    handleSendCopyChange,
-  } = useAnswerSettings();
+  } = useEmailCollection();
+
   if (!isExpanded) return undefined;
 
   return (
