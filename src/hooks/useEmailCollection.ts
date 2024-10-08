@@ -1,13 +1,15 @@
+import {
+  defaultOptionAtom,
+  emailCollectionOptionAtom,
+} from '@/store/EmailCollectionOption';
 import { EmailCollectionOption } from '@/types/SettingsType';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 export type UseEmailCollection = {
   emailCollectionOption: EmailCollectionOption;
-  defaultOption: EmailCollectionOption;
   handleEmailCollectionChange: (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => void;
-  handleDefaultOption: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   getEmailCollectionDescription: (
     option: EmailCollectionOption
   ) =>
@@ -17,22 +19,20 @@ export type UseEmailCollection = {
   isEmailCollectionDisabled: boolean;
 };
 
-export const useEmailCollection = (): UseEmailCollection => {
-  const [emailCollectionOption, setEmailCollectionOption] =
-    useState<EmailCollectionOption>('収集しない');
-
-  const [defaultOption, setDefaultOption] =
-    useState<EmailCollectionOption>('収集しない');
+export const useEmailCollection = (
+  isDefaultOption: boolean = false
+): UseEmailCollection => {
+  const [emailCollectionOption, setEmailCollectionOption] = useRecoilState(
+    isDefaultOption ? defaultOptionAtom : emailCollectionOptionAtom
+  );
 
   const handleEmailCollectionChange = (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setEmailCollectionOption(e.target.value as EmailCollectionOption);
-  };
-
-  const handleDefaultOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setEmailCollectionOption(e.target.value as EmailCollectionOption);
-    setDefaultOption(e.target.value as EmailCollectionOption);
+    if (isDefaultOption) {
+      setEmailCollectionOption(e.target.value as EmailCollectionOption);
+    }
   };
 
   const getEmailCollectionDescription = (option: EmailCollectionOption) => {
@@ -50,9 +50,7 @@ export const useEmailCollection = (): UseEmailCollection => {
 
   return {
     emailCollectionOption,
-    defaultOption,
     getEmailCollectionDescription,
-    handleDefaultOption,
     handleEmailCollectionChange,
     isEmailCollectionDisabled,
   };

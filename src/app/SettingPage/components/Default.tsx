@@ -1,5 +1,3 @@
-'use client'; // クライアントサイドでの実行を明示
-
 import { AccordionItem } from '@/app/components/tool/AccordionItem';
 import { FormDefault } from '@/app/SettingPage/components/FormDefault';
 import { useState } from 'react';

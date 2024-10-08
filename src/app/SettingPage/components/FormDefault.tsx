@@ -12,12 +12,10 @@ export const FormDefault = ({
 }: formDefaultAccordionProps) => {
   const {
     emailCollectionOption,
-    defaultOption,
     getEmailCollectionDescription,
-    handleDefaultOption,
-  } = useEmailCollection();
+    handleEmailCollectionChange,
+  } = useEmailCollection(true);
   const [sendCopyOption, setSendCopyOption] = useState<SendCopyOption>('オフ');
-  console.log(formDefaultAccordion);
   return (
     <div>
       {formDefaultAccordion && (
@@ -38,8 +36,8 @@ export const FormDefault = ({
               </p>
             </div>
             <EmailCollectionSelect
-              value={defaultOption}
-              onChange={handleDefaultOption}
+              value={emailCollectionOption}
+              onChange={handleEmailCollectionChange}
             />
           </div>
         </div>
