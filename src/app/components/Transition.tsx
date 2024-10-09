@@ -29,25 +29,27 @@ export const Transition = ({
     removeQuestion,
     updateQuestion,
   });
+  console.log(question);
 
   return (
     <HeadlessTransition
-      show={true}
-      enter='transition-opacity duration-300'
-      enterFrom='opacity-0'
-      enterTo='opacity-100'
-      leave='transition-opacity duration-300'
-      leaveFrom='opacity-100'
-      leaveTo='opacity-0'
+      show={true} // アニメーションを常に表示する設定
+      enter='transition-opacity duration-300' // フェードイン効果の設定：0.3秒かけて透明度が変化
+      enterFrom='opacity-0' // フェードイン開始時：完全に透明
+      enterTo='opacity-100' // フェードイン終了時：完全に不透明
+      leave='transition-opacity duration-300' // フェードアウト効果の設定：0.3秒かけて透明度が変化
+      leaveFrom='opacity-100' // フェードアウト開始時：完全に不透明
+      leaveTo='opacity-0' // フェードアウト終了時：完全に透明
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
       <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600'>
         {/* 質問のタイトル入力欄 */}
         <input
+          placeholder='無題の質問'
           type='text' // テキスト入力フィールドを指定
           value={question.title} // 質問のタイトルを表示
           onChange={handleTitleChange} // タイトルが変更されたときの処理
-          className='text-xl font-semibold mb-4 w-full border-b-2 border-gray-200 focus:outline-none focus:border-purple-500'
+          className='p-2 mb-4 w-full border-b-2 border-gray-200 focus:outline-none focus:border-purple-500'
         />
 
         {/* 質問タイプの選択 */}
