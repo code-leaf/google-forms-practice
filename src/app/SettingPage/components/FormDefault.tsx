@@ -12,6 +12,7 @@ export const FormDefault = ({
 }: formDefaultAccordionProps) => {
   const {
     emailCollectionOption,
+    defaultOption,
     getEmailCollectionDescription,
     handleEmailCollectionChange,
   } = useEmailCollection();
@@ -36,7 +37,7 @@ export const FormDefault = ({
               </p>
             </div>
             <EmailCollectionSelect
-              value={emailCollectionOption}
+              value={defaultOption}
               onChange={handleEmailCollectionChange}
             />
           </div>

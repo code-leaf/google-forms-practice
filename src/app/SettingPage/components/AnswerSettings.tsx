@@ -19,9 +19,9 @@ export const AnswerSettings = ({
 
   const {
     emailCollectionOption,
-    getEmailCollectionDescription,
-    handleEmailCollectionChange,
     isEmailCollectionDisabled,
+    handleAnswerChange,
+    getEmailCollectionDescription,
   } = useEmailCollection();
 
   if (!isExpanded) return undefined;
@@ -49,7 +49,7 @@ export const AnswerSettings = ({
               </div>
               <EmailCollectionSelect
                 value={emailCollectionOption}
-                onChange={handleEmailCollectionChange}
+                onChange={handleAnswerChange}
               />
             </div>
           </div>

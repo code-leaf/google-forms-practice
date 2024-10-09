@@ -5,16 +5,18 @@ import { useRecoilState } from 'recoil';
 
 export type UseEmailCollection = {
   emailCollectionOption: EmailCollectionOption;
+  defaultOption: EmailCollectionOption;
+  isEmailCollectionDisabled: boolean;
   handleEmailCollectionChange: (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => void;
+  handleAnswerChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   getEmailCollectionDescription: (
     option: EmailCollectionOption
   ) =>
     | ''
     | '回答者による Google へのログインが必要になります'
     | '回答者はメールの応答を手動で入力します';
-  isEmailCollectionDisabled: boolean;
 };
 
 export const useEmailCollection = (): UseEmailCollection => {
@@ -22,12 +24,18 @@ export const useEmailCollection = (): UseEmailCollection => {
     emailCollectionOptionAtom
   );
 
-  const [defaultOption, setDefaultOption] = useState<string>('収集しない');
+  const [defaultOption, setDefaultOption] =
+    useState<EmailCollectionOption>('収集しない');
+
+  const handleAnswerChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setEmailCollectionOption(e.target.value as EmailCollectionOption);
+  };
 
   const handleEmailCollectionChange = (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setEmailCollectionOption(e.target.value as EmailCollectionOption);
+    setDefaultOption(e.target.value as EmailCollectionOption);
   };
 
   const getEmailCollectionDescription = (option: EmailCollectionOption) => {
@@ -44,9 +52,11 @@ export const useEmailCollection = (): UseEmailCollection => {
   const isEmailCollectionDisabled = emailCollectionOption === '収集しない';
 
   return {
+    defaultOption,
     emailCollectionOption,
-    getEmailCollectionDescription,
-    handleEmailCollectionChange,
     isEmailCollectionDisabled,
+    handleEmailCollectionChange,
+    handleAnswerChange,
+    getEmailCollectionDescription,
   };
 };
