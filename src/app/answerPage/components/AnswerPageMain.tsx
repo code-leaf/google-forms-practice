@@ -4,12 +4,9 @@ import { questionsAtom } from '@/store/questionsAtom';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 
-type Answer = { count: number; isAccepting: boolean };
-
-export const AnswerPageMain: React.FC = () => {
+export const AnswerPageMain = () => {
   // Recoilを使用して質問のデータを取得
   const questions = useRecoilValue(questionsAtom);
   return (

@@ -1,6 +1,4 @@
-import React from 'react';
-
-const SpreadsheetPage: React.FC = () => {
+const SpreadsheetPage = () => {
   return (
     <div className='flex flex-col h-screen bg-white'>
       <header className='flex items-center justify-between p-2 border-b'>
