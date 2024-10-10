@@ -1,6 +1,6 @@
 import { useTransition } from '@/hooks/useTransition';
 import { Question } from '@/store/questionsAtom';
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition as HeadlessTransition } from '@headlessui/react';
 
@@ -43,27 +43,34 @@ export const Transition = ({
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
       <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600'>
-        {/* 質問のタイトル入力欄 */}
-        <input
-          placeholder='無題の質問'
-          type='text' // テキスト入力フィールドを指定
-          value={question.title} // 質問のタイトルを表示
-          onChange={handleTitleChange} // タイトルが変更されたときの処理
-          className='p-2 mb-4 w-full border-b-2 border-gray-200 focus:outline-none focus:border-purple-500'
-        />
+        <div className='flex justify-between items-center mb-4 space-x-2'>
+          {/* 質問のタイトル入力欄 */}
+          <input
+            placeholder='無題の質問' //プレースホルダの設定
+            type='text' // テキスト入力フィールドを指定
+            value={question.title} // 質問のタイトルを表示
+            onChange={handleTitleChange} // タイトルが変更されたときの処理
+            className='p-2 mb-4 w-full border-b-2 border-gray-200 focus:outline-none focus:border-purple-500'
+          />
 
-        {/* 質問タイプの選択 */}
-        <select
-          value={question.type} // 現在の質問タイプを表示
-          onChange={handleTypeChange} // タイプが変更されたときの処理
-          className='mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500'
-        >
-          {questionTypes.map((type) => (
-            <option key={type.value} value={type.value}>
-              {type.label}
-            </option>
-          ))}
-        </select>
+          {/* 画像アイコンの追加 */}
+          <div className='mb-4 flex items-center'>
+            <FontAwesomeIcon icon={faImage} className='text-gray-400 mr-2' />
+          </div>
+
+          {/* 質問タイプの選択 */}
+          <select
+            value={question.type} // 現在の質問タイプを表示
+            onChange={handleTypeChange} // タイプが変更されたときの処理
+            className='mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500'
+          >
+            {questionTypes.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* 選択肢の入力欄（複数選択や単一選択の場合） */}
         {(question.type === 'multipleChoice' ||

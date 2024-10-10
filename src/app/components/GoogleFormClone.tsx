@@ -24,15 +24,16 @@ const GoogleFormClone: React.FC = () => {
   const updateQuestion = useCallback(
     (id: string, updates: Partial<Question>) => {
       setQuestions(
-        questions.map((question) => (question.id === id ? { ...question, ...updates } : question))
+        questions.map((question) =>
+          question.id === id ? { ...question, ...updates } : question
+        )
       );
     },
     [questions, setQuestions]
   );
 
   return (
-    // フォーム全体のコンテナ - 中央寄せとmax-widthを設定
-    <div className='container mx-auto p-4 max-w-4xl'>
+    <div className='p-4 '>
       <FormHeader />
       {/* 質問のリスト */}
       {questions.map((question) => (

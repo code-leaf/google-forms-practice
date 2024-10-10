@@ -18,7 +18,7 @@ const FormHeader: React.FC = () => {
 
   return (
     // フォームのヘッダー部分 - 背景色、角丸、影、左と上のボーダーを設定
-    <div className='bg-white rounded-lg shadow-md p-6 mb-4 border-t-8 border-l-8 border-t-purple-600 border-l-blue-600'>
+    <div className='bg-white rounded-lg shadow-md p-6 mb-4 border-t-8 border-l-8 border-t-purple-600 border-l-blue-600 w-[900px]'>
       {/* フォームのタイトル入力欄 */}
       <div className='relative'>
         <input

@@ -11,7 +11,7 @@ const FormBuilderPage: React.FC = () => {
       {/* ヘッダー部分 */}
       <Header activeTab={1} />
       {/* メインコンテンツ */}
-      <main className='flex justify-center container mx-auto p-4'>
+      <main className='flex justify-center my-4'>
         <div className='flex'>
           <MainRecoil />
         </div>
