@@ -1,5 +1,6 @@
 import { TransitionProps } from '@/app/components/Transition';
 import { QuestionType } from '@/store/questionsAtom';
+import { DropdownOption } from '@/types/formTypes';
 import {
   faAlignLeft,
   faCalendarDays,
@@ -11,16 +12,11 @@ import {
   faSliders,
   faSquareCheck,
   faTableCellsLarge,
-  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useMemo } from 'react';
 
 type UseTransition = {
-  questionTypes: {
-    value: string;
-    label: string;
-    icon: IconDefinition;
-  }[];
+  questionTypes: DropdownOption[];
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleOptionChange: (index: number, value: string) => void;
@@ -35,7 +31,7 @@ export const useTransition = ({
   updateQuestion,
 }: TransitionProps): UseTransition => {
   // メモ化された質問タイプの選択肢
-  const questionTypes = useMemo(
+  const questionTypes: DropdownOption[] = useMemo(
     () => [
       { value: 'shortAnswer', label: '記述式（短文）', icon: faAlignLeft },
       { value: 'paragraph', label: '段落', icon: faParagraph },

@@ -28,3 +28,9 @@ export type IconInfo = {
   icon: IconDefinition;
   ariaLabel: string;
 };
+
+ export type DropdownOption = {
+  value: string;
+  label: string;
+  icon: IconDefinition;
+};
