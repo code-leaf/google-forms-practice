@@ -1,11 +1,25 @@
 import { TransitionProps } from '@/app/components/Transition';
 import { QuestionType } from '@/store/questionsAtom';
+import {
+  faAlignLeft,
+  faCalendarDays,
+  faCaretDown,
+  faCircleDot,
+  faClock,
+  faFileUpload,
+  faParagraph,
+  faSliders,
+  faSquareCheck,
+  faTableCellsLarge,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useMemo } from 'react';
 
 type UseTransition = {
   questionTypes: {
     value: string;
     label: string;
+    icon: IconDefinition;
   }[];
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -23,10 +37,29 @@ export const useTransition = ({
   // メモ化された質問タイプの選択肢
   const questionTypes = useMemo(
     () => [
-      { value: 'shortAnswer', label: '短文回答' },
-      { value: 'paragraph', label: '段落' },
-      { value: 'multipleChoice', label: '単一選択' },
-      { value: 'checkboxes', label: '複数選択' },
+      { value: 'shortAnswer', label: '記述式（短文）', icon: faAlignLeft },
+      { value: 'paragraph', label: '段落', icon: faParagraph },
+      { value: 'multipleChoice', label: 'ラジオボタン', icon: faCircleDot },
+      { value: 'checkboxes', label: 'チェックボックス', icon: faSquareCheck },
+      { value: 'dropdown', label: 'プルダウン', icon: faCaretDown },
+      {
+        value: 'fileUpload',
+        label: 'ファイルのアップロード',
+        icon: faFileUpload,
+      },
+      { value: 'linearScale', label: '均等目盛', icon: faSliders },
+      {
+        value: 'multipleChoiceGrid',
+        label: '選択式（グリッド）',
+        icon: faTableCellsLarge,
+      },
+      {
+        value: 'checkboxGrid',
+        label: 'チェックボックス（グリッド）',
+        icon: faTableCellsLarge,
+      },
+      { value: 'date', label: '日付', icon: faCalendarDays },
+      { value: 'time', label: '時刻', icon: faClock },
     ],
     []
   );

@@ -29,7 +29,6 @@ export const Transition = ({
     removeQuestion,
     updateQuestion,
   });
-  console.log(question);
 
   return (
     <HeadlessTransition
@@ -65,7 +64,12 @@ export const Transition = ({
             className='mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500'
           >
             {questionTypes.map((type) => (
-              <option key={type.value} value={type.value}>
+              <option
+                key={type.value}
+                value={type.value}
+                className='flex items-center space-x-2'
+              >
+                <FontAwesomeIcon icon={type.icon} />
                 {type.label}
               </option>
             ))}
