@@ -2,15 +2,16 @@ import { TransitionProps } from '@/app/components/Transition';
 import { QuestionType } from '@/store/questionsAtom';
 import { DropdownOption } from '@/types/formTypes';
 import {
+  faAlignJustify,
   faAlignLeft,
   faCalendarDays,
-  faCaretDown,
+  faCircleChevronDown,
   faCircleDot,
   faClock,
-  faFileUpload,
-  faParagraph,
+  faCloudArrowUp,
   faSliders,
   faSquareCheck,
+  faTable,
   faTableCellsLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useMemo } from 'react';
@@ -18,7 +19,7 @@ import { useCallback, useMemo } from 'react';
 type UseTransition = {
   questionTypes: DropdownOption[];
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleTypeChange: (value: string) => void;
   handleOptionChange: (index: number, value: string) => void;
   handleAddOption: () => void;
   handleRequiredChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -34,14 +35,14 @@ export const useTransition = ({
   const questionTypes: DropdownOption[] = useMemo(
     () => [
       { value: 'shortAnswer', label: '記述式（短文）', icon: faAlignLeft },
-      { value: 'paragraph', label: '段落', icon: faParagraph },
+      { value: 'paragraph', label: '段落', icon: faAlignJustify },
       { value: 'multipleChoice', label: 'ラジオボタン', icon: faCircleDot },
       { value: 'checkboxes', label: 'チェックボックス', icon: faSquareCheck },
-      { value: 'dropdown', label: 'プルダウン', icon: faCaretDown },
+      { value: 'dropdown', label: 'プルダウン', icon: faCircleChevronDown },
       {
         value: 'fileUpload',
         label: 'ファイルのアップロード',
-        icon: faFileUpload,
+        icon: faCloudArrowUp,
       },
       { value: 'linearScale', label: '均等目盛', icon: faSliders },
       {
@@ -52,7 +53,7 @@ export const useTransition = ({
       {
         value: 'checkboxGrid',
         label: 'チェックボックス（グリッド）',
-        icon: faTableCellsLarge,
+        icon: faTable,
       },
       { value: 'date', label: '日付', icon: faCalendarDays },
       { value: 'time', label: '時刻', icon: faClock },
@@ -70,8 +71,8 @@ export const useTransition = ({
 
   // タイプ変更ハンドラ
   const handleTypeChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      updateQuestion(question.id, { type: e.target.value as QuestionType });
+    (value: string) => {
+      updateQuestion(question.id, { type: value as QuestionType });
     },
     [question.id, updateQuestion]
   );
