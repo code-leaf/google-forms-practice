@@ -1,23 +1,8 @@
 import { TransitionProps } from '@/app/components/Transition';
-import { QuestionType } from '@/store/questionsAtom';
-import { DropdownOption } from '@/types/formTypes';
-import {
-  faAlignJustify,
-  faAlignLeft,
-  faCalendarDays,
-  faCircleChevronDown,
-  faCircleDot,
-  faClock,
-  faCloudArrowUp,
-  faSliders,
-  faSquareCheck,
-  faTable,
-  faTableCellsLarge,
-} from '@fortawesome/free-solid-svg-icons';
-import { useCallback, useMemo } from 'react';
+import { QuestionType } from '@/types/formTypes';
+import { useCallback } from 'react';
 
 type UseTransition = {
-  questionTypes: DropdownOption[];
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (value: string) => void;
   handleOptionChange: (index: number, value: string) => void;
@@ -31,36 +16,6 @@ export const useTransition = ({
   removeQuestion,
   updateQuestion,
 }: TransitionProps): UseTransition => {
-  // メモ化された質問タイプの選択肢
-  const questionTypes: DropdownOption[] = useMemo(
-    () => [
-      { value: 'shortAnswer', label: '記述式（短文）', icon: faAlignLeft },
-      { value: 'paragraph', label: '段落', icon: faAlignJustify },
-      { value: 'multipleChoice', label: 'ラジオボタン', icon: faCircleDot },
-      { value: 'checkboxes', label: 'チェックボックス', icon: faSquareCheck },
-      { value: 'dropdown', label: 'プルダウン', icon: faCircleChevronDown },
-      {
-        value: 'fileUpload',
-        label: 'ファイルのアップロード',
-        icon: faCloudArrowUp,
-      },
-      { value: 'linearScale', label: '均等目盛', icon: faSliders },
-      {
-        value: 'multipleChoiceGrid',
-        label: '選択式（グリッド）',
-        icon: faTableCellsLarge,
-      },
-      {
-        value: 'checkboxGrid',
-        label: 'チェックボックス（グリッド）',
-        icon: faTable,
-      },
-      { value: 'date', label: '日付', icon: faCalendarDays },
-      { value: 'time', label: '時刻', icon: faClock },
-    ],
-    []
-  );
-
   // タイトル変更ハンドラ
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +62,6 @@ export const useTransition = ({
   }, [question.id, removeQuestion]);
 
   return {
-    questionTypes,
     handleTitleChange,
     handleTypeChange,
     handleOptionChange,

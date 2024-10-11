@@ -1,6 +1,8 @@
 import { CustomDropdown } from '@/app/components/CustomDropdown';
+import { QuestionType } from '@/app/components/QuestionType';
 import { useTransition } from '@/hooks/useTransition';
 import { Question } from '@/store/questionsAtom';
+import { questionTypes } from '@/types/formTypes';
 import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition as HeadlessTransition } from '@headlessui/react';
@@ -18,11 +20,12 @@ export const Transition = ({
   updateQuestion,
 }: TransitionProps) => {
   const {
-    questionTypes,
     handleTitleChange,
     handleTypeChange,
     handleRequiredChange,
     handleRemoveQuestion,
+    handleAddOption,
+    handleOptionChange,
   } = useTransition({
     question,
     removeQuestion,
@@ -52,10 +55,11 @@ export const Transition = ({
             className='p-2 mb-4 border-b-2 flex-1 border-gray-200 focus:outline-none focus:border-purple-500'
           />
 
-          {/* 画像アイコンの追加 */}
+          {/* 画像アイコン */}
           <div className='mb-4 flex items-center'>
             <FontAwesomeIcon icon={faImage} className='text-gray-400 mr-2' />
           </div>
+          {/* セレクトボックス */}
           <CustomDropdown
             options={questionTypes}
             value={question.type}
@@ -63,6 +67,13 @@ export const Transition = ({
             onChange={handleTypeChange}
           />
         </div>
+
+        {/* 質問タイプに応じたコンポーネント */}
+        <QuestionType
+          question={question}
+          handleOptionChange={handleOptionChange}
+          handleAddOption={handleAddOption}
+        />
 
         {/* 必須チェックボックス */}
         <div className='mt-4 flex justify-end'>

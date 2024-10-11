@@ -1,11 +1,5 @@
+import { QuestionType } from '@/types/formTypes';
 import { atom } from 'recoil';
-
-// 質問の型定義
-export type QuestionType =
-  | 'shortAnswer'
-  | 'paragraph'
-  | 'multipleChoice'
-  | 'checkboxes';
 
 // 質問オブジェクトの型定義
 export type Question = {
