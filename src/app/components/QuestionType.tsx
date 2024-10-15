@@ -19,17 +19,16 @@ export const QuestionType: React.FC<QuestionType> = ({
       return (
         <input
           type='text'
-          placeholder='短い回答テキスト'
-          className='w-full p-2 border rounded'
+          placeholder='短文回答'
+          className='border-b-2 p-2'
           disabled
         />
       );
     case 'paragraph':
       return (
-        <textarea
-          placeholder='長い回答テキスト'
-          className='w-full p-2 border rounded'
-          rows={3}
+        <input
+          placeholder='長文回答'
+          className='w-full border-b-2 p-2'
           disabled
         />
       );
