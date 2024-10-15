@@ -1,3 +1,4 @@
+import { RadioOptions } from '@/app/components/RadioOptions';
 import { Question } from '@/store/questionsAtom';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,48 +18,31 @@ export const QuestionType: React.FC<QuestionType> = ({
   switch (question.type) {
     case 'shortAnswer':
       return (
-        <input
-          type='text'
-          placeholder='短文回答'
-          className='border-b-2 p-2'
-          disabled
-        />
+        <div className='md:pr-80'>
+          <input
+            type='text'
+            placeholder='短文回答'
+            className='w-full border-b-2 p-2 bg-white'
+            disabled
+          />
+        </div>
       );
     case 'paragraph':
       return (
-        <input
-          placeholder='長文回答'
-          className='w-full border-b-2 p-2'
-          disabled
-        />
+        <div className='pr-32'>
+          <input
+            placeholder='長文回答'
+            className='w-full border-b-2 p-2 bg-white'
+            disabled
+          />
+        </div>
       );
     case 'multipleChoice':
     case 'checkboxes':
       return (
-        <div>
-          {(question.options || []).map((option, index) => (
-            <div key={index} className='flex items-center mb-2'>
-              <input
-                type={question.type === 'multipleChoice' ? 'radio' : 'checkbox'}
-                disabled
-                className='mr-2'
-              />
-              <input
-                type='text'
-                value={option}
-                onChange={(e) => handleOptionChange(index, e.target.value)}
-                className='flex-grow p-2 border rounded'
-                placeholder={`選択肢 ${index + 1}`}
-              />
-            </div>
-          ))}
-          <button
-            onClick={handleAddOption}
-            className='mt-2 p-2 text-purple-600 hover:bg-purple-100 rounded transition duration-200'
-          >
-            選択肢を追加
-          </button>
-        </div>
+        <RadioOptions
+          type={question.type}
+        />
       );
     case 'dropdown':
       return (
