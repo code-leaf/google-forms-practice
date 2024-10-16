@@ -43,7 +43,7 @@ export const Transition = ({
       leaveTo='opacity-0' // フェードアウト終了時：完全に透明
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
-      <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600'>
+      <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600 focus-within:border-l-8 focus-within:border-l-blue-600'>
         {/* 質問種類設定部分 */}
         <div className='flex flex-wrap justify-between items-center mb-4 space-x-2'>
           {/* 質問のタイトル入力欄 */}
@@ -52,7 +52,7 @@ export const Transition = ({
             type='text' // テキスト入力フィールドを指定
             value={question.title} // 質問のタイトルを表示
             onChange={handleTitleChange} // タイトルが変更されたときの処理
-            className='p-2 mb-4 border-b-2 flex-1 border-gray-200 focus:outline-none focus:border-purple-500'
+            className='p-3 mb-4 bg-gray-100 border-b-2 flex-1 border-gray-400 focus:outline-none focus:border-purple-500'
           />
 
           {/* 画像アイコン */}
