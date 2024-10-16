@@ -1,3 +1,4 @@
+import { ImageUploadModal } from '@/app/components/ImageUploadModal';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
@@ -10,6 +11,8 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
   const [options, setOptions] = useState<string[]>(['']);
 
   const [hasOther, setHasOther] = useState<boolean>(false);
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const addOption = () => {
     setOptions((prevOptions) => {
@@ -85,6 +88,7 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
           {type !== 'dropdown' && (
             <FontAwesomeIcon
               icon={faImage}
+              onClick={() => setIsModalOpen(true)}
               title='画像を追加'
               className='text-white group-hover:text-gray-400 group-focus-within:text-gray-400'
             />
@@ -133,6 +137,11 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
           </div>
         )}
       </div>
+
+      <ImageUploadModal
+        isModalOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
