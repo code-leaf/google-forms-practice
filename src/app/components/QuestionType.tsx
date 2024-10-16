@@ -39,40 +39,8 @@ export const QuestionType: React.FC<QuestionType> = ({
       );
     case 'multipleChoice':
     case 'checkboxes':
-      return (
-        <RadioOptions
-          type={question.type}
-        />
-      );
     case 'dropdown':
-      return (
-        <div>
-          <select className='w-full p-2 border rounded' disabled>
-            <option>選択してください</option>
-            {(question.options || []).map((option, index) => (
-              <option key={index}>{option}</option>
-            ))}
-          </select>
-          <div className='mt-2'>
-            {(question.options || []).map((option, index) => (
-              <input
-                key={index}
-                type='text'
-                value={option}
-                onChange={(e) => handleOptionChange(index, e.target.value)}
-                className='w-full p-2 border rounded mb-2'
-                placeholder={`選択肢 ${index + 1}`}
-              />
-            ))}
-            <button
-              onClick={handleAddOption}
-              className='mt-2 p-2 text-purple-600 hover:bg-purple-100 rounded transition duration-200'
-            >
-              選択肢を追加
-            </button>
-          </div>
-        </div>
-      );
+      return <RadioOptions type={question.type} />;
     case 'fileUpload':
       return (
         <div className='border-dashed border-2 border-gray-300 p-4 text-center rounded'>
