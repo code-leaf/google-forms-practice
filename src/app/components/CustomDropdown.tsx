@@ -25,7 +25,7 @@ export const CustomDropdown = ({
       {/* ボタン */}
       <button
         onClick={() => setIsOpen((isOpen) => !isOpen)}
-        className='mb-4 p-2 border rounded focus:outline-none  focus:ring-2 focus:ring-purple-500 w-full text-left flex items-center justify-between'
+        className='mb-4 p-2 border rounded focus:outline-none w-full text-left flex items-center justify-between'
         type='button'
       >
         <span className='flex items-center'>

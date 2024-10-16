@@ -50,6 +50,7 @@ export const Transition = ({
           <input
             placeholder='無題の質問' //プレースホルダの設定
             type='text' // テキスト入力フィールドを指定
+            aria-label='質問のタイトルを入力' //スクリーンリーダーの設定
             value={question.title} // 質問のタイトルを表示
             onChange={handleTitleChange} // タイトルが変更されたときの処理
             className='p-3 mb-4 bg-gray-100 border-b-2 flex-1 border-gray-400 focus:outline-none focus:border-purple-500'
