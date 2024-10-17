@@ -46,16 +46,33 @@ export const ImageUploadModal = ({
           <p className='text-gray-500 py-3 border-b-2 border-white'>
             Google画像検索
           </p>
+          <p className='text-gray-500 py-3 border-b-2 border-white'>
+            ※画面切り替えはできません。
+          </p>
         </div>
         <hr />
 
-        <div className='flex justify-center items-center p-8 relative'>
-          <FontAwesomeIcon icon={faCloud} className='text-9xl text-gray-400' />
+        {/* ドラッグエリア部分 */}
+        <div className='flex flex-col justify-center items-center text-center p-8'>
+          {/* クラウド画像 */}
+          <div className='relative'>
+            {/* 大きいクラウド */}
+            <FontAwesomeIcon
+              icon={faCloud}
+              className='text-9xl text-gray-400'
+            />
 
-          <FontAwesomeIcon
-            icon={faCloud}
-            className='text-8xl text-gray-300 absolute top-20 left-96'
-          />
+            {/* 小さいクラウド */}
+            <FontAwesomeIcon
+              icon={faCloud}
+              className='text-8xl text-gray-300 absolute left-1/2 bottom-0 transform -translate-x-3/4 translate-y-1/4'
+            />
+          </div>
+          <button className='px-6 py-2 mt-14 bg-blue-500 text-white rounded hover:bg-blue-600 transition'>
+            参照
+          </button>
+          <p className='mt-2'>または、ここにファイルをドラッグしてください</p>
+          <p>※実際にはアップロードできません。</p>
         </div>
       </div>
     </div>
