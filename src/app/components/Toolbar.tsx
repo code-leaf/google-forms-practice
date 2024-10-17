@@ -34,7 +34,7 @@ export const Toolbar: React.FC = () => {
     const newQuestion: Question = {
       id: Date.now().toString(),
       type: 'shortAnswer',
-      title: '質問',
+      title: '',
       required: false,
     };
     setQuestions([...questions, newQuestion]);
