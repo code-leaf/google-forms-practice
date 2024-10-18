@@ -2,6 +2,7 @@ import { ImageUploadModal } from '@/app/components/ImageUploadModal';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 type RadioOptionProps = {
   type: 'multipleChoice' | 'checkboxes' | 'dropdown';
@@ -46,66 +47,101 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
     }
   };
 
+  const onDragEnd = (result: any) => {
+    if (!result) return;
+    const items = [...options];
+    const [reorderdItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderdItem);
+    setOptions(items);
+  };
+
   return (
     <div>
       {/* 選択肢の表示 */}
-      {options.map((option, index) => (
-        <div
-          key={index}
-          className='flex space-x-4 items-center pr-4 mb-2 group'
-        >
-          {/* ラジオボタンorチェックボックスorプルダウン */}
-          {type === 'dropdown' ? (
-            <span>{index + 1}.</span>
-          ) : (
-            <input
-              type={type === 'multipleChoice' ? 'radio' : 'checkbox'}
-              aria-label='チェックボックスの設定'
-              id={`option-${index}`}
-              disabled
-              name='options'
-              className='mr-2'
-            />
-          )}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='options'>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {options.map((option, index) => (
+                <Draggable
+                  key={option.id}
+                  draggableId={option.id}
+                  index={index}
+                >
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className='flex space-x-4 items-center pr-4 mb-2 group'
+                    >
+                      {/* ラジオボタンorチェックボックスorプルダウン */}
+                      {type === 'dropdown' ? (
+                        <span>{index + 1}.</span>
+                      ) : (
+                        <input
+                          type={
+                            type === 'multipleChoice' ? 'radio' : 'checkbox'
+                          }
+                          aria-label='チェックボックスの設定'
+                          id={`option-${index}`}
+                          disabled
+                          name='options'
+                          className='mr-2'
+                        />
+                      )}
 
-          {/* 実際の選択肢 */}
-          <div className='relative p-2 w-full flex-grow border-transparent bg-transparent transition-colors duration-200 focus-within:outline-none'>
-            <input
-              type='text'
-              aria-label='選択肢の内容設定'
-              value={option}
-              onChange={(e) => updateOptionText(index, e.target.value)}
-              className={`w-full bg-transparent focus:outline-none
-                ${option === `その他...` ? 'text-gray-400' : 'text-gray-600'}
-                `}
-              placeholder={`選択肢 ${index + 1}`}
-              disabled={option === `その他...`}
-            />
-            <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 transition-all duration-300 origin-center transform -translate-x-1/2 group-focus-within:w-full'></span>
-          </div>
+                      {/* 実際の選択肢 */}
+                      <div className='relative p-2 w-full flex-grow border-transparent bg-transparent transition-colors duration-200 focus-within:outline-none'>
+                        <input
+                          type='text'
+                          aria-label='選択肢の内容設定'
+                          value={option}
+                          onChange={(e) =>
+                            updateOptionText(index, e.target.value)
+                          }
+                          className={`w-full bg-transparent focus:outline-none
+                       ${
+                         option === `その他...`
+                           ? 'text-gray-400'
+                           : 'text-gray-600'
+                       }
+                        `}
+                          placeholder={`選択肢 ${index + 1}`}
+                          disabled={option === `その他...`}
+                        />
+                        <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 transition-all duration-300 origin-center transform -translate-x-1/2 group-focus-within:w-full'></span>
+                      </div>
 
-          {/* 画像のアイコン */}
-          {type !== 'dropdown' && (
-            <FontAwesomeIcon
-              icon={faImage}
-              onClick={() => setIsModalOpen(true)}
-              title='画像を追加'
-              className='text-white group-hover:text-gray-400 group-focus-within:text-gray-400'
-            />
-          )}
+                      {/* 画像のアイコン */}
+                      {type !== 'dropdown' && (
+                        <FontAwesomeIcon
+                          icon={faImage}
+                          onClick={() => setIsModalOpen(true)}
+                          title='画像を追加'
+                          className='text-white group-hover:text-gray-400 group-focus-within:text-gray-400'
+                        />
+                      )}
 
-          {/* 削除ボタン */}
-          {options.length > 1 && (
-            <button
-              className='ml-2 text-gray-400 '
-              title='削除'
-              onClick={() => removeOption(index)}
-            >
-              <FontAwesomeIcon icon={faX} />
-            </button>
+                      {/* 削除ボタン */}
+                      {options.length > 1 && (
+                        <button
+                          className='ml-2 text-gray-400 '
+                          title='削除'
+                          onClick={() => removeOption(index)}
+                        >
+                          <FontAwesomeIcon icon={faX} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
           )}
-        </div>
-      ))}
+        </Droppable>
+      </DragDropContext>
 
       {/* 選択肢の追加フィールド */}
       <div className='flex items-center mb-2'>
