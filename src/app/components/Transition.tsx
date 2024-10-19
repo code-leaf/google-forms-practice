@@ -1,9 +1,10 @@
 import { CustomDropdown } from '@/app/components/CustomDropdown';
+import { QuestionFooter } from '@/app/components/QuestionFooter';
 import { QuestionType } from '@/app/components/QuestionType';
 import { useTransition } from '@/hooks/useTransition';
 import { Question } from '@/store/questionsAtom';
 import { questionTypes } from '@/types/formTypes';
-import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition as HeadlessTransition } from '@headlessui/react';
 
@@ -76,27 +77,14 @@ export const Transition = ({
           handleAddOption={handleAddOption}
         />
 
-        {/* 必須チェックボックス */}
+        <hr className='mt-14' />
+        {/* 質問のフッター部分 */}
         <div className='mt-4 flex justify-end'>
-          <label className='flex items-center cursor-pointer'>
-            <input
-              type='checkbox' // チェックボックスを指定
-              checked={question.required} // 必須かどうかを表示
-              onChange={handleRequiredChange} // 必須設定が変更されたときの処理
-              className='form-checkbox h-5 w-5 text-purple-600'
-            />
-            <span className='ml-2 text-gray-700'>必須</span>
-          </label>
+          <QuestionFooter
+            handleRemoveQuestion={handleRemoveQuestion}
+            handleRequiredChange={handleRequiredChange}
+          />
         </div>
-
-        {/* 質問削除ボタン */}
-        <button
-          onClick={handleRemoveQuestion} // 質問を削除する処理
-          className='mt-4 p-2 text-red-500 hover:bg-red-100 rounded transition duration-200'
-        >
-          <FontAwesomeIcon icon={faTrash} className='mr-2' />
-          削除
-        </button>
       </div>
     </HeadlessTransition>
   );
