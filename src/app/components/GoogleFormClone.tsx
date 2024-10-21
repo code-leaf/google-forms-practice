@@ -22,9 +22,11 @@ const GoogleFormClone: React.FC = () => {
 
   // 質問を更新する関数
   const updateQuestion = useCallback(
+    // 関数は質問のIDと、更新したい属性（の一部）を受け取ります。
     (id: string, updates: Partial<Question>) => {
       setQuestions(
         questions.map((question) =>
+          // 質問のIDが更新対象のIDと一致したら、updatesで指定された属性だけを上書きします。
           question.id === id ? { ...question, ...updates } : question
         )
       );
