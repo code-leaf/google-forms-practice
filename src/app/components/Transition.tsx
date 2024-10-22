@@ -2,7 +2,6 @@ import { CustomDropdown } from '@/app/components/CustomDropdown';
 import { QuestionFooter } from '@/app/components/QuestionFooter';
 import { QuestionType } from '@/app/components/QuestionType';
 import { useTransition } from '@/hooks/useTransition';
-import { Question } from '@/store/questionsAtom';
 import { questionTypes } from '@/types/formTypes';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,28 +9,21 @@ import { Transition as HeadlessTransition } from '@headlessui/react';
 
 // プロップスの型定義
 export type TransitionProps = {
-  question: Question;
-  removeQuestion: (id: string) => void;
-  updateQuestion: (id: string, updates: Partial<Question>) => void;
+  questionId: string;
 };
 
-export const Transition = ({
-  question,
-  removeQuestion,
-  updateQuestion,
-}: TransitionProps) => {
+export const Transition = ({ questionId }: TransitionProps) => {
   const {
+    question,
     handleTitleChange,
     handleTypeChange,
-    handleRequiredChange,
-    handleRemoveQuestion,
-    handleAddOption,
     handleOptionChange,
-  } = useTransition({
-    question,
+    handleAddOption,
     removeQuestion,
     updateQuestion,
-  });
+  } = useTransition({ questionId });
+
+  if (!question) return null;
 
   return (
     <HeadlessTransition
@@ -81,8 +73,9 @@ export const Transition = ({
         {/* 質問のフッター部分 */}
         <div className='mt-4 flex justify-end'>
           <QuestionFooter
-            handleRemoveQuestion={handleRemoveQuestion}
-            handleRequiredChange={handleRequiredChange}
+            questionId={questionId}
+            removeQuestion={removeQuestion}
+            updateQuestion={updateQuestion}
           />
         </div>
       </div>

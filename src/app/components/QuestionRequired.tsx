@@ -1,14 +1,24 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
-import { useState } from 'react';
+import { Question } from '@/store/questionsAtom';
+import { useCallback, useState } from 'react';
 
 type QuestionRequiredProps = {
-  handleRequiredChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  questionId: string;
+  updateQuestion: (updates: Partial<Question>) => void;
 };
 
 export const QuestionRequired = ({
-  handleRequiredChange,
+  questionId,
+  updateQuestion,
 }: QuestionRequiredProps) => {
   const [required, setRequired] = useState<boolean>(false);
+
+  // 必須設定変更ハンドラ
+  const handleRequiredChange = useCallback(() => {
+    const newRequired = !required;
+    updateQuestion({ required: newRequired });
+    setRequired(newRequired);
+  }, [required, updateQuestion]);
 
   return (
     <div className='flex justify-center items-center'>
@@ -16,9 +26,7 @@ export const QuestionRequired = ({
       <ToggleButton
         isChecked={required}
         limitOneRespons={false}
-        onChange={() => {
-          setRequired((prev) => !prev);
-        }}
+        onChange={handleRequiredChange}
       />
     </div>
   );
