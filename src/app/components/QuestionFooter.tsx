@@ -21,6 +21,7 @@ export const QuestionFooter = ({
   updateQuestion,
   duplicateQuestion,
 }: QuestionFooterProps) => {
+  
   // 質問削除ハンドラ
   const handleRemoveQuestion = useCallback(() => {
     removeQuestion(questionId);
@@ -33,23 +34,36 @@ export const QuestionFooter = ({
 
   return (
     <div className='flex justify-between items-center'>
-      <div className='flex space-x-8'>
-        <button title='コピーを作成' onClick={handleDuplicateQuestion}>
+      <div className='flex space-x-1'>
+        <button
+          className='rounded-full h-12 w-12 hover:bg-gray-100'
+          title='コピーを作成'
+          onClick={handleDuplicateQuestion}
+        >
           <FontAwesomeIcon icon={faCopy} className='h-6 w-6' />
         </button>
 
-        <button title='削除' onClick={handleRemoveQuestion}>
+        <button
+          className='rounded-full h-12 w-12 hover:bg-gray-100'
+          title='削除'
+          onClick={handleRemoveQuestion}
+        >
           <FontAwesomeIcon icon={faTrash} className='h-6 w-6' />
         </button>
 
-        {/* 必須部分の設定コンポーネント */}
+        {/* 仕切りの棒 */}
         <div className='w-[1px] h-10 bg-gray-300'></div>
+
+        {/* 必須部分の設定コンポーネント */}
         <QuestionRequired
           questionId={questionId}
           updateQuestion={updateQuestion}
         />
 
-        <button title='その他のオプション'>
+        <button
+          className='rounded-full h-12 w-12 hover:bg-gray-100'
+          title='その他のオプション'
+        >
           <FontAwesomeIcon icon={faEllipsisVertical} className='h-6 w-6' />
         </button>
       </div>

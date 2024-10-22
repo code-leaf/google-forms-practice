@@ -24,7 +24,7 @@ export const QuestionRequired = ({
   if (!question) return null;
 
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex justify-center items-center pl-2'>
       <p>必須</p>
       <ToggleButton
         isChecked={question.required}

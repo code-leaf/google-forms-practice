@@ -37,7 +37,7 @@ export const Transition = ({ questionId }: TransitionProps) => {
       leaveTo='opacity-0' // フェードアウト終了時：完全に透明
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
-      <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600 focus-within:border-l-8 focus-within:border-l-blue-600'>
+      <div className='bg-white rounded-lg shadow-md px-6 py-4 mb-4 text-gray-600 focus-within:border-l-8 focus-within:border-l-blue-600'>
         {/* 質問種類設定部分 */}
         <div className='flex flex-wrap justify-between items-center mb-4 space-x-2'>
           {/* 質問のタイトル入力欄 */}
@@ -72,7 +72,7 @@ export const Transition = ({ questionId }: TransitionProps) => {
 
         <hr className='mt-14' />
         {/* 質問のフッター部分 */}
-        <div className='mt-4 flex justify-end'>
+        <div className='mt-2 flex justify-end'>
           <QuestionFooter
             questionId={questionId}
             removeQuestion={removeQuestion}
