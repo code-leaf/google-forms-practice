@@ -12,6 +12,7 @@ type UseTransition = {
   handleTypeChange: (value: string) => void;
   handleOptionChange: (index: number, value: string) => void;
   handleAddOption: () => void;
+  duplicateQuestion: (id: string) => void;
 };
 
 export const useTransition = ({
@@ -79,6 +80,42 @@ export const useTransition = ({
       updateQuestion({ options: newOptions });
     }
   }, [questionId, questions, updateQuestion]);
+
+  // 質問をコピーする関数
+  const duplicateQuestion = useCallback(
+    (id: string) => {
+      // 接頭辞・タイムスタンプ・ランダム文字列(乱数を36進数に変換して最後の9文字)を組み合わせて重複しないIDを生成
+      const generateUniqueId = () => {
+        return `question_${Date.now()}_${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+      };
+
+      const questionToCopy = questions.find((q) => q.id === id);
+      if (questionToCopy) {
+        // コピー元の内容を継承しつつ、新しいIDとタイトルを持つ質問オブジェクトを作成
+        const newQuestion: Question = {
+          ...questionToCopy,
+          id: generateUniqueId(),
+          title: `${questionToCopy.title}`,
+          required: questionToCopy.required, 
+        };
+
+        // コピー元の質問が配列の何番目にあるかを探す
+        const questionIndex = questions.findIndex((q) => q.id === id);
+
+        // 現在の質問配列のコピーを作成（直接の変更を避けるため）
+        const newQuestions = [...questions];
+
+        // 元の質問の直後に新しい質問を追加（既存の要素は移動するだけで削除はしない）
+        newQuestions.splice(questionIndex + 1, 0, newQuestion);
+        setQuestions(newQuestions);
+      }
+    },
+    [questions, setQuestions]
+  );
+  
+
   return {
     question,
     handleTitleChange,
@@ -87,5 +124,6 @@ export const useTransition = ({
     handleAddOption,
     removeQuestion,
     updateQuestion,
+    duplicateQuestion
   };
 };

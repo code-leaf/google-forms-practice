@@ -21,6 +21,7 @@ export const Transition = ({ questionId }: TransitionProps) => {
     handleAddOption,
     removeQuestion,
     updateQuestion,
+    duplicateQuestion,
   } = useTransition({ questionId });
 
   if (!question) return null;
@@ -76,6 +77,7 @@ export const Transition = ({ questionId }: TransitionProps) => {
             questionId={questionId}
             removeQuestion={removeQuestion}
             updateQuestion={updateQuestion}
+            duplicateQuestion={duplicateQuestion}
           />
         </div>
       </div>
