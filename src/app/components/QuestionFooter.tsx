@@ -1,10 +1,7 @@
 import { QuestionRequired } from '@/app/components/QuestionRequired';
+import { QuestionSettings } from '@/app/components/QuestionSettings';
 import { Question } from '@/store/questionsAtom';
-import {
-  faCopy,
-  faEllipsisVertical,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback } from 'react';
 
@@ -21,7 +18,6 @@ export const QuestionFooter = ({
   updateQuestion,
   duplicateQuestion,
 }: QuestionFooterProps) => {
-  
   // 質問削除ハンドラ
   const handleRemoveQuestion = useCallback(() => {
     removeQuestion(questionId);
@@ -59,13 +55,7 @@ export const QuestionFooter = ({
           questionId={questionId}
           updateQuestion={updateQuestion}
         />
-
-        <button
-          className='rounded-full h-12 w-12 hover:bg-gray-100'
-          title='その他のオプション'
-        >
-          <FontAwesomeIcon icon={faEllipsisVertical} className='h-6 w-6' />
-        </button>
+        <QuestionSettings />
       </div>
     </div>
   );
