@@ -1,36 +1,30 @@
 import { CustomDropdown } from '@/app/components/CustomDropdown';
+import { QuestionFooter } from '@/app/components/QuestionFooter';
 import { QuestionType } from '@/app/components/QuestionType';
 import { useTransition } from '@/hooks/useTransition';
-import { Question } from '@/store/questionsAtom';
 import { questionTypes } from '@/types/formTypes';
-import { faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition as HeadlessTransition } from '@headlessui/react';
 
 // プロップスの型定義
 export type TransitionProps = {
-  question: Question;
-  removeQuestion: (id: string) => void;
-  updateQuestion: (id: string, updates: Partial<Question>) => void;
+  questionId: string;
 };
 
-export const Transition = ({
-  question,
-  removeQuestion,
-  updateQuestion,
-}: TransitionProps) => {
+export const Transition = ({ questionId }: TransitionProps) => {
   const {
+    question,
     handleTitleChange,
     handleTypeChange,
-    handleRequiredChange,
-    handleRemoveQuestion,
-    handleAddOption,
     handleOptionChange,
-  } = useTransition({
-    question,
+    handleAddOption,
     removeQuestion,
     updateQuestion,
-  });
+    duplicateQuestion,
+  } = useTransition({ questionId });
+
+  if (!question) return null;
 
   return (
     <HeadlessTransition
@@ -43,7 +37,7 @@ export const Transition = ({
       leaveTo='opacity-0' // フェードアウト終了時：完全に透明
     >
       {/* 個々の質問コンテナ - 背景色と余白を設定 */}
-      <div className='bg-white rounded-lg shadow-md p-6 mb-4 text-gray-600 focus-within:border-l-8 focus-within:border-l-blue-600'>
+      <div className='bg-white rounded-lg shadow-md px-6 py-4 mb-4 text-gray-600 focus-within:border-l-8 focus-within:border-l-blue-600'>
         {/* 質問種類設定部分 */}
         <div className='flex flex-wrap justify-between items-center mb-4 space-x-2'>
           {/* 質問のタイトル入力欄 */}
@@ -76,27 +70,16 @@ export const Transition = ({
           handleAddOption={handleAddOption}
         />
 
-        {/* 必須チェックボックス */}
-        <div className='mt-4 flex justify-end'>
-          <label className='flex items-center cursor-pointer'>
-            <input
-              type='checkbox' // チェックボックスを指定
-              checked={question.required} // 必須かどうかを表示
-              onChange={handleRequiredChange} // 必須設定が変更されたときの処理
-              className='form-checkbox h-5 w-5 text-purple-600'
-            />
-            <span className='ml-2 text-gray-700'>必須</span>
-          </label>
+        <hr className='mt-14' />
+        {/* 質問のフッター部分 */}
+        <div className='mt-2 flex justify-end'>
+          <QuestionFooter
+            questionId={questionId}
+            removeQuestion={removeQuestion}
+            updateQuestion={updateQuestion}
+            duplicateQuestion={duplicateQuestion}
+          />
         </div>
-
-        {/* 質問削除ボタン */}
-        <button
-          onClick={handleRemoveQuestion} // 質問を削除する処理
-          className='mt-4 p-2 text-red-500 hover:bg-red-100 rounded transition duration-200'
-        >
-          <FontAwesomeIcon icon={faTrash} className='mr-2' />
-          削除
-        </button>
       </div>
     </HeadlessTransition>
   );
