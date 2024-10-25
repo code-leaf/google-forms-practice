@@ -42,7 +42,7 @@ export const Transition = ({ questionId }: TransitionProps) => {
         <div className='flex flex-wrap justify-between items-center mb-4 space-x-2'>
           {/* 質問のタイトル入力欄 */}
           <input
-            placeholder='無題の質問' //プレースホルダの設定
+            placeholder='質問' //プレースホルダの設定
             type='text' // テキスト入力フィールドを指定
             aria-label='質問のタイトルを入力' //スクリーンリーダーの設定
             value={question.title} // 質問のタイトルを表示
