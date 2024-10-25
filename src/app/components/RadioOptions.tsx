@@ -2,53 +2,80 @@ import { ImageUploadModal } from '@/app/components/ImageUploadModal';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+
+// オプション項目の型定義
+type Option = {
+  id: string;
+  text: string;
+};
 
 type RadioOptionProps = {
   type: 'multipleChoice' | 'checkboxes' | 'dropdown';
 };
 
 export const RadioOptions = ({ type }: RadioOptionProps) => {
-  const [options, setOptions] = useState<string[]>(['']); // 選択肢の配列を管理。初期値は空の選択肢1つ
+  // オプションの状態を管理
+  const [options, setOptions] = useState<Option[]>([{ id: '1', text: '' }]);
 
-  const [hasOther, setHasOther] = useState<boolean>(false); // 「その他」オプションの有無を管理
+  // その他オプションの有無を管理
+  const [hasOther, setHasOther] = useState<boolean>(false);
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // 画像アップロードモーダルの表示状態を管理
+  // モーダルの開閉状態を管理
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  // 新しいオプションを追加する関数
   const addOption = () => {
     setOptions((prevOptions) => {
       const newOptions = [...prevOptions];
+      const newId = (prevOptions.length + 1).toString();
       if (hasOther) {
+        // その他オプションがある場合、最後から2番目に新しいオプションを追加
         // spliceメソッドは、配列の指定した位置に要素を追加したり削除したりできる
         // splice(操作開始位置, 削除する要素数, ...items: 新しく追加する要素)
-        newOptions.splice(newOptions.length - 1, 0, '');
+        newOptions.splice(newOptions.length - 1, 0, { id: newId, text: '' });
       } else {
-        // 「その他」オプションがない場合、末尾に追加
-        newOptions.push('');
+        // その他オプションがない場合、最後に新しいオプションを追加
+        newOptions.push({ id: newId, text: '' });
       }
       return newOptions;
     });
   };
 
-  // 「その他」オプションを追加する関数
+  // その他オプションを追加する関数
   const addOther = () => {
-    setOptions([...options, `その他...`]); // 現在の選択肢に「その他」を追加
-    setHasOther(true); // 「その他」フラグをオン
+    setOptions([
+      ...options,
+      { id: (options.length + 1).toString(), text: 'その他...' },
+    ]);
+    setHasOther(true);
   };
 
-  // 選択肢のテキストを更新する関数
-  const updateOptionText = (index: number, value: string) => {
-    const newOptions = [...options]; // 現在の選択肢をコピー
-    newOptions[index] = value; // 指定されたインデックスの選択肢を更新
-    setOptions(newOptions);
+  // オプションのテキストを更新する関数
+  const updateOptionText = (id: string, value: string) => {
+    setOptions(
+      options.map((option) =>
+        option.id === id ? { ...option, text: value } : option
+      )
+    );
   };
 
-  // 選択肢を削除する関数
-  const removeOption = (index: number) => {
-    setOptions(options.filter((_, i) => i !== index)); // 指定されたインデックスの選択肢を除外
+  // オプションを削除する関数
+
+  const removeOption = (id: string) => {
+    setOptions(options.filter((option) => option.id !== id)); // 指定されたインデックスの選択肢を除外
     // 削除された選択肢が「その他」の場合、フラグをオフ
-    if (options[index] === `その他...`) {
+    if (options.find((option) => option.id === id)?.text === 'その他...') {
       setHasOther(false);
     }
+  };
+
+  const onDragEnd = (result: any) => {
+    if (!result) return;
+    const items = [...options];
+    const [reorderdItem] = items.splice(result.index, 1);
+    items.splice(result.index, 0, reorderdItem);
+    setOptions(items);
   };
 
   return (
@@ -66,7 +93,7 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
             <input
               type={type === 'multipleChoice' ? 'radio' : 'checkbox'}
               aria-label='チェックボックスの設定'
-              id={`option-${index}`}
+              id={option.id}
               disabled // プレビュー用なので無効化
               name='options'
               className='mr-2'
@@ -77,13 +104,17 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
             <input
               type='text'
               aria-label='選択肢の内容設定'
-              value={option}
-              onChange={(e) => updateOptionText(index, e.target.value)}
+              value={option.text}
+              onChange={(e) => updateOptionText(option.id, e.target.value)}
               className={`w-full bg-transparent focus:outline-none
-                ${option === `その他...` ? 'text-gray-400' : 'text-gray-600'}
-                `}
+                       ${
+                         option.text === `その他...`
+                           ? 'text-gray-400'
+                           : 'text-gray-600'
+                       }
+                        `}
               placeholder={`選択肢 ${index + 1}`}
-              disabled={option === `その他...`} // 「その他」オプションは編集不可
+              disabled={option.text === `その他...`}
             />
             {/* フォーカス時のアンダーライン効果 */}
             <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 transition-all duration-300 origin-center transform -translate-x-1/2 group-focus-within:w-full'></span>
@@ -102,7 +133,7 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
             <button
               className='ml-2 text-gray-400 '
               title='削除'
-              onClick={() => removeOption(index)}
+              onClick={() => removeOption(option.id)}
             >
               <FontAwesomeIcon icon={faX} />
             </button>

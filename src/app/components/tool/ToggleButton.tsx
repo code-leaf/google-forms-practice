@@ -5,7 +5,7 @@ import React, { useCallback, useMemo } from 'react';
 type ToggleButtonProps = {
   isChecked: boolean; // トグルの状態（オン/オフ）
   onChange: () => void; // 状態変更時のコールバック関数
-  limitOneRespons: boolean;
+  limitOneRespons: boolean; // disabledの設定
 };
 
 // ToggleButtonコンポーネントの定義
