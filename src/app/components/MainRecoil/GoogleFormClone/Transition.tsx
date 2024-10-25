@@ -1,6 +1,6 @@
-import { CustomDropdown } from '@/app/components/CustomDropdown';
-import { QuestionFooter } from '@/app/components/QuestionFooter';
-import { QuestionType } from '@/app/components/QuestionType';
+import { CustomDropdown } from '@/app/components/MainRecoil/GoogleFormClone/Transition/CustomDropdown';
+import { QuestionFooter } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionFooter';
+import { QuestionType } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType';
 import { useTransition } from '@/hooks/useTransition';
 import { questionTypes } from '@/types/formTypes';
 import { faImage } from '@fortawesome/free-solid-svg-icons';

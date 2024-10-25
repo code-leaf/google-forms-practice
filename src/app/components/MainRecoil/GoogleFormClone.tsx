@@ -1,8 +1,8 @@
+import { questionsAtom } from '@/store/questionsAtom';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { questionsAtom } from '@/store/questionsAtom';
-import FormHeader from './FormHeader';
-import { Transition } from './Transition';
+import FormHeader from './GoogleFormClone/FormHeader';
+import { Transition } from './GoogleFormClone/Transition';
 
 // フォームコンポーネント
 const GoogleFormClone: React.FC = () => {

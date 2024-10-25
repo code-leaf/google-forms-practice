@@ -1,5 +1,5 @@
 // 必要なライブラリとコンポーネントをインポート
-import { IconButton } from '@/app/components/IconButton';
+import { IconButton } from '@/app/components/tool/IconButton';
 import { Question, questionsAtom } from '@/store/questionsAtom';
 import {
   faCirclePlay,
