@@ -1,4 +1,4 @@
-import { ImageUploadModal } from '@/app/components/ImageUploadModal';
+import { ImageUploadModal } from '@/app/components/tool/ImageUploadModal';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';

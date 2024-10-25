@@ -1,7 +1,7 @@
 // React関連の機能をインポート
 import React, { useState } from 'react';
 // フォーマットアイコンコンポーネントをインポート
-import FormatIcons from '@/app/components/FormatIcons';
+import FormatIcons from '@/app/components/tool/FormatIcons';
 // 型をインポート
 import { SelectedInput } from '@/types/formTypes';
 

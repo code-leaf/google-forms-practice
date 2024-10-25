@@ -1,4 +1,5 @@
-import { RadioOptions } from '@/app/components/RadioOptions';
+import { LinearScale } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/LinearScale';
+import { RadioOptions } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/RadioOptions';
 import { Question } from '@/store/questionsAtom';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -56,18 +57,7 @@ export const QuestionType: React.FC<QuestionType> = ({
         </div>
       );
     case 'linearScale':
-      return (
-        <div className='flex items-center space-x-4'>
-          <span>1</span>
-          {[1, 2, 3, 4, 5].map((num) => (
-            <label key={num} className='flex items-center'>
-              <input type='radio' name='scale' disabled className='mr-1' />
-              {num}
-            </label>
-          ))}
-          <span>5</span>
-        </div>
-      );
+      return <LinearScale />;
     case 'multipleChoiceGrid':
     case 'checkboxGrid':
       return (

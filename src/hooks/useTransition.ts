@@ -1,4 +1,4 @@
-import { TransitionProps } from '@/app/components/Transition';
+import { TransitionProps } from '@/app/components/MainRecoil/GoogleFormClone/Transition';
 import { Question, questionSelector } from '@/store/questionsAtom';
 import { QuestionType } from '@/types/formTypes';
 import { useCallback } from 'react';
@@ -98,7 +98,7 @@ export const useTransition = ({
           ...questionToCopy,
           id: generateUniqueId(),
           title: `${questionToCopy.title}`,
-          required: questionToCopy.required, 
+          required: questionToCopy.required,
         };
 
         // コピー元の質問が配列の何番目にあるかを探す
@@ -114,7 +114,6 @@ export const useTransition = ({
     },
     [questions, setQuestions]
   );
-  
 
   return {
     question,
@@ -124,6 +123,6 @@ export const useTransition = ({
     handleAddOption,
     removeQuestion,
     updateQuestion,
-    duplicateQuestion
+    duplicateQuestion,
   };
 };
