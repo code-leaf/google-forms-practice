@@ -2,7 +2,6 @@ import { ImageUploadModal } from '@/app/components/ImageUploadModal';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
 // オプション項目の型定義
 type Option = {
@@ -62,22 +61,22 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
 
   // オプションを削除する関数
 
-   const removeOption = (id: string) => {
-     setOptions((currentOptions) => {
-       // 新しいオプションリストを作成
-       const newOptions = currentOptions.filter((option) => option.id !== id);
+  const removeOption = (id: string) => {
+    setOptions((currentOptions) => {
+      // 新しいオプションリストを作成
+      const newOptions = currentOptions.filter((option) => option.id !== id);
 
-       // 「その他」オプションが存在するかチェック
-       const hasOtherOption = newOptions.some(
-         (option) => option.text === 'その他...'
-       );
+      // 「その他」オプションが存在するかチェック
+      const hasOtherOption = newOptions.some(
+        (option) => option.text === 'その他...'
+      );
 
-       // hasOtherの状態を更新
-       setHasOther(hasOtherOption);
+      // hasOtherの状態を更新
+      setHasOther(hasOtherOption);
 
-       return newOptions;
-     });
-   };
+      return newOptions;
+    });
+  };
 
   return (
     <div>
