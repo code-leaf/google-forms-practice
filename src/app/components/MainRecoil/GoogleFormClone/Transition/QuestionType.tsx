@@ -1,15 +1,13 @@
+import { CheckboxGrid } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/CheckboxGrid';
 import { LinearScale } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/LinearScale';
 import { RadioOptions } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/RadioOptions';
 import { Question } from '@/store/questionsAtom';
-import React from 'react';
 
 type QuestionType = {
   question: Question;
 };
 
-export const QuestionType: React.FC<QuestionType> = ({
-  question,
-}) => {
+export const QuestionType = ({ question }: QuestionType) => {
   switch (question.type) {
     case 'shortAnswer':
       return (
@@ -42,7 +40,7 @@ export const QuestionType: React.FC<QuestionType> = ({
       return <LinearScale />;
     case 'multipleChoiceGrid':
     case 'checkboxGrid':
-      return <div></div>;
+      return <CheckboxGrid questionType={question.type} />;
     case 'date':
       return (
         <input type='date' className='w-full p-2 border rounded' disabled />
