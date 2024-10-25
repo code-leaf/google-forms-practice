@@ -1,4 +1,4 @@
-import { ImageUploadModal } from '@/app/components/tool/ImageUploadModal';
+import { ImageUploadModal } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/ImageUploadModal';
 import { useRadioOptions } from '@/hooks/useRadioOptions';
 import { faImage, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,6 +1,6 @@
 'use client';
 
-import { UnderlinedInput } from '@/app/components/tool/UnderlinedInput';
+import { UnderlinedInput } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/UnderlinedInput';
 import { useState } from 'react';
 
 export const LinearScale = () => {
