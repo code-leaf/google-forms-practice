@@ -43,19 +43,7 @@ export const QuestionType: React.FC<QuestionType> = ({
     case 'dropdown':
       return <RadioOptions type={question.type} />;
     case 'fileUpload':
-      return (
-        <div className='border-dashed border-2 border-gray-300 p-4 text-center rounded'>
-          <FontAwesomeIcon
-            icon={faCloudArrowUp}
-            className='text-4xl text-gray-400 mb-2'
-          />
-          <p>ファイルをドラッグ＆ドロップ</p>
-          <p>または</p>
-          <button className='mt-2 p-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition duration-200'>
-            ファイルを選択
-          </button>
-        </div>
-      );
+      return <div className='flex justify-center items-center'>準備中</div>;
     case 'linearScale':
       return <LinearScale />;
     case 'multipleChoiceGrid':
