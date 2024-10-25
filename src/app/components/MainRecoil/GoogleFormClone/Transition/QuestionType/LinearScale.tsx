@@ -13,7 +13,7 @@ export const LinearScale = () => {
       {/* 数値選択部分 */}
       <div className='flex items-center space-x-4 mb-4'>
         <select
-          className='border rounded p-1'
+          className='rounded p-1'
           value={startValue}
           onChange={(e) => setStartValue(Number(e.target.value))}
         >
@@ -24,7 +24,7 @@ export const LinearScale = () => {
         <span>～</span>
 
         <select
-          className='border rounded p-1'
+          className='rounded p-1'
           value={endValue}
           onChange={(e) => setEndValue(Number(e.target.value))}
         >
@@ -40,10 +40,10 @@ export const LinearScale = () => {
         {/* ラベル入力部分 */}
         <div className='space-y-4'>
           {/* スタートのラベル */}
-          <UnderlinedInput value={startValue} />
+          <UnderlinedInput value={startValue} className='w-1/3' />
 
           {/* エンドのラベル */}
-          <UnderlinedInput value={endValue} />
+          <UnderlinedInput value={endValue} className='w-1/3' />
         </div>
       </div>
     </div>

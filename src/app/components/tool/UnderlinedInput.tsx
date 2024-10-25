@@ -1,10 +1,13 @@
 type UnderlinedInputProps = {
   value: number;
+  className?: string;
 };
 
-export const UnderlinedInput = ({value}: UnderlinedInputProps) => {
+export const UnderlinedInput = ({ value, className }: UnderlinedInputProps) => {
   return (
-    <div className='group flex items-center relative flex-grow border-transparent bg-transparent transition-colors duration-200 focus-within:outline-none'>
+    <div
+      className={`group flex items-center relative flex-grow border-transparent bg-transparent transition-colors duration-200 focus-within:outline-none ${className}`}
+    >
       <span className='w-8'>{value}</span>
       <input
         type='text'
