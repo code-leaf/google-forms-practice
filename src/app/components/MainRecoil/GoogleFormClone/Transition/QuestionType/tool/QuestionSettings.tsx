@@ -24,7 +24,7 @@ export const QuestionSettings = () => {
 
       {/* Popoverで表示される中身のコンテンツ */}
       <PopoverContent
-        className='w-52 p-4 bg-white rounded-md shadow-xl'
+        className='w-52 p-4 bg-white rounded-md shadow-xl z-10'
         align='start'
       >
         <div className='px2 mb-2 text-sm'>表示</div>
