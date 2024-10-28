@@ -4,13 +4,20 @@ import GoogleFormClone from '@/app/components/MainRecoil/GoogleFormClone';
 import { Toolbar } from '@/app/components/MainRecoil/Toolbar';
 import { RecoilRoot } from 'recoil';
 
-export const MainRecoil = () => {
+type MainRecoilProps = {
+  showToolbar?: boolean; // Toolbarの表示を制御するためのプロパティ
+};
+
+export const MainRecoil = ({ showToolbar = true }: MainRecoilProps) => {
   return (
     <RecoilRoot>
       <GoogleFormClone />
-      <div className='flex-none'>
-        <Toolbar />
-      </div>
+      {/* showToolbarがtrueの時だけToolbarを表示 */}
+      {showToolbar && (
+        <div className='flex-none'>
+          <Toolbar />
+        </div>
+      )}
     </RecoilRoot>
   );
 };
