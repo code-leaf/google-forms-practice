@@ -1,7 +1,9 @@
 import { CheckboxGrid } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/CheckboxGrid';
 import { LinearScale } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/LinearScale';
 import { RadioOptions } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/RadioOptions';
+import { IconInput } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/IconInput';
 import { Question } from '@/store/questionsAtom';
+import { faCalendar, faClock } from '@fortawesome/free-solid-svg-icons';
 
 type QuestionType = {
   question: Question;
@@ -42,13 +44,9 @@ export const QuestionType = ({ question }: QuestionType) => {
     case 'checkboxGrid':
       return <CheckboxGrid questionType={question.type} />;
     case 'date':
-      return (
-        <input type='date' className='w-full p-2 border rounded' disabled />
-      );
+      return <IconInput icon='date' value='年 月 日' faIcon={faCalendar} />;
     case 'time':
-      return (
-        <input type='time' className='w-full p-2 border rounded' disabled />
-      );
+      return <IconInput icon='time' value='時刻' faIcon={faClock} />;
     default:
       return null;
   }
