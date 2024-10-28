@@ -10,8 +10,8 @@ type UseTransition = {
   updateQuestion: (updates: Partial<Question>) => void;
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (value: string) => void;
-  handleOptionChange: (index: number, value: string) => void;
-  handleAddOption: () => void;
+  // handleOptionChange: (index: number, value: string) => void;
+  // handleAddOption: () => void;
   duplicateQuestion: (id: string) => void;
 };
 
@@ -59,27 +59,27 @@ export const useTransition = ({
     [updateQuestion]
   );
 
-  // オプション変更ハンドラ
-  const handleOptionChange = useCallback(
-    (index: number, value: string) => {
-      const question = questions.find((q) => q.id === questionId);
-      if (question) {
-        const newOptions = [...(question.options || [])];
-        newOptions[index] = value;
-        updateQuestion({ options: newOptions });
-      }
-    },
-    [questionId, questions, updateQuestion]
-  );
+  // // オプション変更ハンドラ
+  // const handleOptionChange = useCallback(
+  //   (index: number, value: string) => {
+  //     const question = questions.find((q) => q.id === questionId);
+  //     if (question) {
+  //       const newOptions = [...(question.options || [])];
+  //       newOptions[index] = value;
+  //       updateQuestion({ options: newOptions });
+  //     }
+  //   },
+  //   [questionId, questions, updateQuestion]
+  // );
 
-  // 新しいオプション追加ハンドラ
-  const handleAddOption = useCallback(() => {
-    const question = questions.find((q) => q.id === questionId);
-    if (question) {
-      const newOptions = [...(question.options || []), ''];
-      updateQuestion({ options: newOptions });
-    }
-  }, [questionId, questions, updateQuestion]);
+  // // 新しいオプション追加ハンドラ
+  // const handleAddOption = useCallback(() => {
+  //   const question = questions.find((q) => q.id === questionId);
+  //   if (question) {
+  //     const newOptions = [...(question.options || []), ''];
+  //     updateQuestion({ options: newOptions });
+  //   }
+  // }, [questionId, questions, updateQuestion]);
 
   // 質問をコピーする関数
   const duplicateQuestion = useCallback(
@@ -119,8 +119,8 @@ export const useTransition = ({
     question,
     handleTitleChange,
     handleTypeChange,
-    handleOptionChange,
-    handleAddOption,
+    // handleOptionChange,
+    // handleAddOption,
     removeQuestion,
     updateQuestion,
     duplicateQuestion,

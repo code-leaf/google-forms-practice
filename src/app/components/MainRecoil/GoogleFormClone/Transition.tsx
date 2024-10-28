@@ -17,8 +17,8 @@ export const Transition = ({ questionId }: TransitionProps) => {
     question,
     handleTitleChange,
     handleTypeChange,
-    handleOptionChange,
-    handleAddOption,
+    // handleOptionChange,
+    // handleAddOption,
     removeQuestion,
     updateQuestion,
     duplicateQuestion,
@@ -66,8 +66,8 @@ export const Transition = ({ questionId }: TransitionProps) => {
         {/* 質問タイプに応じたコンポーネント */}
         <QuestionType
           question={question}
-          handleOptionChange={handleOptionChange}
-          handleAddOption={handleAddOption}
+          // handleOptionChange={handleOptionChange}
+          // handleAddOption={handleAddOption}
         />
 
         <hr className='mt-14' />
