@@ -6,6 +6,7 @@ import {
   faPalette,
   faRedo,
   faUndo,
+  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -40,11 +41,16 @@ type HeaderProps = {
   activeTab: 1 | 2 | 3;
 };
 
+type IconToolTips = {
+  icon: IconDefinition;
+  tooltip: string;
+};
+
 const iconToolTips = [
-  { icon: faPalette, tooltip: 'テーマをカスタマイズ' },
-  { icon: faEye, tooltip: 'プレビューを表示' },
-  { icon: faUndo, tooltip: '元に戻す' },
-  { icon: faRedo, tooltip: 'やり直し' },
+  { icon: faPalette, tooltip: 'テーマをカスタマイズ', href: '' },
+  { icon: faEye, tooltip: 'プレビューを表示', href: '/formPreview' },
+  { icon: faUndo, tooltip: '元に戻す', href: '' },
+  { icon: faRedo, tooltip: 'やり直し', href: '' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
@@ -70,9 +76,11 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
         <div className='flex items-center space-x-6'>
           {/* アイコンのマップ */}
           {iconToolTips.map((iconToolTip) => (
-            <button key={iconToolTip.tooltip} title={iconToolTip.tooltip}>
-              <FontAwesomeIcon icon={iconToolTip.icon} size='lg' />
-            </button>
+            <Link key={iconToolTip.tooltip} href={iconToolTip.href}>
+              <button title={iconToolTip.tooltip}>
+                <FontAwesomeIcon icon={iconToolTip.icon} size='lg' />
+              </button>
+            </Link>
           ))}
           {/* 送信ボタン */}
           <div className='bg-purple-700 text-white px-6 py-2 rounded-md'>

@@ -3,18 +3,39 @@ import React, { useState } from 'react';
 // フォーマットアイコンコンポーネントをインポート
 import FormatIcons from '@/app/components/tool/FormatIcons';
 // 型をインポート
+import { formHeaderAtom } from '@/store/formHeaderAtom';
 import { SelectedInput } from '@/types/formTypes';
+import { useRecoilState } from 'recoil';
 
 // フォームのヘッダー部分を表示するコンポーネント
-const FormHeader: React.FC = () => {
-  // フォームのタイトルを管理するstate
-  const [formTitle, setFormTitle] = useState<string>('');
-
-  // フォームの説明を管理するstate
-  const [formDescription, setFormDescription] = useState<string>('');
-
+const FormHeader = () => {
   // 選択されているインプット要素を管理するstate
   const [selectedInput, setSelectedInput] = useState<SelectedInput>(undefined);
+
+  // フォームのヘッダーを管理するAtom
+  const [formHeader, setFormHeader] = useRecoilState(formHeaderAtom);
+
+  // フォームのタイトルを変更するAtom
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormHeader((prevFormHeader) => {
+      const newState = {
+        ...prevFormHeader,
+        title: e.target.value,
+      };
+      return newState;
+    });
+  };
+
+  // フォームの説明を変更するAtom
+  const handleDiscriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormHeader((prevFormHeader) => {
+      const newState = {
+        ...prevFormHeader,
+        description: e.target.value,
+      };
+      return newState;
+    });
+  };
 
   return (
     // フォームのヘッダー部分 - 背景色、角丸、影、左と上のボーダーを設定
@@ -24,8 +45,8 @@ const FormHeader: React.FC = () => {
         <input
           type='text' // テキスト入力フィールドを指定
           placeholder='無題のフォーム'
-          value={formTitle} // フォームのタイトルを表示
-          onChange={(e) => setFormTitle(e.target.value)} // タイトルが変更されたときの処理
+          value={formHeader.title} // フォームのタイトルを表示
+          onChange={handleTitleChange} // タイトルが変更されたときの処理
           onFocus={() => setSelectedInput('title')} // フォーカス時に選択状態を更新
           // フォーカスが外れたときに選択状態をリセット
           onBlur={() => {
@@ -42,8 +63,8 @@ const FormHeader: React.FC = () => {
         <input
           type='text' // テキスト入力フィールドを指定
           placeholder='フォームの説明'
-          value={formDescription} // フォームの説明を表示
-          onChange={(e) => setFormDescription(e.target.value)} // 説明が変更されたときの処理
+          value={formHeader.description} // フォームの説明を表示
+          onChange={handleDiscriptionChange} // 説明が変更されたときの処理
           onFocus={() => setSelectedInput('description')} // フォーカス時に選択状態を更新
           // フォーカスが外れたときに選択状態をリセット
           onBlur={() => {
