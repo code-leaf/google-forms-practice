@@ -1,3 +1,5 @@
+'use client'; // クライアントサイドでの実行を明示
+
 import { AccordionItem } from '@/app/components/tool/AccordionItem';
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { AnswerSettings } from '@/app/SettingPage/components/AnswerSettings';

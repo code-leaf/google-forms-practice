@@ -1,6 +1,3 @@
-// このファイルをクライアントコンポーネントとして指定
-'use client';
-
 import { QuestionType } from '@/types/formTypes';
 import { atom, selector } from 'recoil';
 

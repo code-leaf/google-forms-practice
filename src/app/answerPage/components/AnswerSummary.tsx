@@ -1,7 +1,7 @@
 import { QuestionChart } from '@/app/answerPage/components/QuestionChart';
-import { answersAtom, Answer } from '@/store/answersAtom';
+import { Answer, answersAtom } from '@/store/answersAtom';
 import { Question } from '@/store/questionsAtom';
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 
 // AnswerSummaryPropsの型定義

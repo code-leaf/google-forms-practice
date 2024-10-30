@@ -1,3 +1,5 @@
+'use client'; // クライアントサイドでの実行を明示
+
 import { AnswerSummary } from '@/app/answerPage/components/AnswerSummary';
 import { RespAcceptToggle } from '@/app/answerPage/components/RespAcceptToggle';
 import { questionsAtom } from '@/store/questionsAtom';

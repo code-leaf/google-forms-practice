@@ -1,5 +1,6 @@
 import { Header } from '@/app/components/Header';
-import { SettingRecoil } from '@/app/SettingPage/components/SettingRecoil';
+import { Default } from '@/app/SettingPage/components/Default';
+import { Setting } from '@/app/SettingPage/components/Setting';
 
 const SettingPage = () => {
   return (
@@ -9,7 +10,8 @@ const SettingPage = () => {
       <Header activeTab={3} />
       <main className='flex justify-center container mx-auto p-4'>
         <div className='max-w-4xl mx-auto w-full text-gray-600'>
-          <SettingRecoil />
+          <Setting />
+          <Default />
         </div>
       </main>
     </div>
