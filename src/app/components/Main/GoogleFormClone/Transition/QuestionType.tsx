@@ -5,11 +5,11 @@ import { IconInput } from '@/app/components/Main/GoogleFormClone/Transition/Ques
 import { Question } from '@/store/questionsAtom';
 import { faCalendar, faClock } from '@fortawesome/free-solid-svg-icons';
 
-type QuestionType = {
+type QuestionTypeProps = {
   question: Question;
 };
 
-export const QuestionType = ({ question }: QuestionType) => {
+export const QuestionType = ({ question }: QuestionTypeProps) => {
   switch (question.type) {
     case 'shortAnswer':
       return (

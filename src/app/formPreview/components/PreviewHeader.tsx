@@ -1,5 +1,3 @@
-'use client'; // クライアントサイドでの実行を明示
-
 import { formHeaderAtom } from '@/store/formHeaderAtom';
 import { useRecoilValue } from 'recoil';
 

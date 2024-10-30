@@ -5,6 +5,7 @@ import { useTransition } from '@/hooks/useTransition';
 import { questionTypes } from '@/types/formTypes';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//シンプルに表示や非表示のアニメーションを実現できるライブラリ
 import { Transition as HeadlessTransition } from '@headlessui/react';
 
 // プロップスの型定義
