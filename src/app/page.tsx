@@ -1,17 +1,25 @@
 // Reactと必要なコンポーネントをインポート
 import { Header } from '@/app/components/Header';
-import { MainRecoil } from '@/app/components/MainRecoil';
-import React from 'react';
+import GoogleFormClone from '@/app/components/MainRecoil/GoogleFormClone';
+import { Toolbar } from '@/app/components/MainRecoil/Toolbar';
 
 // ページコンポーネントを定義
-const FormBuilderPage: React.FC = () => {
+const FormBuilderPage = () => {
   return (
     // ページ全体のコンテナ
     <div className='min-h-screen bg-purple-100'>
       {/* ヘッダー部分 */}
       <Header activeTab={1} />
+      {/* ページ全体のコンテナ */}
       {/* メインコンテンツ */}
-      <MainRecoil />
+      <main className='flex justify-center'>
+        <div className='flex'>
+          <GoogleFormClone />
+          <div className='flex-none'>
+            <Toolbar />
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

@@ -44,9 +44,10 @@ type HeaderProps = {
 type IconToolTips = {
   icon: IconDefinition;
   tooltip: string;
+  href: string;
 };
 
-const iconToolTips = [
+const iconToolTips: IconToolTips[] = [
   { icon: faPalette, tooltip: 'テーマをカスタマイズ', href: '' },
   { icon: faEye, tooltip: 'プレビューを表示', href: '/formPreview' },
   { icon: faUndo, tooltip: '元に戻す', href: '' },

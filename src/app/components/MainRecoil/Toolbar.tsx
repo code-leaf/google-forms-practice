@@ -1,4 +1,6 @@
-// 必要なライブラリとコンポーネントをインポート
+// このファイルをクライアントコンポーネントとして指定
+'use client';
+
 import { IconButton } from '@/app/components/tool/IconButton';
 import { Question, questionsAtom } from '@/store/questionsAtom';
 import {

@@ -1,3 +1,6 @@
+// このファイルをクライアントコンポーネントとして指定
+'use client';
+
 import { DropdownOption } from '@/types/formTypes';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

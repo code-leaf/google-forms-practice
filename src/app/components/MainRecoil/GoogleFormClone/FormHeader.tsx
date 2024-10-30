@@ -1,3 +1,6 @@
+// このファイルをクライアントコンポーネントとして指定
+'use client';
+
 // React関連の機能をインポート
 import React, { useState } from 'react';
 // フォーマットアイコンコンポーネントをインポート

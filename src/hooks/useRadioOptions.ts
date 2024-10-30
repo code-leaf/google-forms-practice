@@ -1,3 +1,6 @@
+// このファイルをクライアントコンポーネントとして指定
+'use client';
+
 import { Dispatch, SetStateAction, useState } from 'react';
 
 type UseRadioOptions = {

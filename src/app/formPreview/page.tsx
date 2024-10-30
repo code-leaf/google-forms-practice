@@ -1,14 +1,11 @@
-// Reactと必要なコンポーネントをインポート
-import { MainRecoil } from '@/app/components/MainRecoil';
+import { PreviewHeader } from '@/app/formPreview/components/PreviewHeader';
 
-// ページコンポーネントを定義
 const FormPreview = () => {
   return (
     <div className='min-h-screen bg-purple-100'>
-      <MainRecoil Preview={true} />;
+      <PreviewHeader />
     </div>
   );
 };
 
-// ページコンポーネントをエクスポート
 export default FormPreview;

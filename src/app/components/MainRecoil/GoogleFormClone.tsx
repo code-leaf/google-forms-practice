@@ -1,3 +1,6 @@
+// このファイルをクライアントコンポーネントとして指定
+'use client';
+
 import { questionsAtom } from '@/store/questionsAtom';
 import React from 'react';
 import { useRecoilState } from 'recoil';
