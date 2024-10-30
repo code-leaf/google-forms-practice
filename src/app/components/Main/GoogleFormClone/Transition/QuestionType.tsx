@@ -1,7 +1,7 @@
-import { CheckboxGrid } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/CheckboxGrid';
-import { LinearScale } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/LinearScale';
-import { RadioOptions } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/RadioOptions';
-import { IconInput } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/IconInput';
+import { CheckboxGrid } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/CheckboxGrid';
+import { LinearScale } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/LinearScale';
+import { RadioOptions } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/RadioOptions';
+import { IconInput } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/IconInput';
 import { Question } from '@/store/questionsAtom';
 import { faCalendar, faClock } from '@fortawesome/free-solid-svg-icons';
 

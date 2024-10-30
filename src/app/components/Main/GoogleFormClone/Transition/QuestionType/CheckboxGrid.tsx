@@ -1,4 +1,4 @@
-import { Grid } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/Grid';
+import { Grid } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/Grid';
 
 type CheckboxGridProps = {
   questionType: 'multipleChoiceGrid' | 'checkboxGrid';

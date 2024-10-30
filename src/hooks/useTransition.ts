@@ -1,4 +1,4 @@
-import { TransitionProps } from '@/app/components/MainRecoil/GoogleFormClone/Transition';
+import { TransitionProps } from '@/app/components/Main/GoogleFormClone/Transition';
 import { Question, questionSelector } from '@/store/questionsAtom';
 import { QuestionType } from '@/types/formTypes';
 import { useCallback } from 'react';

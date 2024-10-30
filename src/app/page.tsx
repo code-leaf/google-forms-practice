@@ -1,7 +1,7 @@
 // Reactと必要なコンポーネントをインポート
 import { Header } from '@/app/components/Header';
-import GoogleFormClone from '@/app/components/MainRecoil/GoogleFormClone';
-import { Toolbar } from '@/app/components/MainRecoil/Toolbar';
+import GoogleFormClone from '@/app/components/Main/GoogleFormClone';
+import { Toolbar } from '@/app/components/Main/Toolbar';
 
 // ページコンポーネントを定義
 const FormBuilderPage = () => {

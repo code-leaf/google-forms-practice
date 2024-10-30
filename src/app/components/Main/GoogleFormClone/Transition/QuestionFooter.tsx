@@ -1,5 +1,5 @@
-import { QuestionRequired } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/QuestionRequired';
-import { QuestionSettings } from '@/app/components/MainRecoil/GoogleFormClone/Transition/QuestionType/tool/QuestionSettings';
+import { QuestionRequired } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/QuestionRequired';
+import { QuestionSettings } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/QuestionSettings';
 import { Question } from '@/store/questionsAtom';
 import { faCopy, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
