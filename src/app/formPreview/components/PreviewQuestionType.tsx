@@ -8,9 +8,16 @@ type PreviewQuestionTypeProps = {
 export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
   switch (question.type) {
     case 'shortAnswer':
-      return <PreviewInput title={question.title} className='pr-80' />;
     case 'paragraph':
-      return <PreviewInput title={question.title} />;
+      return (
+        <div className='text-gray-600 space-y-4'>
+          <h2>{question.title}</h2>
+          <PreviewInput
+            className={question.type === 'shortAnswer' ? 'pr-80' : ''}
+          />
+        </div>
+      );
+
     // case 'multipleChoice':
     // case 'checkboxes':
     // case 'dropdown':
