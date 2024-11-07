@@ -13,6 +13,7 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
         <div className='text-gray-600 space-y-4'>
           <h2>{question.title}</h2>
           <PreviewInput
+            placeholder='回答を入力'
             className={question.type === 'shortAnswer' ? 'pr-80' : ''}
           />
         </div>
