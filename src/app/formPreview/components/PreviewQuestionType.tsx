@@ -10,15 +10,7 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
     case 'shortAnswer':
       return <PreviewInput title={question.title} className='pr-80' />;
     case 'paragraph':
-      return (
-        <div className='pr-32'>
-          <input
-            placeholder='長文回答'
-            className='w-full border-b-2 p-2 bg-white'
-            disabled
-          />
-        </div>
-      );
+      return <PreviewInput title={question.title} />;
     // case 'multipleChoice':
     // case 'checkboxes':
     // case 'dropdown':
