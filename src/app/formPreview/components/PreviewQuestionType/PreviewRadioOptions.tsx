@@ -4,10 +4,11 @@ import { useRadioOptions } from '@/hooks/useRadioOptions';
 
 export type PreviewRadioOptionsProps = {
   type: 'multipleChoice' | 'checkboxes';
+  questionId: string;
 };
 
-export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
-  const { options } = useRadioOptions();
+export const PreviewRadioOptions = ({ type,questionId }: PreviewRadioOptionsProps) => {
+  const { options } = useRadioOptions(questionId);
 
   const {
     selectedRadio,
@@ -15,7 +16,7 @@ export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
     handleOptionChange,
     hasSelectedOptions,
     clearAllSelections,
-  } = usePreviewRadioOptions({ type });
+  } = usePreviewRadioOptions({ type,questionId });
 
   return (
     <div>

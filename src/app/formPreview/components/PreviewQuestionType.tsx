@@ -25,7 +25,7 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
       return (
         <div className='text-gray-600 space-y-4'>
           <h2>{question.title}</h2>
-          <PreviewRadioOptions type={question.type} />
+          <PreviewRadioOptions type={question.type} questionId={question.id} />
         </div>
       );
     case 'dropdown':
