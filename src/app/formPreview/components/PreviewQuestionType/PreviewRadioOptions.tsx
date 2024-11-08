@@ -1,47 +1,21 @@
 import { PreviewInput } from '@/app/formPreview/components/PreviewQuestionType/PreviewInput';
+import { usePreviewRadioOptions } from '@/hooks/usePreviewRadioOptions';
 import { useRadioOptions } from '@/hooks/useRadioOptions';
-import { selectedOptionsAtom } from '@/store/SelectedOptionsAtom';
-import { selectedRadioAtom } from '@/store/SelectedRadioAtom';
-import { useRecoilState } from 'recoil';
 
-type PreviewRadioOptionsProps = {
-  type: 'multipleChoice' | 'checkboxes' ;
+export type PreviewRadioOptionsProps = {
+  type: 'multipleChoice' | 'checkboxes';
 };
 
 export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
   const { options } = useRadioOptions();
 
-  const [selectedOptions, setSelectedOptions] =
-    useRecoilState(selectedOptionsAtom);
-
-  const [selectedRadio, setSelectedRadio] = useRecoilState(selectedRadioAtom);
-
-  /** 選択されたオプションIDを受け取り、単一選択（ラジオボタン）か複数選択（チェックボックス）かに応じて選択状態を更新する。
-   * - ラジオボタン: 現在選択中のオプションと同じオプションが再選択された場合、選択を解除、新しく選択されたオプションに更新
-   * - チェックボックス: 対象のオプションの選択状態を反転
-   */
-  const handleOptionChange = (optionId: string) => {
-    if (type === 'multipleChoice') {
-      if (selectedRadio === optionId) {
-        setSelectedRadio(null);
-      } else {
-        setSelectedRadio(optionId);
-      }
-    } else {
-      setSelectedOptions((prev) => ({
-        ...prev,
-        [optionId]: !prev[optionId],
-      }));
-    }
-  };
-
-  /** すべての選択を解除 */
-  const clearAllSelections = () => {
-    setSelectedRadio(null);
-  };
-
-  /** ラジオボタンが選択されているか確認 */
-  const hasSelectedOptions = selectedRadio !== null;
+  const {
+    selectedRadio,
+    selectedOptions,
+    handleOptionChange,
+    hasSelectedOptions,
+    clearAllSelections,
+  } = usePreviewRadioOptions({ type });
 
   return (
     <div>
@@ -93,7 +67,9 @@ export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
         );
       })}
 
-      {/* 選択解除ボタンの表示 */}
+      {/* 選択解除ボタンの表示 
+      ラジオボタンが選択されている時のみ、表示
+      */}
       {type === 'multipleChoice' && hasSelectedOptions && (
         <div className='text-gray-500 flex justify-end'>
           <button

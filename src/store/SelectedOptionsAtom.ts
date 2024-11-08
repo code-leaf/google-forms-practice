@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 /** 文字列キーとboolean型の値を持つオブジェクト 
  * @property 文字列キーとboolean型の値を持つオブジェクト
 */
-type SelectedOptionsAtom = {
+export type SelectedOptionsAtom = {
   [key: string]: boolean;
 };
 
