@@ -1,7 +1,7 @@
 // このファイルをクライアントコンポーネントとして指定
 'use client';
 
-import { radioOptionsAtom } from '@/store/RadioOptionsAtom';
+import { radioOptionsFamily } from '@/store/RadioOptionsAtom';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -22,9 +22,9 @@ type Option = {
   text: string;
 };
 
-export const useRadioOptions = (): UseRadioOptions => {
+export const useRadioOptions = (questionId: string): UseRadioOptions => {
   // オプションの状態を管理
-  const [options, setOptions] = useRecoilState(radioOptionsAtom);
+  const [options, setOptions] = useRecoilState(radioOptionsFamily(questionId));
 
   // その他オプションの有無を管理
   const [hasOther, setHasOther] = useState<boolean>(false);

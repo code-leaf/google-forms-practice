@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type RadioOptionProps = {
   type: 'multipleChoice' | 'checkboxes' | 'dropdown';
+  questionId: string;
 };
 
-export const RadioOptions = ({ type }: RadioOptionProps) => {
+export const RadioOptions = ({ type ,questionId}: RadioOptionProps) => {
   const {
     options,
     updateOptionText,
@@ -17,7 +18,7 @@ export const RadioOptions = ({ type }: RadioOptionProps) => {
     hasOther,
     addOther,
     isModalOpen,
-  } = useRadioOptions();
+  } = useRadioOptions(questionId);
 
   return (
     <div>

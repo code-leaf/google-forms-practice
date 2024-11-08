@@ -35,7 +35,7 @@ export const QuestionType = ({ question }: QuestionTypeProps) => {
     case 'multipleChoice':
     case 'checkboxes':
     case 'dropdown':
-      return <RadioOptions type={question.type} />;
+      return <RadioOptions type={question.type} questionId={question.id}/>;
     case 'fileUpload':
       return <div className='flex justify-center items-center'>準備中</div>;
     case 'linearScale':

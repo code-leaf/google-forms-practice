@@ -1,8 +1,9 @@
 import { TransitionProps } from '@/app/components/Main/GoogleFormClone/Transition';
 import { Question, questionSelector } from '@/store/questionsAtom';
+import { radioOptionsFamily } from '@/store/RadioOptionsAtom';
 import { QuestionType } from '@/types/formTypes';
 import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilCallback, useRecoilState } from 'recoil';
 
 type UseTransition = {
   question: Question | undefined;
@@ -81,7 +82,27 @@ export const useTransition = ({
   //   }
   // }, [questionId, questions, updateQuestion]);
 
-  // 質問をコピーする関数
+  /** Recoilの状態をコピーする関数
+   * - useRecoilCallback: 複雑な状態管理を安全かつ効率的に行うための強力なツール
+   * - async関数を返し、コピー元とコピー先のIDを引数に受け取る
+   * - snapshotを使って、指定したoldIdのradioOptionsAtomの状態を取得
+   * - 取得した状態を新しいID（newId）でradioOptionsAtomにセット
+   * @property snapshot: 安全な状態の読み取り
+   * @property set: 状態の更新
+   */
+  const copyRecoilState = useRecoilCallback(
+    ({ snapshot, set }) =>
+      async (oldId: string, newId: string) => {
+        // snapshotを使って、指定したoldIdのradioOptionsAtomの状態を取得
+        const sourceOptions = await snapshot.getPromise(
+          radioOptionsFamily(oldId)
+        );
+        // 取得した状態を新しいID（newId）でradioOptionsAtomにセット
+        set(radioOptionsFamily(newId), sourceOptions);
+      }
+  );
+
+  /** 質問を複製する関数 */
   const duplicateQuestion = useCallback(
     (id: string) => {
       // 接頭辞・タイムスタンプ・ランダム文字列(乱数を36進数に変換して最後の9文字)を組み合わせて重複しないIDを生成
@@ -91,12 +112,29 @@ export const useTransition = ({
           .substr(2, 9)}`;
       };
 
+      // 複製対象の質問をquestionsから検索
       const questionToCopy = questions.find((q) => q.id === id);
+
+      // 質問が見つかった場合のみ処理を続行
       if (questionToCopy) {
+        // 新しいユニークなIDを生成
+        const newId = generateUniqueId();
+
+        // 'multipleChoice' | 'checkboxes' | 'dropdown'の時のみRecoilの状態をコピー
+        switch (questionToCopy.type) {
+          case 'multipleChoice':
+          case 'checkboxes':
+          case 'dropdown':
+            copyRecoilState(id, newId);
+            break;
+          default:
+            break;
+        }
+
         // コピー元の内容を継承しつつ、新しいIDとタイトルを持つ質問オブジェクトを作成
         const newQuestion: Question = {
           ...questionToCopy,
-          id: generateUniqueId(),
+          id: newId,
           title: `${questionToCopy.title}`,
           required: questionToCopy.required,
         };
@@ -112,7 +150,7 @@ export const useTransition = ({
         setQuestions(newQuestions);
       }
     },
-    [questions, setQuestions]
+    [questions, setQuestions, copyRecoilState]
   );
 
   return {
