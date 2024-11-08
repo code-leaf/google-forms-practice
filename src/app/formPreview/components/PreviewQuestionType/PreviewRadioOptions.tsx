@@ -5,7 +5,7 @@ import { selectedRadioAtom } from '@/store/SelectedRadioAtom';
 import { useRecoilState } from 'recoil';
 
 type PreviewRadioOptionsProps = {
-  type: 'multipleChoice' | 'checkboxes' | 'dropdown';
+  type: 'multipleChoice' | 'checkboxes' ;
 };
 
 export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
@@ -63,30 +63,27 @@ export const PreviewRadioOptions = ({ type }: PreviewRadioOptionsProps) => {
 
         return (
           <div key={index} className='flex space-x-4 items-center mb-2'>
-            {/* ラジオボタンorチェックボックスorプルダウン */}
-            {type === 'dropdown' ? (
-              <span>{index + 1}.</span> // ドロップダウンの場合は番号を表示
-            ) : (
-              <label className='flex justify-center items-center'>
-                <input
-                  //  // 入力タイプを選択：typeが'multipleChoice'ならラジオボタン、そうでなければチェックボックス
-                  type={type === 'multipleChoice' ? 'radio' : 'checkbox'}
-                  aria-label='チェックボックスの設定'
-                  id={option.id}
-                  name='options'
-                  className='mr-2 cursor-pointer'
-                  // 選択状態を決定
-                  checked={
-                    type === 'multipleChoice'
-                      ? selectedRadio === option.id // ラジオボタンの場合、選択されたIDと一致するか確認
-                      : selectedOptions[option.id] || false // チェックボックスの場合、オプションIDの選択状態を取得（未定義ならfalse）
-                  }
-                  onChange={() => handleOptionChange(option.id)}
-                />
-                {/* 実際の選択肢 */}
-                <p className=''>{displayText}</p>
-              </label>
-            )}
+            {/* ラジオボタンorチェックボックス */}
+            <label className='flex justify-center items-center'>
+              <input
+                //  // 入力タイプを選択：typeが'multipleChoice'ならラジオボタン、そうでなければチェックボックス
+                type={type === 'multipleChoice' ? 'radio' : 'checkbox'}
+                aria-label='チェックボックスの設定'
+                id={option.id}
+                name='options'
+                className='mr-2 cursor-pointer'
+                // 選択状態を決定
+                checked={
+                  type === 'multipleChoice'
+                    ? selectedRadio === option.id // ラジオボタンの場合、選択されたIDと一致するか確認
+                    : selectedOptions[option.id] || false // チェックボックスの場合、オプションIDの選択状態を取得（未定義ならfalse）
+                }
+                onChange={() => handleOptionChange(option.id)}
+              />
+              {/* 実際の選択肢 */}
+              <p className=''>{displayText}</p>
+            </label>
+
             {option.text === 'その他...' ? (
               <PreviewInput placeholder='' className='flex-1' />
             ) : (

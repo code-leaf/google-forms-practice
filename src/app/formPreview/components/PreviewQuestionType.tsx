@@ -22,13 +22,13 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
 
     case 'multipleChoice':
     case 'checkboxes':
-    case 'dropdown':
       return (
         <div className='text-gray-600 space-y-4'>
           <h2>{question.title}</h2>
           <PreviewRadioOptions type={question.type} />
         </div>
       );
+    case 'dropdown':
     // case 'fileUpload':
     //   return <div className='flex justify-center items-center'>準備中</div>;
     // case 'linearScale':
