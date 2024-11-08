@@ -1,7 +1,7 @@
 // このファイルをクライアントコンポーネントとして指定
 'use client';
 
-import { radioOptionsFamily } from '@/store/RadioOptionsAtom';
+import { radioOptionsFamily } from '@/store/RadioOptionsFamily';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -32,11 +32,15 @@ export const useRadioOptions = (questionId: string): UseRadioOptions => {
   // モーダルの開閉状態を管理
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  // Date.now()で現在のミリ秒単位の時間を取得し、Math.random()でランダムな文字列を生成してユニークなIDを作成
+  const newId = `option_${Date.now()}_${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+
   // 新しいオプションを追加する関数
   const addOption = () => {
     setOptions((prevOptions) => {
       const newOptions = [...prevOptions];
-      const newId = (prevOptions.length + 1).toString();
       if (hasOther) {
         // その他オプションがある場合、最後から2番目に新しいオプションを追加
         // spliceメソッドは、配列の指定した位置に要素を追加したり削除したりできる
@@ -54,7 +58,7 @@ export const useRadioOptions = (questionId: string): UseRadioOptions => {
   const addOther = () => {
     setOptions((currentOptions) => [
       ...currentOptions,
-      { id: (currentOptions.length + 1).toString(), text: 'その他...' },
+      { id: newId, text: 'その他...' },
     ]);
     setHasOther(true);
   };
@@ -69,7 +73,6 @@ export const useRadioOptions = (questionId: string): UseRadioOptions => {
   };
 
   // オプションを削除する関数
-
   const removeOption = (id: string) => {
     setOptions((currentOptions) => {
       // 新しいオプションリストを作成
