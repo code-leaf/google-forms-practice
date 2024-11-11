@@ -2,19 +2,21 @@ import { Grid } from '@/app/components/Main/GoogleFormClone/Transition/QuestionT
 
 type CheckboxGridProps = {
   questionType: 'multipleChoiceGrid' | 'checkboxGrid';
+  questionId: string;
 };
 
-export const CheckboxGrid = ({ questionType }: CheckboxGridProps) => {
-
-  
+export const CheckboxGrid = ({
+  questionType,
+  questionId,
+}: CheckboxGridProps) => {
   return (
     <div className='w-full'>
       <div className='flex space-x-4'>
         {/* 左側 */}
-        <Grid value='行' />
+        <Grid value='行' questionId={questionId} />
 
         {/* 右側 */}
-        <Grid questionType={questionType} value='列' />
+        <Grid questionType={questionType} value='列' questionId={questionId} />
       </div>
     </div>
   );

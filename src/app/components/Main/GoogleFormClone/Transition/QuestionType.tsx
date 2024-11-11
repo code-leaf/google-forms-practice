@@ -42,7 +42,9 @@ export const QuestionType = ({ question }: QuestionTypeProps) => {
       return <LinearScale />;
     case 'multipleChoiceGrid':
     case 'checkboxGrid':
-      return <CheckboxGrid questionType={question.type} />;
+      return (
+        <CheckboxGrid questionType={question.type} questionId={question.id} />
+      );
     case 'date':
       return <IconInput icon='date' value='年 月 日' faIcon={faCalendar} />;
     case 'time':

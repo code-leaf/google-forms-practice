@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 type GridProps = {
   questionType?: 'multipleChoiceGrid' | 'checkboxGrid';
   value: string;
+  questionId: string;
 };
 
-export const Grid = ({ questionType, value }: GridProps) => {
+export const Grid = ({ questionType, value, questionId }: GridProps) => {
   const { options, updateOptionText, removeOption, addOption } =
-    useRadioOptions();
+    useRadioOptions(questionId);
   return (
     <div className='w-1/2'>
       <h3 className='font-medium mb-4'>{value}</h3>
