@@ -4,7 +4,7 @@ import { atomFamily } from 'recoil';
  * @property id: 選択肢の一意なID
  * @property text: 選択肢のテキスト
  */
-type RadioOptionsFamily = {
+export type RadioOptionsFamily = {
   id: string;
   text: string;
 };

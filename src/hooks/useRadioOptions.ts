@@ -1,12 +1,12 @@
 // このファイルをクライアントコンポーネントとして指定
 'use client';
 
-import { radioOptionsFamily } from '@/store/RadioOptionsFamily';
+import { RadioOptionsFamily, radioOptionsFamily } from '@/store/RadioOptionsFamily';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 type UseRadioOptions = {
-  options: Option[];
+  options: RadioOptionsFamily[];
   updateOptionText: (id: string, value: string) => void;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   removeOption: (id: string) => void;
@@ -16,11 +16,6 @@ type UseRadioOptions = {
   isModalOpen: boolean;
 };
 
-// オプション項目の型定義
-type Option = {
-  id: string;
-  text: string;
-};
 
 export const useRadioOptions = (questionId: string): UseRadioOptions => {
   // オプションの状態を管理
