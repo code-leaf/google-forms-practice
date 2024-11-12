@@ -1,12 +1,14 @@
 'use client';
 
 import { UnderlinedInput } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/UnderlinedInput';
-import { useState } from 'react';
+import { endLinearScaleAtom } from '@/store/EndLinearScaleAtom';
+import { startLinearScaleAtom } from '@/store/StartLinearScaleAtom';
+import { useRecoilState } from 'recoil';
 
 export const LinearScale = () => {
-  // 開始値と終了値のstateを追加
-  const [startValue, setStartValue] = useState<number>(1);
-  const [endValue, setEndValue] = useState<number>(5);
+  // 開始値と終了値
+  const [startValue, setStartValue] = useRecoilState(startLinearScaleAtom);
+  const [endValue, setEndValue] = useRecoilState(endLinearScaleAtom);
 
   return (
     <div className='flex flex-col'>
