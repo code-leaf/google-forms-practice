@@ -1,3 +1,4 @@
+import { PreviewDropdown } from '@/app/formPreview/components/PreviewQuestionType/PreviewDropdown';
 import { PreviewInput } from '@/app/formPreview/components/PreviewQuestionType/PreviewInput';
 import { PreviewLinearScale } from '@/app/formPreview/components/PreviewQuestionType/PreviewLinearScale';
 import { PreviewRadioOptions } from '@/app/formPreview/components/PreviewQuestionType/PreviewRadioOptions';
@@ -30,6 +31,7 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
         </div>
       );
     case 'dropdown':
+      return <PreviewDropdown questionId={question.id} />;
     case 'fileUpload':
       return <div className='flex justify-center items-center'>準備中</div>;
     case 'linearScale':
