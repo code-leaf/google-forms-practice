@@ -7,7 +7,10 @@ export type PreviewRadioOptionsProps = {
   questionId: string;
 };
 
-export const PreviewRadioOptions = ({ type,questionId }: PreviewRadioOptionsProps) => {
+export const PreviewRadioOptions = ({
+  type,
+  questionId,
+}: PreviewRadioOptionsProps) => {
   const { options } = useRadioOptions(questionId);
 
   const {
@@ -16,7 +19,7 @@ export const PreviewRadioOptions = ({ type,questionId }: PreviewRadioOptionsProp
     handleOptionChange,
     hasSelectedOptions,
     clearAllSelections,
-  } = usePreviewRadioOptions({ type,questionId });
+  } = usePreviewRadioOptions({ type, questionId });
 
   return (
     <div>
