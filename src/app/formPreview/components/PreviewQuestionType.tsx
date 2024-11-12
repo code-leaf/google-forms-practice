@@ -1,4 +1,5 @@
 import { PreviewInput } from '@/app/formPreview/components/PreviewQuestionType/PreviewInput';
+import { PreviewLinearScale } from '@/app/formPreview/components/PreviewQuestionType/PreviewLinearScale';
 import { PreviewRadioOptions } from '@/app/formPreview/components/PreviewQuestionType/PreviewRadioOptions';
 import { Question } from '@/store/questionsAtom';
 
@@ -29,10 +30,10 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
         </div>
       );
     case 'dropdown':
-    // case 'fileUpload':
-    //   return <div className='flex justify-center items-center'>準備中</div>;
-    // case 'linearScale':
-    //   return <LinearScale />;
+    case 'fileUpload':
+      return <div className='flex justify-center items-center'>準備中</div>;
+    case 'linearScale':
+      return <PreviewLinearScale />
     // case 'multipleChoiceGrid':
     // case 'checkboxGrid':
     //   return <CheckboxGrid questionType={question.type} />;
