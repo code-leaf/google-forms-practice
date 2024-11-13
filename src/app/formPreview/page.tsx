@@ -3,6 +3,7 @@
 import { PreviewAnswer } from '@/app/formPreview/components/PreviewAnswer';
 import { PreviewHeader } from '@/app/formPreview/components/PreviewHeader';
 import { questionsAtom } from '@/store/questionsAtom';
+import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 
 const FormPreview = () => {
@@ -22,6 +23,8 @@ const FormPreview = () => {
               <button className='px-4 py-2 w-20 bg-purple-800 text-white rounded hover:bg-purple-700 transition'>
                 送信
               </button>
+              <Link href='/test'>test</Link>
+
               <button className='px-4 py-2 text-purple-800 hover:bg-opacity-20 hover:bg-purple-200'>
                 フォームをクリア
               </button>
