@@ -35,7 +35,7 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
     case 'fileUpload':
       return <div className='flex justify-center items-center'>準備中</div>;
     case 'linearScale':
-      return <PreviewLinearScale />
+      return <PreviewLinearScale questionId={question.id} />;
     // case 'multipleChoiceGrid':
     // case 'checkboxGrid':
     //   return <CheckboxGrid questionType={question.type} />;
