@@ -11,9 +11,8 @@ type UseTransition = {
   updateQuestion: (updates: Partial<Question>) => void;
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (value: string) => void;
-  // handleOptionChange: (index: number, value: string) => void;
-  // handleAddOption: () => void;
   duplicateQuestion: (id: string) => void;
+  handleAnswerChange: (value: string | number) => void;
 };
 
 export const useTransition = ({
@@ -59,28 +58,6 @@ export const useTransition = ({
     },
     [updateQuestion]
   );
-
-  // // オプション変更ハンドラ
-  // const handleOptionChange = useCallback(
-  //   (index: number, value: string) => {
-  //     const question = questions.find((q) => q.id === questionId);
-  //     if (question) {
-  //       const newOptions = [...(question.options || [])];
-  //       newOptions[index] = value;
-  //       updateQuestion({ options: newOptions });
-  //     }
-  //   },
-  //   [questionId, questions, updateQuestion]
-  // );
-
-  // // 新しいオプション追加ハンドラ
-  // const handleAddOption = useCallback(() => {
-  //   const question = questions.find((q) => q.id === questionId);
-  //   if (question) {
-  //     const newOptions = [...(question.options || []), ''];
-  //     updateQuestion({ options: newOptions });
-  //   }
-  // }, [questionId, questions, updateQuestion]);
 
   /** Recoilの状態をコピーする関数
    * - useRecoilCallback: 複雑な状態管理を安全かつ効率的に行うための強力なツール
@@ -160,14 +137,21 @@ export const useTransition = ({
     [questions, setQuestions, copyRecoilState]
   );
 
+  // 回答変更時のハンドラ
+  const handleAnswerChange = useCallback(
+    (value: string | number) => {
+      updateQuestion({ answer: value });
+    },
+    [updateQuestion]
+  );
+
   return {
     question,
     handleTitleChange,
     handleTypeChange,
-    // handleOptionChange,
-    // handleAddOption,
     removeQuestion,
     updateQuestion,
     duplicateQuestion,
+    handleAnswerChange,
   };
 };
