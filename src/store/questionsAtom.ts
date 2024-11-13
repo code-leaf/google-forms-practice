@@ -8,6 +8,7 @@ export type Question = {
   title: string;
   required: boolean;
   options?: string[];
+  answer?: string | number;
 };
 
 // 質問リストを管理するRecoil atom

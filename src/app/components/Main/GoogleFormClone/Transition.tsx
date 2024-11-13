@@ -18,8 +18,6 @@ export const Transition = ({ questionId }: TransitionProps) => {
     question,
     handleTitleChange,
     handleTypeChange,
-    // handleOptionChange,
-    // handleAddOption,
     removeQuestion,
     updateQuestion,
     duplicateQuestion,

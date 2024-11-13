@@ -1,4 +1,5 @@
 import { PreviewRadioOptionsProps } from '@/app/formPreview/components/PreviewQuestionType/PreviewRadioOptions';
+import { useTransition } from '@/hooks/useTransition';
 import {
   SelectedOptionsAtom,
   selectedOptionsAtom,
@@ -14,8 +15,7 @@ type UsePreviewRadioOptions = {
    * - ラジオボタン: 現在選択中のオプションと同じオプションが再選択された場合、選択を解除、新しく選択されたオプションに更新
    * - チェックボックス: 対象のオプションの選択状態を反転
    */
-  handleOptionChange: (optionId: string) => void;
-
+  handleOptionChange: (optionId: string, displayText: string) => void;
   /** ラジオボタンが選択されているか確認 */
   hasSelectedOptions: boolean;
 
@@ -25,24 +25,29 @@ type UsePreviewRadioOptions = {
 
 export const usePreviewRadioOptions = ({
   type,
+  questionId,
 }: PreviewRadioOptionsProps): UsePreviewRadioOptions => {
   const [selectedOptions, setSelectedOptions] =
     useRecoilState(selectedOptionsAtom);
 
   const [selectedRadio, setSelectedRadio] = useRecoilState(selectedRadioAtom);
 
-  const handleOptionChange = (optionId: string) => {
+  const { handleAnswerChange } = useTransition({ questionId });
+
+  const handleOptionChange = (optionId: string, displayText: string) => {
     if (type === 'multipleChoice') {
       if (selectedRadio === optionId) {
         setSelectedRadio(null);
       } else {
         setSelectedRadio(optionId);
+        handleAnswerChange(displayText);
       }
     } else {
       setSelectedOptions((prev) => ({
         ...prev,
         [optionId]: !prev[optionId],
       }));
+      handleAnswerChange(displayText);
     }
   };
 

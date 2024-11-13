@@ -56,7 +56,7 @@ export const PreviewRadioOptions = ({
                     ? selectedRadio === option.id // ラジオボタンの場合、選択されたIDと一致するか確認
                     : selectedOptions[option.id] || false // チェックボックスの場合、オプションIDの選択状態を取得（未定義ならfalse）
                 }
-                onChange={() => handleOptionChange(option.id)}
+                onChange={() => handleOptionChange(option.id, displayText)}
               />
               {/* 実際の選択肢 */}
               <p className=''>{displayText}</p>
