@@ -1,5 +1,6 @@
 import { useTransition } from '@/hooks/useTransition';
 import { endLinearScaleAtom } from '@/store/EndLinearScaleAtom';
+import { linearScaleLabelAtom } from '@/store/linearScaleLabelAtom';
 import { startLinearScaleAtom } from '@/store/StartLinearScaleAtom';
 import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -12,6 +13,7 @@ export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
   // Recoilから開始値と終了値を取得
   const start = useRecoilValue(startLinearScaleAtom);
   const end = useRecoilValue(endLinearScaleAtom);
+  const labels = useRecoilValue(linearScaleLabelAtom);
 
   // 選択された値を管理するstate
   const [selectdLineRadio, setSelectdLineRadio] = useState<string>('');
@@ -35,7 +37,12 @@ export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
   );
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center px-4'>
+      {/* ラベルの表示（開始） */}
+      {labels[start] && (
+        <div className='text-sm text-gray-600'>{labels[start]}</div>
+      )}
+
       {numbers.map((number) => (
         <div key={number} className='flex-col'>
           <label
@@ -57,6 +64,11 @@ export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
           </label>
         </div>
       ))}
+
+      {/* ラベルの表示（終了） */}
+      {labels[end] && (
+        <div className='text-sm text-gray-600 '>{labels[end]}</div>
+      )}
     </div>
   );
 };
