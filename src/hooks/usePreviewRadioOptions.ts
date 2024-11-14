@@ -53,6 +53,7 @@ export const usePreviewRadioOptions = ({
 
   const clearAllSelections = () => {
     setSelectedRadio(null);
+    handleAnswerChange('');
   };
 
   const hasSelectedOptions = selectedRadio !== null;
