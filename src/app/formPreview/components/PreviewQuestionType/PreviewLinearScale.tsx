@@ -1,6 +1,7 @@
+import { useTransition } from '@/hooks/useTransition';
 import { endLinearScaleAtom } from '@/store/EndLinearScaleAtom';
 import { startLinearScaleAtom } from '@/store/StartLinearScaleAtom';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 type PreviewLinearScaleProps = {
@@ -23,26 +24,37 @@ export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
     { length: end - start + 1 },
     (_, i) => start + i
   );
+  const { handleAnswerChange } = useTransition({ questionId });
 
-  const handleLineRadioChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSelectdLineRadio(event.target.value);
-  };
+  const handleLineRadioChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSelectdLineRadio(event.target.value);
+      handleAnswerChange(event.target.value);
+    },
+    [handleAnswerChange, selectdLineRadio]
+  );
 
   return (
     <div className='flex justify-between items-center'>
       {numbers.map((number) => (
         <div key={number} className='flex-col'>
-          <div className='text-sm mb-2'>{number}</div>
-          <input
-            type='radio'
-            name='LinearScale'
-            value={number.toString()}
-            id={`LinearScale-${number}`}
-            checked={selectdLineRadio === number.toString()}
-            className='h-4 w-4 cursor-pointer'
-          />
+          <label
+            key={number}
+            htmlFor={`LinearScale-${number}`}
+            className='flex flex-col items-center cursor-pointer'
+          >
+            <span className='text-sm mb-2'>{number}</span>{' '}
+            <input
+              type='radio'
+              name='LinearScale'
+              value={number.toString()}
+              id={`LinearScale-${number}`}
+              checked={selectdLineRadio === number.toString()}
+              className='h-4 w-4 cursor-pointer'
+              onChange={handleLineRadioChange}
+              aria-label={`Scale value ${number}`}
+            />
+          </label>
         </div>
       ))}
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useRadioOptions } from '@/hooks/useRadioOptions';
+import { useTransition } from '@/hooks/useTransition';
 import { selectedDropdownAtom } from '@/store/SelectedDropdownAtom';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,13 +23,16 @@ export const PreviewDropdown = ({ questionId }: PreviewDropdownProps) => {
   // カスタムフックを使用して選択肢のデータを取得
   const { options } = useRadioOptions(questionId);
 
+  const { handleAnswerChange } = useTransition({ questionId });
+
   /** 選択肢が選択された時の処理
-   *  - 選択された選択肢の表示テキストを設定し、ドロップダウンを閉じる関数
+   *  - 選択された選択肢の表示テキストを設定し、回答に追加、ドロップダウンを閉じる関数
    */
   const handleSelect = (option: string, index: number) => {
     // 空の選択肢の場合は「選択肢N」という形式で表示
     const displayText = option === '' ? `選択肢${index + 1}` : option;
     setSelectedDropdown(displayText); // 選択された選択肢をstateに設定
+    handleAnswerChange(displayText); //回答に追加
     setIsOpen((isOpen) => !isOpen); // ドロップダウンを閉じる
   };
 
