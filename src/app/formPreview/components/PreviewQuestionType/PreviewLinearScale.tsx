@@ -26,10 +26,11 @@ export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
   );
   const { handleAnswerChange } = useTransition({ questionId });
 
+  // ラジオボタンがクリックされたときの処理
   const handleLineRadioChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectdLineRadio(event.target.value);
-      handleAnswerChange(event.target.value);
+      setSelectdLineRadio(event.target.value); //選択した値をチェックボックスに反映
+      handleAnswerChange(event.target.value); //選択した値を回答に反映
     },
     [handleAnswerChange, selectdLineRadio]
   );
