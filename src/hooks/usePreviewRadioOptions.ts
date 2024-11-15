@@ -5,7 +5,7 @@ import {
   selectedOptionsAtom,
 } from '@/store/SelectedOptionsAtom';
 import { selectedRadioAtom } from '@/store/SelectedRadioAtom';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 type UsePreviewRadioOptions = {
@@ -52,44 +52,48 @@ export const usePreviewRadioOptions = ({
    * @param optionId - 選択されたオプションの一意の識別子
    * @param displayText - 選択されたオプションの表示テキスト
    */
-  const handleOptionChange = (optionId: string, displayText: string) => {
-    // ラジオボタンの場合
-    if (type === 'multipleChoice') {
-      if (selectedRadio === optionId) {
-        setSelectedRadio(null); //ラジオボタンをオフ
-      } else {
-        setSelectedRadio(optionId); //ラジオボタンをオン
-        handleAnswerChange(displayText); //テキスト追加
-      }
-
-      // チェックボックスの場合
-    } else {
-      // チェックボックスオン・オフ
-      setSelectedOptions((prev) => ({
-        ...prev,
-        [optionId]: !prev[optionId],
-      }));
-
-      setCheckboxesAnswer((prev) => {
-        // 現在の配列(prev)の中に、選択された項目(displayText)が含まれていたら削除
-        // includes()：配列の中に指定した値が存在するかをチェックするメソッド
-        if (prev.includes(displayText)) {
-          return prev.filter((text) => text !== displayText);
+  const handleOptionChange = useCallback(
+    (optionId: string, displayText: string) => {
+      // ラジオボタンの場合
+      if (type === 'multipleChoice') {
+        if (selectedRadio === optionId) {
+          setSelectedRadio(null); //ラジオボタンをオフ
+          handleAnswerChange(''); //答えを削除
+        } else {
+          setSelectedRadio(optionId); //ラジオボタンをオン
+          handleAnswerChange(displayText); //テキスト追加
         }
+        // チェックボックスの場合
+      } else {
+        // チェックボックスオン・オフ
+        setSelectedOptions((prev) => ({
+          ...prev,
+          [optionId]: !prev[optionId],
+        }));
 
-        // 配列の中に選択された項目がなければ、追加
-        return [...prev, displayText];
-      });
-    }
-  };
+        setCheckboxesAnswer((prev) => {
+          // 現在の配列(prev)の中に、選択された項目(displayText)が含まれていたら削除、なければ追加
+          // includes()：配列の中に指定した値が存在するかをチェックするメソッド
+          const newAnswer = prev.includes(displayText)
+            ? prev.filter((text) => text !== displayText)
+            : [...prev, displayText];
 
-  // checkboxesAnswerが変更されたときに自動的にhandleAnswerChangeを呼び出す
-  useEffect(() => {
-    if (type === 'checkboxes') {
-      handleAnswerChange(checkboxesAnswer.join(','));
-    }
-  }, [checkboxesAnswer, handleAnswerChange, type]);
+          // 状態更新と同時にhandleAnswerChangeを呼び出す
+          handleAnswerChange(newAnswer.join(','));
+          return newAnswer;
+        });
+      }
+    },
+    [
+      type,
+      selectedRadio,
+      setSelectedRadio,
+      setSelectedOptions,
+      handleAnswerChange,
+    ]
+  );
 
+  // 選択肢を削除する関数
   const clearAllSelections = () => {
     setSelectedRadio(null);
     setCheckboxesAnswer([]);
