@@ -11,7 +11,7 @@ export const CheckboxGrid = ({
 }: CheckboxGridProps) => {
   return (
     <div className='w-full'>
-      <div className='flex space-x-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* 左側 */}
         <Grid value='行' questionId={questionId} />
 
