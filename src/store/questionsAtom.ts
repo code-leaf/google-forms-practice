@@ -1,4 +1,5 @@
 import { QuestionType } from '@/types/formTypes';
+import { GridAnswer } from '@/types/previewTypes';
 import { atom, selector } from 'recoil';
 
 // 質問オブジェクトの型定義
@@ -8,7 +9,7 @@ export type Question = {
   title: string;
   required: boolean;
   options?: string[];
-  answer?: string | number;
+  answer?: string | number | GridAnswer;
 };
 
 // 質問リストを管理するRecoil atom

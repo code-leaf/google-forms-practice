@@ -1,4 +1,6 @@
+import { useTransition } from '@/hooks/useTransition';
 import { radioOptionsFamily } from '@/store/RadioOptionsFamily';
+import { GridAnswer } from '@/types/previewTypes';
 import { useRecoilValue } from 'recoil';
 
 type PreviewGridProps = {
@@ -10,6 +12,17 @@ export const PreviewGrid = ({ questionType, questionId }: PreviewGridProps) => {
   // 行と列のデータを取得
   const rowOptions = useRecoilValue(radioOptionsFamily(`${questionId}_row`));
   const columnOptions = useRecoilValue(radioOptionsFamily(`${questionId}_col`));
+
+  const { handleAnswerChange } = useTransition({ questionId });
+
+  const handleInputChange = (rowOptionId: string, columnIndex: number) => {
+    const answer: GridAnswer = {
+      rowId: rowOptionId,
+      columnIndex: columnIndex,
+      value: `${columnIndex + 1}列目`,
+    };
+    handleAnswerChange(answer);
+  };
 
   return (
     // レスポンシブ対応のためのオーバーフロー処理（横スクロール）
@@ -50,7 +63,7 @@ export const PreviewGrid = ({ questionType, questionId }: PreviewGridProps) => {
               </td>
 
               {/* 各列に対してセルを生成 */}
-              {columnOptions.map((column) => (
+              {columnOptions.map((column, columnIndex) => (
                 <td
                   key={`${rowOption.id}-${column.id}`}
                   className='py-2 px-4 text-center'
@@ -64,6 +77,9 @@ export const PreviewGrid = ({ questionType, questionId }: PreviewGridProps) => {
                     aria-label={`${rowOption.id}行${column.id}列の${questionType}`}
                     name={`row-${rowOption.id}`} // 同じ行のラジオボタンをグループ化
                     className='cursor-pointer'
+                    onChange={() =>
+                      handleInputChange(rowOption.id, columnIndex)
+                    }
                   />
                 </td>
               ))}

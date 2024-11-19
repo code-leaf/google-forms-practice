@@ -2,6 +2,7 @@ import { TransitionProps } from '@/app/components/Main/GoogleFormClone/Transitio
 import { Question, questionSelector } from '@/store/questionsAtom';
 import { radioOptionsFamily } from '@/store/RadioOptionsFamily';
 import { QuestionType } from '@/types/formTypes';
+import { GridAnswer } from '@/types/previewTypes';
 import { useCallback } from 'react';
 import { useRecoilCallback, useRecoilState } from 'recoil';
 
@@ -12,7 +13,7 @@ type UseTransition = {
   handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTypeChange: (value: string) => void;
   duplicateQuestion: (id: string) => void;
-  handleAnswerChange: (value: string | number) => void;
+  handleAnswerChange: (value: string | number | GridAnswer) => void;
 };
 
 export const useTransition = ({
@@ -139,8 +140,22 @@ export const useTransition = ({
 
   // 回答変更時のハンドラ
   const handleAnswerChange = useCallback(
-    (value: string | number) => {
-      updateQuestion({ answer: value });
+    (value: string | number | GridAnswer) => {
+      // グリッド形式の回答の場合
+      if (typeof value === 'object' && 'rowId' in value) {
+        const gridAnswer = value as GridAnswer;
+        updateQuestion({
+          answer: {
+            rowId: gridAnswer.rowId,
+            columnIndex: gridAnswer.columnIndex + 1,
+            value: gridAnswer.value,
+          },
+        });
+
+        // 通常の回答の場合
+      } else {
+        updateQuestion({ answer: value });
+      }
     },
     [updateQuestion]
   );
