@@ -1,4 +1,5 @@
 import { PreviewDropdown } from '@/app/formPreview/components/PreviewQuestionType/PreviewDropdown';
+import { PreviewGrid } from '@/app/formPreview/components/PreviewQuestionType/PreviewGrid';
 import { PreviewInput } from '@/app/formPreview/components/PreviewQuestionType/PreviewInput';
 import { PreviewLinearScale } from '@/app/formPreview/components/PreviewQuestionType/PreviewLinearScale';
 import { PreviewRadioOptions } from '@/app/formPreview/components/PreviewQuestionType/PreviewRadioOptions';
@@ -48,6 +49,12 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
       );
     case 'multipleChoiceGrid':
     case 'checkboxGrid':
+      return (
+        <div>
+          <h2>{question.title}</h2>
+          <PreviewGrid questionType={question.type} questionId={question.id} />
+        </div>
+      );
     // case 'date':
     //   return <IconInput icon='date' value='年 月 日' faIcon={faCalendar} />;
     // case 'time':
