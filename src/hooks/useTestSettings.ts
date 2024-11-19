@@ -1,4 +1,4 @@
-import { ScoreDisplaySettings, UseTestSettings } from '@/types/SettingsType';
+import { ScoreDisplaySettings, UseTestSettings } from '@/types/settingsType';
 import { useState } from 'react';
 
 export const useTestSettings = (): UseTestSettings => {

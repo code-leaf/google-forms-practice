@@ -1,4 +1,4 @@
-import { EmailCollectionOption } from '@/types/SettingsType';
+import { EmailCollectionOption } from '@/types/settingsType';
 import { atom } from 'recoil';
 
 export const emailCollectionOptionAtom = atom<EmailCollectionOption>({

@@ -1,5 +1,4 @@
-import { UseEmailCollection, useEmailCollection } from '@/hooks/useEmailCollection';
-import { SendCopyOption } from '@/types/SettingsType';
+import { SendCopyOption } from '@/types/settingsType';
 import { useCallback, useState } from 'react';
 
 type UseAnswerSettings = {

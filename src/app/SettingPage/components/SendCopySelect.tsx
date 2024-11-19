@@ -1,4 +1,4 @@
-import { SendCopyOption } from '@/types/SettingsType';
+import { SendCopyOption } from '@/types/settingsType';
 import React from 'react';
 
 type SendCopySelectProps = {

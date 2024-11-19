@@ -3,7 +3,7 @@ import { EmailCollectionSelect } from '@/app/SettingPage/components/EmailCollect
 import { SendCopySelect } from '@/app/SettingPage/components/SendCopySelect';
 import { useAnswerSettings } from '@/hooks/useAnswerSettings';
 import { useEmailCollection } from '@/hooks/useEmailCollection';
-import { AnswerSettingsProps } from '@/types/SettingsType';
+import { AnswerSettingsProps } from '@/types/settingsType';
 
 export const AnswerSettings = ({
   isExpanded,

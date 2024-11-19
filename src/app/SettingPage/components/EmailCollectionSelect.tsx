@@ -1,4 +1,4 @@
-import { EmailCollectionOption } from '@/types/SettingsType';
+import { EmailCollectionOption } from '@/types/settingsType';
 import React from 'react';
 
 type EmailCollectionSelectProps = {

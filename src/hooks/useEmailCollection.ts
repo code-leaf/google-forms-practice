@@ -1,5 +1,5 @@
 import { emailCollectionOptionAtom } from '@/store/EmailCollectionOption';
-import { EmailCollectionOption } from '@/types/SettingsType';
+import { EmailCollectionOption } from '@/types/settingsType';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 

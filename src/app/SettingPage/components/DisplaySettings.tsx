@@ -1,6 +1,6 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { useDisplaySettings } from '@/hooks/useDisplaySettings';
-import { AnswerSettingsProps } from '@/types/SettingsType';
+import { AnswerSettingsProps } from '@/types/settingsType';
 
 export const DisplaySettings = ({
   isExpanded,

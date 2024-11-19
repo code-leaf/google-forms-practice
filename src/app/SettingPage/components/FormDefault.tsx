@@ -1,6 +1,6 @@
 import { EmailCollectionSelect } from '@/app/SettingPage/components/EmailCollectionSelect';
 import { useEmailCollection } from '@/hooks/useEmailCollection';
-import { SendCopyOption } from '@/types/SettingsType';
+import { SendCopyOption } from '@/types/settingsType';
 import { useState } from 'react';
 
 type formDefaultAccordionProps = {

@@ -1,6 +1,6 @@
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { useTestSettings } from '@/hooks/useTestSettings';
-import { TestSettingsProps } from '@/types/SettingsType';
+import { TestSettingsProps } from '@/types/settingsType';
 
 export const TestSettings = ({ isChecked }: TestSettingsProps) => {
   const {
