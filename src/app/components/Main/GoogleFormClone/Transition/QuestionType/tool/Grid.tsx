@@ -9,8 +9,10 @@ type GridProps = {
 };
 
 export const Grid = ({ questionType, value, questionId }: GridProps) => {
+  // 行と列で異なるIDを使用するように修正
+  const uniqueId = `${questionId}_${value === '行' ? 'row' : 'col'}`;
   const { options, updateOptionText, removeOption, addOption } =
-    useRadioOptions(questionId);
+    useRadioOptions(uniqueId);
   return (
     <div className='w-1/2'>
       <h3 className='font-medium mb-4'>{value}</h3>
