@@ -31,14 +31,23 @@ export const PreviewQuestionType = ({ question }: PreviewQuestionTypeProps) => {
         </div>
       );
     case 'dropdown':
-      return <PreviewDropdown questionId={question.id} />;
+      return (
+        <div>
+          <h2>{question.title}</h2>
+          <PreviewDropdown questionId={question.id} />;
+        </div>
+      );
     case 'fileUpload':
       return <div className='flex justify-center items-center'>準備中</div>;
     case 'linearScale':
-      return <PreviewLinearScale questionId={question.id} />;
-    // case 'multipleChoiceGrid':
-    // case 'checkboxGrid':
-    //   return <CheckboxGrid questionType={question.type} />;
+      return (
+        <div>
+          <h2>{question.title}</h2>
+          <PreviewLinearScale questionId={question.id} />
+        </div>
+      );
+    case 'multipleChoiceGrid':
+    case 'checkboxGrid':
     // case 'date':
     //   return <IconInput icon='date' value='年 月 日' faIcon={faCalendar} />;
     // case 'time':
