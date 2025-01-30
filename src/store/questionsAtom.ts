@@ -11,7 +11,7 @@ export type Question = {
   answer?: string | number;
 };
 
-// 質問リストを管理するRecoil atom
+// 質問リストを管理するRecoil atom 
 export const questionsAtom = atom<Question[]>({
   key: 'questionsAtom', // ユニークなキー
   default: [], // デフォルト値は空の配列
