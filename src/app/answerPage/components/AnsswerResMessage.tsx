@@ -2,10 +2,10 @@
 
 import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 export const AnsswerMessage: React.FC = () => {
-  const [isAccepting] = useRecoilState(respAcceptToggleAtom);
+  const isAccepting = useAtomValue(respAcceptToggleAtom);
   if (!isAccepting) {
     return undefined;
   }

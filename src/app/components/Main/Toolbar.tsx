@@ -13,12 +13,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 // メインのツールバーコンポーネント
 export const Toolbar: React.FC = () => {
-  // Recoilの状態を使用
-  const [questions, setQuestions] = useRecoilState(questionsAtom);
+  // Jotaiの状態を使用
+  const [questions, setQuestions] = useAtom(questionsAtom);
 
   // 質問の表示・非表示を管理
   const [isQuestionOpen, setIsQuestionOpen] = useState<boolean>(true);

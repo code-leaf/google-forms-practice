@@ -6,7 +6,7 @@ import {
 } from '@/store/SelectedOptionsAtom';
 import { selectedRadioAtom } from '@/store/SelectedRadioAtom';
 import { useCallback, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 type UsePreviewRadioOptions = {
   selectedRadio: string | null;
@@ -40,9 +40,9 @@ export const usePreviewRadioOptions = ({
   questionId,
 }: PreviewRadioOptionsProps): UsePreviewRadioOptions => {
   const [selectedOptions, setSelectedOptions] =
-    useRecoilState(selectedOptionsAtom);
+    useAtom(selectedOptionsAtom);
 
-  const [selectedRadio, setSelectedRadio] = useRecoilState(selectedRadioAtom);
+  const [selectedRadio, setSelectedRadio] = useAtom(selectedRadioAtom);
 
   const [checkboxesAnswer, setCheckboxesAnswer] = useState<string[]>([]);
 

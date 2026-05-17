@@ -3,7 +3,8 @@ import { Question, questionSelector } from '@/store/questionsAtom';
 import { radioOptionsFamily } from '@/store/RadioOptionsFamily';
 import { QuestionType } from '@/types/formTypes';
 import { useCallback } from 'react';
-import { useRecoilCallback, useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 
 type UseTransition = {
   question: Question | undefined;
@@ -18,7 +19,7 @@ type UseTransition = {
 export const useTransition = ({
   questionId,
 }: TransitionProps): UseTransition => {
-  const [questions, setQuestions] = useRecoilState(questionSelector);
+  const [questions, setQuestions] = useAtom(questionSelector);
   const question = questions.find((q) => q.id === questionId);
 
   // 質問を削除する関数
@@ -59,31 +60,28 @@ export const useTransition = ({
     [updateQuestion]
   );
 
-  /** Recoilの状態をコピーする関数
-   * - useRecoilCallback: 複雑な状態管理を安全かつ効率的に行うための強力なツール
+  /** Jotaiの状態をコピーする関数
+   * - useAtomCallback: 複雑な状態管理を安全かつ効率的に行うための強力なツール
    * - async関数を返し、コピー元とコピー先のIDを引数に受け取る
-   * - snapshotを使って、指定したoldIdのradioOptionsAtomの状態を取得
+   * - getを使って、指定したoldIdのradioOptionsAtomの状態を取得
    * - 取得した状態を新しいID（newId）でユニークID付きの状態をセット
-   * @property snapshot: 安全な状態の読み取り
+   * @property get: 安全な状態の読み取り
    * @property set: 状態の更新
    */
-  const copyRecoilState = useRecoilCallback(
-    ({ snapshot, set }) =>
-      async (oldId: string, newId: string) => {
-        // snapshotを使って、指定したoldIdのradioOptionsAtomの状態を取得
-        const sourceOptions = await snapshot.getPromise(
-          radioOptionsFamily(oldId)
-        );
+  const copyRecoilState = useAtomCallback(
+    useCallback(async (get, set, oldId: string, newId: string) => {
+      // getを使って、指定したoldIdのradioOptionsAtomの状態を取得
+      const sourceOptions = get(radioOptionsFamily(oldId));
 
-        // 各オプションのIDをユニークにするために新しいIDを生成し直す
-        const newOptions = sourceOptions.map((option) => ({
-          ...option,
-          id: `option_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        }));
+      // 各オプションのIDをユニークにするために新しいIDを生成し直す
+      const newOptions = sourceOptions.map((option) => ({
+        ...option,
+        id: `option_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      }));
 
-        // 取得した状態を新しいID（newId）でradioOptionsAtomにセット
-        set(radioOptionsFamily(newId), newOptions);
-      }
+      // 取得した状態を新しいID（newId）でradioOptionsAtomにセット
+      set(radioOptionsFamily(newId), newOptions);
+    }, [])
   );
 
   /** 質問を複製する関数 */

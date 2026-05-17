@@ -8,7 +8,7 @@ import FormatIcons from '@/app/components/tool/FormatIcons';
 // 型をインポート
 import { formHeaderAtom } from '@/store/formHeaderAtom';
 import { SelectedInput } from '@/types/formTypes';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 // フォームのヘッダー部分を表示するコンポーネント
 const FormHeader = () => {
@@ -16,7 +16,7 @@ const FormHeader = () => {
   const [selectedInput, setSelectedInput] = useState<SelectedInput>(undefined);
 
   // フォームのヘッダーを管理するAtom
-  const [formHeader, setFormHeader] = useRecoilState(formHeaderAtom);
+  const [formHeader, setFormHeader] = useAtom(formHeaderAtom);
 
   // フォームのタイトルを変更するAtom
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

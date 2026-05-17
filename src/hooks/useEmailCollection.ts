@@ -1,7 +1,7 @@
 import { emailCollectionOptionAtom } from '@/store/EmailCollectionOption';
 import { EmailCollectionOption } from '@/types/SettingsType';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 export type UseEmailCollection = {
   emailCollectionOption: EmailCollectionOption;
@@ -20,7 +20,7 @@ export type UseEmailCollection = {
 };
 
 export const useEmailCollection = (): UseEmailCollection => {
-  const [emailCollectionOption, setEmailCollectionOption] = useRecoilState(
+  const [emailCollectionOption, setEmailCollectionOption] = useAtom(
     emailCollectionOptionAtom
   );
 

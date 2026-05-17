@@ -1,6 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const linearScaleLabelAtom = atom<{ [key: number]: string }>({
-  key: 'linearScaleLabelAtom', // 一意のキー
-  default: {}, // 初期値
-});
+export const linearScaleLabelAtom = atom<{ [key: number]: string }>({});

@@ -1,6 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const selectedDropdownAtom = atom<string>({
-  key: 'selectedDropdownAtom', // 一意のキー
-  default: '選択', // 初期値
-});
+export const selectedDropdownAtom = atom<string>('選択');

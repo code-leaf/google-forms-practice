@@ -1,19 +1,21 @@
+'use client';
+
 import { useTransition } from '@/hooks/useTransition';
 import { endLinearScaleAtom } from '@/store/EndLinearScaleAtom';
 import { linearScaleLabelAtom } from '@/store/linearScaleLabelAtom';
 import { startLinearScaleAtom } from '@/store/StartLinearScaleAtom';
 import React, { useCallback, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 type PreviewLinearScaleProps = {
   questionId: string;
 };
 
 export const PreviewLinearScale = ({ questionId }: PreviewLinearScaleProps) => {
-  // Recoilから開始値と終了値を取得
-  const start = useRecoilValue(startLinearScaleAtom);
-  const end = useRecoilValue(endLinearScaleAtom);
-  const labels = useRecoilValue(linearScaleLabelAtom);
+  // Jotaiから開始値と終了値を取得
+  const start = useAtomValue(startLinearScaleAtom);
+  const end = useAtomValue(endLinearScaleAtom);
+  const labels = useAtomValue(linearScaleLabelAtom);
 
   // 選択された値を管理するstate
   const [selectdLineRadio, setSelectdLineRadio] = useState<string>('');

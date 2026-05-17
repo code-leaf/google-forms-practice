@@ -1,6 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const endLinearScaleAtom = atom<number>({
-  key: 'endLinearScaleAtom', // 一意のキー
-  default: 5, // 初期値
-});
+export const endLinearScaleAtom = atom<number>(5);

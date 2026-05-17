@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
 // 回答の型定義
 export type Answer = {
@@ -6,7 +6,4 @@ export type Answer = {
   value: string | string[];
 };
 
-export const answersAtom = atom<Answer[]>({
-  key: 'answersAtom',
-  default: [], // デフォルトは空の配列
-});
+export const answersAtom = atom<Answer[]>([]);

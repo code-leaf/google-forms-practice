@@ -6,7 +6,7 @@ import { selectedDropdownAtom } from '@/store/SelectedDropdownAtom';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 type PreviewDropdownProps = {
   questionId: string;
@@ -18,7 +18,7 @@ export const PreviewDropdown = ({ questionId }: PreviewDropdownProps) => {
 
   // 選択された選択肢を管理するatom
   const [selectedDropdown, setSelectedDropdown] =
-    useRecoilState(selectedDropdownAtom);
+    useAtom(selectedDropdownAtom);
 
   // カスタムフックを使用して選択肢のデータを取得
   const { options } = useRadioOptions(questionId);

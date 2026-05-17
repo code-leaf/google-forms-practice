@@ -3,12 +3,12 @@
 import { UnderlinedInput } from '@/app/components/Main/GoogleFormClone/Transition/QuestionType/tool/UnderlinedInput';
 import { endLinearScaleAtom } from '@/store/EndLinearScaleAtom';
 import { startLinearScaleAtom } from '@/store/StartLinearScaleAtom';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 export const LinearScale = () => {
   // 開始値と終了値
-  const [startValue, setStartValue] = useRecoilState(startLinearScaleAtom);
-  const [endValue, setEndValue] = useRecoilState(endLinearScaleAtom);
+  const [startValue, setStartValue] = useAtom(startLinearScaleAtom);
+  const [endValue, setEndValue] = useAtom(endLinearScaleAtom);
 
   return (
     <div className='flex flex-col'>

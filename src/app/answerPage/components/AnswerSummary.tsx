@@ -1,16 +1,18 @@
+'use client';
+
 import { QuestionChart } from '@/app/answerPage/components/QuestionChart';
 import { Answer, answersAtom } from '@/store/answersAtom';
 import { Question } from '@/store/questionsAtom';
 import React, { useCallback, useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
-// AnswerSummaryPropsの型定義
+// AnswerSummaryProps host key definitions
 type AnswerSummaryProps = { questions: Question[] };
 
-// AnswerSummaryコンポーネントの定義
+// AnswerSummary component definition
 export const AnswerSummary: React.FC<AnswerSummaryProps> = ({ questions }) => {
-  // Recoil から回答データを取得
-  const answers = useRecoilValue(answersAtom);
+  // Jotai から回答データを取得
+  const answers = useAtomValue(answersAtom);
 
   // 回答データを集計する関数
   const getAnswerCounts = useCallback(

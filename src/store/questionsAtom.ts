@@ -1,5 +1,5 @@
 import { QuestionType } from '@/types/formTypes';
-import { atom, selector } from 'recoil';
+import { atom } from 'jotai';
 
 // 質問オブジェクトの型定義
 export type Question = {
@@ -11,17 +11,11 @@ export type Question = {
   answer?: string | number;
 };
 
-// 質問リストを管理するRecoil atom 
-export const questionsAtom = atom<Question[]>({
-  key: 'questionsAtom', // ユニークなキー
-  default: [], // デフォルト値は空の配列
-});
+// 質問リストを管理するJotai atom 
+export const questionsAtom = atom<Question[]>([]);
 
-// 質問データを取得or更新するためのRecoilのselector
-export const questionSelector = selector({
-  key: 'questionSelector',
-  // "get"関数は、現在の"questionsAtom"の状態を取得
-  get: ({ get }) => get(questionsAtom),
-  // "set"関数は、新しい値を"questionsAtom"に設定
-  set: ({ set }, newValue) => set(questionsAtom, newValue),
-});
+// 質問データを取得or更新するためのJotai atom (読み書き両用)
+export const questionSelector = atom(
+  (get) => get(questionsAtom),
+  (get, set, newValue: Question[]) => set(questionsAtom, newValue)
+);

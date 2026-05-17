@@ -3,14 +3,14 @@
 
 import { questionsAtom } from '@/store/questionsAtom';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import FormHeader from './GoogleFormClone/FormHeader';
 import { Transition } from './GoogleFormClone/Transition';
 
 // フォームコンポーネント
 const GoogleFormClone: React.FC = () => {
-  // Recoilの状態を使用
-  const [questions, setQuestions] = useRecoilState(questionsAtom);
+  // Jotaiの状態を使用
+  const [questions, setQuestions] = useAtom(questionsAtom);
 
   return (
     <div className='p-4 '>

@@ -6,11 +6,11 @@ import { questionsAtom } from '@/store/questionsAtom';
 import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 export const AnswerPageMain = () => {
-  // Recoilを使用して質問のデータを取得
-  const questions = useRecoilValue(questionsAtom);
+  // Jotaiを使用して質問のデータを取得
+  const questions = useAtomValue(questionsAtom);
   return (
     <div className='container mx-auto p-4 max-w-3xl text-gray-600 bg-gray-50 rounded-md  mb-4'>
       {/* 回答件数とスプレッドシートへのリンクを表示 */}

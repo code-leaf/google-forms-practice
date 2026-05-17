@@ -1,7 +1,4 @@
 import { EmailCollectionOption } from '@/types/SettingsType';
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const emailCollectionOptionAtom = atom<EmailCollectionOption>({
-  key: 'emailCollectionOption', // 一意のキー
-  default: '収集しない', // 初期値
-});
+export const emailCollectionOptionAtom = atom<EmailCollectionOption>('収集しない');

@@ -1,7 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-// 回答の受け付け状況を管理するRecoil atom
-export const respAcceptToggleAtom = atom<boolean>({
-  key: 'respAcceptToggleAtom', // ユニークなキー
-  default: true, // デフォルト値はtrue
-});
+// 回答の受け付け状況を管理するJotai atom
+export const respAcceptToggleAtom = atom<boolean>(true);

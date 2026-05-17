@@ -3,7 +3,7 @@
 
 import { RadioOptionsFamily, radioOptionsFamily } from '@/store/RadioOptionsFamily';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 type UseRadioOptions = {
   options: RadioOptionsFamily[];
@@ -19,7 +19,7 @@ type UseRadioOptions = {
 
 export const useRadioOptions = (questionId: string): UseRadioOptions => {
   // オプションの状態を管理
-  const [options, setOptions] = useRecoilState(radioOptionsFamily(questionId));
+  const [options, setOptions] = useAtom(radioOptionsFamily(questionId));
 
   // その他オプションの有無を管理
   const [hasOther, setHasOther] = useState<boolean>(false);

@@ -1,10 +1,10 @@
 'use client';
 
 import { questionsAtom } from '@/store/questionsAtom';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 export default function Test() {
-  const [questions, setQuestions] = useRecoilState(questionsAtom);
+  const [questions, setQuestions] = useAtom(questionsAtom);
 
   // デバッグ用のログ追加
   console.log('Questions:', questions);

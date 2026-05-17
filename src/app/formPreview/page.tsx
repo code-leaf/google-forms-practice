@@ -4,10 +4,10 @@ import { PreviewAnswer } from '@/app/formPreview/components/PreviewAnswer';
 import { PreviewHeader } from '@/app/formPreview/components/PreviewHeader';
 import { questionsAtom } from '@/store/questionsAtom';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 const FormPreview = () => {
-  const questions = useRecoilValue(questionsAtom);
+  const questions = useAtomValue(questionsAtom);
 
   return (
     <main className='min-h-screen bg-purple-100'>

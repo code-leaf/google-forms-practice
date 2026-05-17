@@ -1,6 +1,6 @@
 'use client';
 import { linearScaleLabelAtom } from '@/store/linearScaleLabelAtom';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 type UnderlinedInputProps = {
   value: number;
@@ -8,7 +8,7 @@ type UnderlinedInputProps = {
 };
 
 export const UnderlinedInput = ({ value, className }: UnderlinedInputProps) => {
-  const [labels, setLabels] = useRecoilState(linearScaleLabelAtom);
+  const [labels, setLabels] = useAtom(linearScaleLabelAtom);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabels((prev) => ({

@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
 /** 文字列キーとboolean型の値を持つオブジェクト 
  * @property 文字列キーとboolean型の値を持つオブジェクト
@@ -7,7 +7,4 @@ export type SelectedOptionsAtom = {
   [key: string]: boolean;
 };
 
-export const selectedOptionsAtom = atom<SelectedOptionsAtom>({
-  key: 'selectedOptionsAtom', // 一意のキー
-  default: {}, // 初期値
-});
+export const selectedOptionsAtom = atom<SelectedOptionsAtom>({});

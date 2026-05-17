@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
 type FormHeaderAtom = {
   title: string;
@@ -6,9 +6,6 @@ type FormHeaderAtom = {
 };
 
 export const formHeaderAtom = atom<FormHeaderAtom>({
-  key: 'formHeaderAtom', // 一意のキー
-  default: {
-    title: '',
-    description: '',
-  }, // 初期値
+  title: '',
+  description: '',
 });

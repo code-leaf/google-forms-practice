@@ -1,11 +1,13 @@
+'use client';
+
 import { ToggleButton } from '@/app/components/tool/ToggleButton';
 import { respAcceptToggleAtom } from '@/store/RespAcceptToggleAtom';
 import React, { useCallback, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 export const RespAcceptToggle: React.FC = () => {
   // 回答受付状況のステートを管理
-  const [isAccepting, setIsAccepting] = useRecoilState(respAcceptToggleAtom);
+  const [isAccepting, setIsAccepting] = useAtom(respAcceptToggleAtom);
 
   // トグルボタンのクリックハンドラをコールバック関数として定義
   const toggleAcceptance = useCallback(() => {

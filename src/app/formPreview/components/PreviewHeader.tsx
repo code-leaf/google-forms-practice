@@ -1,9 +1,11 @@
+'use client';
+
 import { formHeaderAtom } from '@/store/formHeaderAtom';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 export const PreviewHeader = () => {
   // フォームのヘッダーを管理するAtom
-  const formHeader = useRecoilValue(formHeaderAtom);
+  const formHeader = useAtomValue(formHeaderAtom);
 
   // タイトルが空の場合は "無題のフォーム" を表示、それ以外は設定されたタイトルを表示
   const formHeaderTitle =
