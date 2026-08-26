@@ -61,7 +61,16 @@
       "minimatch": {
         "brace-expansion": "^5.0.8"
       }
-    }
+    },
+    "ajv": "^6.15.0",
+    "cross-spawn": "^7.0.6",
+    "yaml": "^2.9.0",
+    "lodash.template": "^4.18.1",
+    "micromatch": "^4.0.8",
+    "diff": "^5.2.2",
+    "@babel/core": "^7.29.7",
+    "@babel/helpers": "^7.29.7",
+    "@babel/runtime": "^7.29.7"
   },
   "resolutions": {
     "next": "^15.5.24",
@@ -79,6 +88,15 @@
     "glob/minimatch/brace-expansion": "^2.1.3",
     "**/ts-morph/@ts-morph/common/minimatch": "^7.4.9",
     "**/ts-morph/@ts-morph/common/minimatch/brace-expansion": "^2.1.3",
-    "eslint-config-next/**/typescript-estree/minimatch/brace-expansion": "^5.0.8"
+    "eslint-config-next/**/typescript-estree/minimatch/brace-expansion": "^5.0.8",
+    "ajv": "^6.15.0",
+    "cross-spawn": "^7.0.6",
+    "yaml": "^2.9.0",
+    "lodash.template": "^4.18.1",
+    "micromatch": "^4.0.8",
+    "diff": "^5.2.2",
+    "@babel/core": "^7.29.7",
+    "@babel/helpers": "^7.29.7",
+    "@babel/runtime": "^7.29.7"
   }
 }
