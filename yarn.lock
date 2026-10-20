@@ -839,9 +839,9 @@ balanced-match@^4.0.2:
   integrity sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==
 
 baseline-browser-mapping@^2.11.29:
-  version "2.11.29"
-  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.11.29.tgz#dbed0ed2c17943aa4427863c91300865d9d8ca23"
-  integrity sha512-YeesxhUmR4h5y5V8KF8iBCqJb8YFrBJ++XBTeGcWIaQOYXGN19JM0FoiOjAhwuDoln8owMgXcWBmgHtYSkky2w==
+  version "2.11.30"
+  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.11.30.tgz#cfff2f5f3954e9c9d1488949321bb310eacf346e"
+  integrity sha512-YJs6Pz17RMNv8HoyKREtCY38E3BV1nPkWVmIb+XN1uHC1Vqt3KZCH/uJH9ZKRoiKb/icZ6tvehyee6RZNbFfRA==
 
 binary-extensions@^2.0.0:
   version "2.3.0"
@@ -894,9 +894,9 @@ camelcase-css@^2.0.1:
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
 
 caniuse-lite@^1.0.30001579, caniuse-lite@^1.0.30001816:
-  version "1.0.30001816"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001816.tgz#80567cffb179fd8a1702816bc80de8efc9784021"
-  integrity sha512-+8Yx7BXCoqk6IF8yTicjfUR6D/ldJzdlsodlEOiOSPmhK844WIgk67/zIQaGAOxNkZyyvBlrRFnLvqKIoqbAFw==
+  version "1.0.30001817"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001817.tgz#c6e8835644f9bbeee50051ec0bae152f65f7bb0f"
+  integrity sha512-uZ1JG80BwhtMalIAGPxPfmNhHyd/B/nTdr3hITWlRamSyAdUStP1Gop01e7SD5q6J90ixJvWDbvmiFVfDgn4bw==
 
 chalk@^5.4.1:
   version "5.6.2"
@@ -1019,9 +1019,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.459:
-  version "1.5.459"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.459.tgz#98f4b60fc757b882c387c4fb884625d084dca8b3"
-  integrity sha512-4SC9HHSFjO/liAhifpdOL5hG9b4BP7/5G3y3UPZVO8trlAXr1CaUEEJL0gWK3kOcYcZrOA5rkwG45Gra/lTIgg==
+  version "1.5.461"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.461.tgz#6eecfd2feb3e145c42cac3efd9a13b863c6cd7c7"
+  integrity sha512-3WZFARz1By+/rYcqQ0OLj4UcEdhd6tz2LEcDtKBUq7ey77EeJ1OtetY/5hjSUxw7dC5r5mA7FfkhRbqO9vnTCg==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
